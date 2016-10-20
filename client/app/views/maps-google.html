@@ -1,0 +1,64 @@
+<h3>Google Maps</h3>
+<div data-ng-controller="GoogleMapController as gmap" class="container-fluid">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <div class="panel-title">Simple Map</div>
+      </div>
+      <gm-map gm-map-id="'simpleMap'" gm-center="gmap.center" gm-zoom="gmap.zoom" class="gmap"></gm-map>
+      <div class="panel-body">
+         <div class="row">
+            <div class="col-md-6">
+               <label>Center:</label>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <input type="number" data-ng-model="gmap.centerLat" data-ng-change="gmap.updateCenter(centerLat, centerLng)" class="form-control" />
+                  </div>
+                  <div class="col-xs-6">
+                     <input type="number" data-ng-model="gmap.centerLng" data-ng-change="gmap.updateCenter(centerLat, centerLng)" class="form-control" />
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <label>Zoom:</label>
+               <input type="number" data-ng-model="gmap.zoom" class="form-control" />
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <div class="panel-title">Markers Data</div>
+      </div>
+      <div gm-info-window="infoWindow">
+         <h4>{{selectedVolcano.name}}</h4>{{selectedVolcano.elevationMeters}}m</div>
+      <gm-map gm-map-id="'infoWindows'" gm-center="gmap.options.center" gm-zoom="gmap.options.zoom" gm-map-options="gmap.options.map" class="gmap">
+         <gm-markers gm-objects="gmap.volcanoes" gm-id="object.id" gm-position="{ lat: object.location.lat, lng: object.location.lng }" gm-marker-options="{ title: object.name, clickable: true }" gm-events="gmap.markerEvents" gm-on-openinfowindow="selectedVolcano = object; infoWindow.open(marker.getMap(), marker);"
+         gm-on-click="gmap.triggerOpenInfoWindow(object)"></gm-markers>
+      </gm-map>
+      <div class="panel-body">
+         <p>Click a marker or click a button below to learn more about the volcano.</p>
+         <button data-ng-repeat="volcano in gmap.volcanoes" data-ng-click="gmap.triggerOpenInfoWindow(volcano)" class="btn btn-default mr">More about {{volcano.name}}</button>
+      </div>
+   </div>
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <div class="panel-title">Markers Info</div>
+      </div>
+      <div class="panel-body">
+         <div class="row">
+            <div class="col-md-9">
+               <gm-map gm-map-id="'mapWithMarkers'" gm-center="gmap.options3.center" gm-zoom="gmap.options3.zoom" gm-map-options="gmap.options3.map" class="gmap">
+                  <gm-markers gm-objects="volcanoes" gm-id="object.id" gm-position="{lat: object.location.lat, lng: object.location.lng}" gm-marker-options="gmap.getVolcanoOpts(object)" gm-on-click="gmap.selectVolcano(object, marker)"></gm-markers>
+               </gm-map>
+            </div>
+            <div class="col-md-3">
+               <h5 data-ng-show="!gmap.volcan" class="muted">Select a marker!</h5>
+               <div data-ng-show="gmap.volcan">
+                  <h4>{{ gmap.volcan.name }}, {{ gmap.volcan.elevationMeters }}m</h4>
+                  <img data-ng-src="{{ gmap.volcan.img }}" class="mb img-thumbnail img-rounded img-responsive" />
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

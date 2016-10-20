@@ -1,0 +1,74 @@
+<div class="summary">
+   <!-- this clikable element is required to go back to the sidebar menu items-->
+   <div class="p sidebar-close clickable">
+      <em data-ng-class="(app.layout.isRTL)? 'fa-angle-right' : 'fa-angle-left'" class="fa mr-lg"></em>
+      <span class="text-bold">Summary</span>
+   </div>
+   <div data-ng-controller="SummaryController" class="p">
+      <ul class="list-table list-unstyled pb">
+         <li class="wd-xxs">
+            <img data-ng-src="{{User.avatar}}" alt="" class="img-circle img-responsive thumb48" />
+         </li>
+         <li class="text-left">
+            <h5 class="text-bold text-ellipsis mt0">{{User.nom}}</h5>
+            <progressbar value="75" type="success" class="mb-sm progress-xs">
+               <div class="sr-only">75%</div>
+            </progressbar>
+            <p class="text-muted clearfix m0">
+               <span class="pull-left">Profile complete</span>
+               <span class="pull-right">75%</span>
+            </p>
+         </li>
+      </ul>
+      <hr/>
+      <ul class="list-table pv">
+         <li>
+            <h4 class="m0 text-bold">10k</h4>
+            <small class="text-muted">Followers</small>
+         </li>
+         <li>
+            <h4 class="m0 text-bold">1500</h4>
+            <small class="text-muted">Following</small>
+         </li>
+         <li>
+            <h4 class="m0 text-bold">2300</h4>
+            <small class="text-muted">Messages</small>
+         </li>
+      </ul>
+      <hr/>
+      <div class="pv">
+         <h5 class="text-center m0 text-bold">Summary</h5>
+         <br/>
+         <ul class="list-table">
+            <li>
+               <p class="m0">Mailbox quota</p>
+               <small class="text-muted">1 of 5 Gb Used</small>
+            </li>
+            <li class="text-right">
+               <sparkline options="sparkOps1" values="sparkData1"></sparkline>
+            </li>
+         </ul>
+         <ul class="list-table">
+            <li>
+               <p class="m0">Profile visits</p>
+               <small class="text-muted">25k this month</small>
+            </li>
+            <li class="text-right">
+               <sparkline options="sparkOps2" values="sparkData2"></sparkline>
+            </li>
+         </ul>
+         <ul class="list-table">
+            <li>
+               <p class="m0">Monthly Sale</p>
+               <small class="text-muted">$4000 this period</small>
+            </li>
+            <li class="text-right">
+               <sparkline options="sparkOps3" values="sparkData3"></sparkline>
+            </li>
+         </ul>
+      </div>
+      <br/>
+      <div class="text-center"><a href="#" class="btn btn-info btn-sm">Open Full Profile</a>
+      </div>
+   </div>
+</div>

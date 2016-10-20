@@ -1,0 +1,130 @@
+<h3>التصرف في الأعوان
+   <small data-ng-bind="app.name + ' - ' + app.description"></small>
+</h3>
+<!-- START row-->
+<div data-ng-controller="GestionUser" class="row">
+   <div class="col-md-12">
+      <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+      
+      <form onsubmit="return false;" name="formu" class="form-validate form-horizontal" data-ng-submit="formu.$valid && updateUser()">
+         <!-- START panel-->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <div class="panel-title"><h3>تحيين المعطيات الشخصية</h3></div>
+            </div>
+            <div class="panel-body">
+               
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">المعرف الوحيد</label>
+                     <div class="col-sm-4">
+                        <div class="input-group">
+                           <input type="text" data-ng-model="u.uid" data-ng-pattern="/^[0-9]{10,12}$/i" class="form-control"   required  />
+                           <span class="input-group-btn">
+                              <button type="button" data-ng-click="getU4Uuser()" class="btn btn-primary">بحث</button>
+                           </span>
+                        </div>
+                     </div>
+                     <label class="col-sm-1 control-label">#</label>
+                     <div class="col-sm-4">
+                        <input type="text" data-ng-model="u._id" data-ng-pattern="/^[a-f\d]{24}$/i" class="form-control"   required  readonly />
+                     </div>
+                  </div>
+               </fieldset>
+               <input type="hidden" data-ng-model="u._etag" >
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">تاريخ الدخول للإدارة</label>
+                     <div class="col-sm-9">
+                        <input type="date" data-ng-model="u.dtenter"  class="form-control"   required />
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label"> بطاقات التعريف</label>
+                     <div class="col-sm-3">
+                        <input type="text" data-ng-model="u.cin.num" data-ng-pattern="/^[0-9]+$/" class="form-control" placeholder="رقم"  required ng-minlength="8" ng-maxlength="8"/>
+                     </div>
+                     <div class="col-sm-3">
+                        <input type="text" data-ng-model="u.cin.address"  class="form-control" placeholder="العنوان"  required ng-minlength="3" ng-maxlength="100"/>
+                     </div>
+                     <div class="col-sm-3">
+                        <input type="date" data-ng-model="u.cin.dt" placeholder="تاريخ الإصدار" class="form-control"   required />
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">الإسم</label>
+                     <div class="col-sm-4">
+                        <input type="text" data-ng-model="u.nom" class="form-control"  required ng-minlength="3" ng-maxlength="40"/>
+                     </div>
+                     <label class="col-sm-1 control-label">اللقب</label>
+                     <div class="col-sm-4">
+                        <input type="text" data-ng-model="u.pren" class="form-control"  required ng-minlength="3" ng-maxlength="40"/>
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">إسم الأب</label>
+                     <div class="col-sm-4">
+                        <input type="text" data-ng-model="u.father" class="form-control"  required ng-minlength="3" ng-maxlength="40"/>
+                     </div>
+                     <label class="col-sm-1 control-label">إسم الأم</label>
+                     <div class="col-sm-4">
+                        <input type="text" data-ng-model="u.mother" class="form-control"  required ng-minlength="3" ng-maxlength="40"/>
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">(ذكر/أنثى)( تاريخ الميلاد)(العنوان)</label>
+                     <div class="col-sm-2">
+                        <select data-ng-model="u.gender" class="form-control" required>
+                           <option></option>
+                           <option value="ذكر">ذكر</option>
+                           <option value="أنثى">أنثى</option>
+                        </select>
+                     </div>
+                     <div class="col-sm-3">
+                        <input type="date" data-ng-model="u.born" class="form-control" required />
+                     </div>
+                     <div class="col-sm-2">
+                        <input type="text" data-ng-model="u.location.address"  class="form-control" placeholder="العنوان"  required ng-minlength="3" ng-maxlength="40"/>
+                     </div>
+                     <div class="col-sm-2">
+                        <input type="text" data-ng-model="u.location.city"  class="form-control" placeholder="الولاية"  required ng-minlength="3" ng-maxlength="20"/>
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">البريد الإلكتروني</label>
+                     <div class="col-sm-4">
+                        <input type="email" placeholder="mail@example.com" data-ng-model="u.email" class="form-control" />
+                     </div>
+                     <label class="col-sm-1 control-label">الهاتف</label>
+                     <div class="col-sm-4">
+                        <input type="text"  data-ng-model="u.tel" data-ng-pattern="/^[0-9]+$/" class="form-control" ng-minlength="8" ng-maxlength="16" />
+                     </div>
+                  </div>
+               </fieldset>
+
+            </div>
+            <div class="panel-footer ">
+               <button type="submit" class="btn btn-primary">تحيين</button>
+            </div>
+         </div>
+         <!-- END panel-->
+      </form>
+   </div>
+</div>
+<!-- END row-->

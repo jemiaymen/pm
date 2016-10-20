@@ -1,0 +1,103 @@
+<h3>التصرف في الأعوان
+   <small data-ng-bind="app.name + ' - ' + app.description"></small>
+</h3>
+<!-- START row-->
+<div data-ng-controller="GestionUser" class="row">
+   <div class="col-md-12">
+      <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+      
+      <form onsubmit="return false;" name="formv" class="form-validate form-horizontal" data-ng-submit="formv.$valid && addAff()">
+         <!-- START panel-->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <div class="panel-title"><h3>إضافة  تعيين</h3></div>
+            </div>
+            <div class="panel-body">
+            
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">المعرف الوحيد</label>
+                     <div class="col-sm-3">
+                        <div class="input-group">
+                           <input type="text" data-ng-model="uid" data-ng-pattern="/^[0-9]{10,12}$/i" class="form-control"   required  />
+                           <span class="input-group-btn">
+                              <button type="button" data-ng-click="getU()" class="btn btn-primary">بحث</button>
+                           </span>
+                        </div>
+                     </div>
+                     <label class="col-sm-2 control-label">#</label>
+                     <div class="col-sm-3">
+                        <input type="text" data-ng-model="id" data-ng-pattern="/^[a-f\d]{24}$/i" class="form-control"   required  readonly />
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">#</label>
+                     <div class="col-sm-8">
+                        <input type="text" data-ng-model="id" data-ng-pattern="/^[a-f\d]{24}$/i" class="form-control"   required  readonly />
+                     </div>
+                  </div>
+               </fieldset>
+
+
+               <input type="hidden" data-ng-model="etag" >
+               
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">الهيكل الرئيسي</label>
+                     <div class="col-sm-8">
+                        <select data-ng-model="struct" data-ng-options="s as s.struct for s in structs track by s._id" data-ng-init="initStructOptions()" class="form-control" required data-ng-change="initSubStructOptions(struct)"></select>
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">الهيكل الفرعي 1</label>
+                     <div class="col-sm-8">
+                        <select data-ng-model="substruct"  data-ng-options="s as s.substruct for s in substructs " class="form-control" data-ng-change="initSubSubStructOptions(substruct)" ></select>
+                     </div>
+                  </div>
+               </fieldset>
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">الهيكل الفرعي 2</label>
+                     <div class="col-sm-8">
+                        <select data-ng-model="subsubstruct" data-ng-options="s as s for s in subsubstructs " class="form-control" >
+                           
+                        </select>
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">تاريخ التفعيل</label>
+                     <div class="col-sm-8">
+                        <input type="date" data-ng-model="dt"  class="form-control" required  />
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">معطيات أخرى</label>
+                     <div class="col-sm-8">
+                        <input type="text" data-ng-model="ref" class="form-control"  ng-minlength="3" ng-maxlength="200"/>
+                     </div>
+                  </div>
+               </fieldset>
+            </div>
+            <div class="panel-footer ">
+               <button type="submit" class="btn btn-primary">اظافة</button>
+            </div>
+         </div>
+         <!-- END panel-->
+      </form>
+   </div>
+</div>
+<!-- END row-->

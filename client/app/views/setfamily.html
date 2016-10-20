@@ -1,0 +1,164 @@
+<h3>التصرف في الأعوان
+   <small data-ng-bind="app.name + ' - ' + app.description"></small>
+</h3>
+<!-- START row-->
+<div data-ng-controller="Users" class="row">
+
+   <div class="col-md-12">
+      <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+      
+      <form onsubmit="return false;" name="formv" class="form-validate form-horizontal" data-ng-submit="formv.$valid && setFam()">
+         <!-- START panel-->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <div class="panel-title"><h3>إضافة أو تحيين الحالة العائلية</h3></div>
+            </div>
+            <div class="panel-body">
+            
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">المعرف الوحيد</label>
+                     <div class="col-sm-4">
+                        <div class="input-group">
+                           <input type="text" data-ng-model="uid" data-ng-pattern="/^[0-9]{10,12}$/i" class="form-control"   required  />
+                           <span class="input-group-btn">
+                              <button type="button" data-ng-click="getU4family()" class="btn btn-primary">بحث</button>
+                           </span>
+                        </div>
+                     </div>
+                     <label class="col-sm-1 control-label">#</label>
+                     <div class="col-sm-4">
+                        <input type="text" data-ng-model="id" data-ng-pattern="/^[a-f\d]{24}$/i" class="form-control"   required  readonly />
+                     </div>
+                  </div>
+               </fieldset>
+               <input type="hidden" data-ng-model="etag" >
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">الحالة العائلية</label>
+                     <div class="col-sm-9">
+                        <select data-ng-model="r" class="form-control" required>
+                           <option></option>
+                           <option value="أعزب">أعزب</option>
+                           <option value="متزوج">متزوج</option>
+                           <option value="أرمل">أرمل</option>
+                           <option value="مطلق">مطلق</option>
+                        </select>
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">القرين</label>
+                     <div class="col-sm-2">
+                        <input type="text" data-ng-model="cong.name" placeholder="الإسم"  class="form-control"   />
+                     </div>
+                     <div class="col-sm-2">
+                        <input type="text" data-ng-model="cong.job" placeholder="المهنة"  class="form-control"   />
+                     </div>
+                     <div class="col-sm-2">
+                        <input type="text" placeholder="رقم الهاتف" data-ng-model="cong.tel" data-ng-pattern="/^[0-9]+$/" class="form-control" ng-minlength="8" ng-maxlength="16" />
+                     </div>
+                     <label class="col-sm-1 control-label">تاريخ الميلاد</label>
+                     <div class="col-sm-2">
+                        <input type="date" data-ng-model="cong.born"  class="form-control"   />
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">طفل 1</label>
+                     <div class="col-sm-2">
+                        <input type="text" placeholder="الإسم" data-ng-model="kid1.name" class="form-control"  ng-minlength="3" ng-maxlength="200"/>
+                     </div>
+                     <label class="col-sm-1 control-label">(ذكر / أنثى)</label>
+                     <div class="col-sm-2">
+                        <select data-ng-model="kid1.gender" class="form-control" >
+                           <option></option>
+                           <option value="ذكر">ذكر</option>
+                           <option value="أنثى">أنثى</option>
+                        </select>
+                     </div>
+                     <label class="col-sm-1 control-label">تاريخ الميلاد</label>
+                     <div class="col-sm-3">
+                        <input type="date" data-ng-model="kid1.born"  class="form-control"   />
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">طفل 2</label>
+                     <div class="col-sm-2">
+                        <input type="text" placeholder="الإسم" data-ng-model="kid2.name" class="form-control"  ng-minlength="3" ng-maxlength="200"/>
+                     </div>
+                     <label class="col-sm-1 control-label">(ذكر / أنثى)</label>
+                     <div class="col-sm-2">
+                        <select data-ng-model="kid2.gender" class="form-control" >
+                           <option></option>
+                           <option value="ذكر">ذكر</option>
+                           <option value="أنثى">أنثى</option>
+                        </select>
+                     </div>
+                     <label class="col-sm-1 control-label">تاريخ الميلاد</label>
+                     <div class="col-sm-3">
+                        <input type="date" data-ng-model="kid2.born"  class="form-control"   />
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">طفل 3</label>
+                     <div class="col-sm-2">
+                        <input type="text" placeholder="الإسم" data-ng-model="kid3.name" class="form-control"  ng-minlength="3" ng-maxlength="200"/>
+                     </div>
+                     <label class="col-sm-1 control-label">(ذكر / أنثى)</label>
+                     <div class="col-sm-2">
+                        <select data-ng-model="kid3.gender" class="form-control" >
+                           <option></option>
+                           <option value="ذكر">ذكر</option>
+                           <option value="أنثى">أنثى</option>
+                        </select>
+                     </div>
+                     <label class="col-sm-1 control-label">تاريخ الميلاد</label>
+                     <div class="col-sm-3">
+                        <input type="date" data-ng-model="kid3.born"  class="form-control"   />
+                     </div>
+                  </div>
+               </fieldset>
+               
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">طفل 4</label>
+                     <div class="col-sm-2">
+                        <input type="text" placeholder="الإسم" data-ng-model="kid4.name" class="form-control"  ng-minlength="3" ng-maxlength="200"/>
+                     </div>
+                     <label class="col-sm-1 control-label">(ذكر / أنثى)</label>
+                     <div class="col-sm-2">
+                        <select data-ng-model="kid4.gender" class="form-control" >
+                           <option></option>
+                           <option value="ذكر">ذكر</option>
+                           <option value="أنثى">أنثى</option>
+                        </select>
+                     </div>
+                     <label class="col-sm-1 control-label">تاريخ الميلاد</label>
+                     <div class="col-sm-3">
+                        <input type="date" data-ng-model="kid4.born"  class="form-control"   />
+                     </div>
+                  </div>
+               </fieldset>
+            </div>
+            <div class="panel-footer ">
+               <button type="submit" class="btn btn-info">اظافة</button>
+            </div>
+         </div>
+         <!-- END panel-->
+      </form>
+   </div>
+</div>
+<!-- END row-->

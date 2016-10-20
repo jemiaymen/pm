@@ -1,0 +1,80 @@
+<h3>Form Wizard</h3>
+<!-- START panel-->
+<div class="panel panel-default">
+   <div class="panel-heading">Form Wizard Validate</div>
+   <div class="panel-body">
+      <div data-ng-init="activeStep=1" class="wizard">
+         <ul class="steps-bar">
+            <li data-ng-class="{'active':activeStep&gt;=1}">
+               <span>Step 1</span>
+            </li>
+            <li data-ng-class="{'active':activeStep&gt;=2}">
+               <span>Step 2</span>
+            </li>
+            <li data-ng-class="{'active':activeStep&gt;=3}">
+               <span>Step 3</span>
+            </li>
+         </ul>
+         <div data-ng-show="activeStep==1" class="wizard-step">
+            <h4>Create Account
+               <small>&mdash; Step 1</small>
+            </h4>
+            <form name="form_step1" class="form-validate">
+               <p>Email:</p>
+               <input type="email" placeholder="mail@example.com" name="email" data-ng-model="email" required="required" class="form-control" />
+               <p class="mt">Password</p>
+               <div class="row">
+                  <div class="col-xs-6">
+                     <input id="id-source" type="password" placeholder="Type your password" data-ng-model="form.match1" class="form-control" />
+                  </div>
+                  <div class="col-xs-6">
+                     <input type="password" placeholder="Retype your password" name="confirm_match" data-parsley-equalto="#id-source" required="" data-ng-model="form.match2" ui-validate="'$value==form.match1'" ui-validate-watch="'validator.match1'" class="form-control"
+                     />
+                  </div>
+               </div>
+               <p data-ng-show="form_step1.confirm_match.$error.validator" class="text-danger">Password do not match!</p>
+               <div class="mt">
+                  <button type="submit" data-ng-disabled="form_step1.$invalid" data-ng-click="activeStep=2" class="btn btn-primary">Next</button>
+               </div>
+            </form>
+         </div>
+         <div data-ng-show="activeStep==2" class="wizard-step">
+            <h4>Your Social Networks
+               <small>&mdash; Step 2</small>
+            </h4>
+            <form name="form_step2" class="form-validate">
+               <p class="mt">Twitter:</p>
+               <input type="text" name="twitter" data-ng-model="twitter" placeholder="#username" data-ng-pattern="/^#[0-9a-zA-Z]+$/" class="form-control" />
+               <p class="mt">Facebook:</p>
+               <input type="text" name="facebook" data-ng-model="facebook" placeholder="/username" data-ng-pattern="/^/[0-9a-zA-Z]+$/" class="form-control" />
+               <p class="mt">Website:</p>
+               <input type="url" name="url" placeholder="http://" data-ng-model="website" class="form-control" />
+               <div class="mt">
+                  <button type="button" data-ng-click="activeStep=1" class="btn btn-default">Prev</button>
+                  <button type="submit" data-ng-disabled="form_step2.$invalid" data-ng-click="activeStep=3" class="btn btn-primary">Next</button>
+               </div>
+            </form>
+         </div>
+         <div data-ng-show="activeStep==3" class="wizard-step">
+            <h4>Personal details
+               <small>&mdash; Step 3</small>
+            </h4>
+            <form name="form_step3" class="form-validate">
+               <p class="mt">Name:</p>
+               <input type="text" name="name" placeholder="Your fullname" data-ng-model="name" required="" class="form-control" />
+               <p class="mt">Phone:</p>
+               <input type="text" name="phone" data-ng-model="phone" placeholder="Only numbers" data-ng-pattern="/^[0-9]+$/" class="form-control" />
+               <p class="mt">Address:</p>
+               <textarea name="address" placeholder="Your address" data-ng-model="address" class="form-control"></textarea>
+            </form>
+            <div data-ng-show="stepsDone" class="alert alert-success mv-lg">
+               <p class="text-bold m0">Excellent ! You've completed all steps.</p>
+            </div>
+            <div class="mt">
+               <button type="button" data-ng-click="activeStep=2" class="btn btn-default">Prev</button>
+               <button type="button" data-ng-disabled="form_step3.$invalid" data-ng-click="stepsDone=true" class="btn btn-primary">Finish</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

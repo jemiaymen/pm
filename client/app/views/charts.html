@@ -1,0 +1,240 @@
+<h3>Charts</h3>
+<div data-ng-controller="ChartsController" class="container-fluid">
+   <!-- START row-->
+   <div class="row">
+      <div class="col-lg-6">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <div class="panel-title">Area</div>
+            </div>
+            <div class="panel-wrapper">
+               <div class="panel-body">
+                  <flot src="'server/chart/area.json'" options="chartAreaFlotChart" series="{'lines': areaSeries}"></flot>
+                  <div class="text-center mt-lg">
+                     <div class="btn-switch mb btn-switch-warning">
+                        <input type="checkbox" id="input-btn-switch-10" data-ng-model="areaSeries[0]" />
+                        <label for="input-btn-switch-10" class="btn btn-fw btn-warning">
+                           <em class="fa fa-check"></em>
+                           <strong>HTML</strong>
+                        </label>
+                     </div>
+                     <div class="btn-switch mb btn-switch-orange">
+                        <input type="checkbox" id="input-btn-switch-11" data-ng-model="areaSeries[1]" />
+                        <label for="input-btn-switch-11" class="btn btn-fw btn-orange">
+                           <em class="fa fa-check"></em>
+                           <strong>CSS</strong>
+                        </label>
+                     </div>
+                     <div class="btn-switch mb btn-switch-danger">
+                        <input type="checkbox" id="input-btn-switch-12" data-ng-model="areaSeries[2]" />
+                        <label for="input-btn-switch-12" class="btn btn-fw btn-danger">
+                           <em class="fa fa-check"></em>
+                           <strong>JS</strong>
+                        </label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-6">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <div class="panel-title">Spline</div>
+            </div>
+            <div class="panel-wrapper">
+               <div class="panel-body">
+                  <flot src="'server/chart/spline.json'" options="chartSplineFlotChart" series="{splines: areaSplineSeries}"></flot>
+                  <div class="text-center mt-lg">
+                     <div class="btn-switch mb btn-switch-info">
+                        <input type="checkbox" id="input-btn-switch-20" data-ng-model="areaSplineSeries[0]" />
+                        <label for="input-btn-switch-20" class="btn btn-oval btn-fw btn-info">
+                           <em class="fa fa-check"></em>
+                           <strong>VISITORS</strong>
+                        </label>
+                     </div>
+                     <div class="btn-switch mb btn-switch-inverse">
+                        <input type="checkbox" id="input-btn-switch-21" data-ng-model="areaSplineSeries[1]" />
+                        <label for="input-btn-switch-21" class="btn btn-oval btn-fw btn-inverse">
+                           <em class="fa fa-check"></em>
+                           <strong>CONVERSIONS</strong>
+                        </label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- END row-->
+   <!-- START row-->
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <div class="panel-title">Line</div>
+      </div>
+      <div class="panel-wrapper">
+         <div class="panel-body">
+            <div class="row">
+               <div class="col-lg-8">
+                  <flot src="'server/chart/line.json'" options="chartLineFlotChart" series="{lines: lineSeriesLines, points: lineSeriesPoints}"></flot>
+               </div>
+               <div class="col-lg-4">
+                  <p class="lead mt-lg">Toggle Points</p>
+                  <div class="text-center">
+                     <div class="btn-switch btn-switch-primary">
+                        <input type="checkbox" id="input-btn-switch-1" data-ng-model="lineSeriesPoints[0]" />
+                        <label for="input-btn-switch-1" class="btn btn-fw btn-primary">
+                           <em class="fa fa-check"></em>
+                           <strong>Serie 1</strong>
+                        </label>
+                     </div>
+                     <div class="btn-switch btn-switch-info">
+                        <input type="checkbox" id="input-btn-switch-2" data-ng-model="lineSeriesPoints[1]" />
+                        <label for="input-btn-switch-2" class="btn btn-fw btn-info">
+                           <em class="fa fa-check"></em>
+                           <strong>Serie 2</strong>
+                        </label>
+                     </div>
+                     <div class="btn-switch btn-switch-turquoise">
+                        <input type="checkbox" id="input-btn-switch-3" data-ng-model="lineSeriesPoints[2]" />
+                        <label for="input-btn-switch-3" class="btn btn-fw btn-turquoise">
+                           <em class="fa fa-check"></em>
+                           <strong>Serie 3</strong>
+                        </label>
+                     </div>
+                  </div>
+                  <p class="lead mt-lg">Toggle Lines</p>
+                  <div class="text-center">
+                     <div class="btn-switch btn-switch-primary">
+                        <input type="checkbox" id="input-btn-switch-4" data-ng-model="lineSeriesLines[0]" />
+                        <label for="input-btn-switch-4" class="btn btn-fw btn-primary">
+                           <em class="fa fa-check"></em>
+                           <strong>Serie 1</strong>
+                        </label>
+                     </div>
+                     <div class="btn-switch btn-switch-info">
+                        <input type="checkbox" id="input-btn-switch-5" data-ng-model="lineSeriesLines[1]" />
+                        <label for="input-btn-switch-5" class="btn btn-fw btn-info">
+                           <em class="fa fa-check"></em>
+                           <strong>Serie 2</strong>
+                        </label>
+                     </div>
+                     <div class="btn-switch btn-switch-turquoise">
+                        <input type="checkbox" id="input-btn-switch-6" data-ng-model="lineSeriesLines[2]" />
+                        <label for="input-btn-switch-6" class="btn btn-fw btn-turquoise">
+                           <em class="fa fa-check"></em>
+                           <strong>Serie 3</strong>
+                        </label>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- END row-->
+   <!-- START row-->
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <div class="panel-title">Realtime</div>
+      </div>
+      <div class="panel-body">
+         <div class="row">
+            <div class="col-md-10">
+               <flot dataset="realTimeChartData" options="realTimeChartOpts" height="300"></flot>
+            </div>
+            <div class="col-md-2">
+               <label>Set an update interval</label>
+               <input type="text" data-ng-model="realTimeChartUpdateInterval" class="form-control" />
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- START row-->
+   <div class="row">
+      <div class="col-lg-6">
+         <div class="panel panel-transparent">
+            <div class="panel-heading">
+               <div class="panel-title">Bar</div>
+            </div>
+            <div class="panel-wrapper">
+               <div class="panel-body">
+                  <flot src="'server/chart/bar.json'" options="chartBarFlotChart"></flot>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-6">
+         <div class="panel panel-transparent">
+            <div class="panel-heading">
+               <div class="panel-title">Stacked Bars</div>
+            </div>
+            <div class="panel-wrapper">
+               <div class="panel-body">
+                  <div class="indicator show">
+                     <span class="spinner"></span>
+                  </div>
+                  <flot src="'server/chart/barstacked.json'" options="chartBarStackedFlotChart"></flot>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- END row-->
+   <!-- START row-->
+   <div class="row">
+      <div class="col-md-6">
+         <div class="panel panel-transparent">
+            <div class="panel-heading">
+               <div class="panel-title">Pie</div>
+            </div>
+            <div class="panel-wrapper">
+               <div class="panel-body">
+                  <flot src="'server/chart/pie.json'" options="chartPieFlotChart"></flot>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-6">
+         <div class="panel panel-transparent">
+            <div class="panel-heading">
+               <div class="panel-title">Donut</div>
+            </div>
+            <div class="panel-wrapper">
+               <div class="panel-body">
+                  <flot src="'server/chart/donut.json'" options="chartDonutFlotChart"></flot>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- END row-->
+   <h4 class="page-header">Knob</h4>
+   <!-- START panel-->
+   <div class="panel panel-default">
+      <div class="panel-body text-center">
+         <div class="row">
+            <div class="col-md-3">
+               <div class="mb-lg">
+                  <knob knob-data="knobLoaderData1" knob-options="knobLoaderOptions1" knob-max="100"></knob>
+               </div>
+            </div>
+            <div class="col-md-3">
+               <div class="mb-lg">
+                  <knob knob-data="knobLoaderData2" knob-options="knobLoaderOptions2" knob-max="100"></knob>
+               </div>
+            </div>
+            <div class="col-md-3">
+               <div class="mb-lg">
+                  <knob knob-data="knobLoaderData3" knob-options="knobLoaderOptions3" knob-max="100"></knob>
+               </div>
+            </div>
+            <div class="col-md-3">
+               <div class="mb-lg">
+                  <knob knob-data="knobLoaderData4" knob-options="knobLoaderOptions4" knob-max="100"></knob>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,80 @@
+<h3>التصرف في الأعوان
+   <small data-ng-bind="app.name + ' - ' + app.description"></small>
+</h3>
+<!-- START row-->
+<div data-ng-controller="Users" class="row">
+
+   <div class="col-md-12">
+      <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+      
+      <form onsubmit="return false;" name="formd" class="form-validate form-horizontal" data-ng-submit="formd.$valid && preEditDoc()">
+         <!-- START panel-->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <div class="panel-title"><h3>تحيين وثيقة</h3></div>
+            </div>
+            <div class="panel-body">
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">#</label>
+                     <div class="col-sm-8">
+                        <input type="text" data-ng-model="editdoc._id" data-ng-pattern="/^[a-f\d]{24}$/i" class="form-control"  readonly required  />
+                     </div>
+                  </div>
+               </fieldset>
+
+
+               <input type="hidden" data-ng-model="editdoc._etag" >
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label"></label>
+                     <div class="col-sm-8">
+                        <img ng-src="{{avatar}}" style="max-width:120px;">
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">صورة</label>
+                     <div class="col-sm-8">
+                        <input type="file" class="form-control" onchange="angular.element(this).scope().setFile(this)" accept="image/*" data-ng-files="getTheFiles($files)" name="img" required>
+                     </div>
+                  </div>
+               </fieldset>
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">إسم الوثيقة</label>
+                     <div class="col-sm-8">
+                        <input type="text" data-ng-model="editdoc.title" class="form-control"  required ng-minlength="3" ng-maxlength="200"/>
+                     </div>
+                  </div>
+               </fieldset>
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">تاريخ التفعيل</label>
+                     <div class="col-sm-8">
+                        <input type="date" data-ng-model="editdoc.dt"  class="form-control" required  />
+                     </div>
+                  </div>
+               </fieldset>
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">معطيات أخرى</label>
+                     <div class="col-sm-8">
+                        <input type="text" data-ng-model="editdoc.ref" class="form-control"  ng-minlength="3" ng-maxlength="1000"/>
+                     </div>
+                  </div>
+               </fieldset>
+
+            </div>
+            <div class="panel-footer ">
+               <button type="submit" class="btn btn-primary">تحيين</button>
+            </div>
+         </div>
+         <!-- END panel-->
+      </form>
+   </div>
+</div>
+<!-- END row-->

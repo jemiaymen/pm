@@ -1,0 +1,28 @@
+<!-- h3 MailBox-->
+<div data-ng-controller="MailboxController" class="row">
+   <div class="col-lg-2 col-md-12">
+      <div class="clearfix mb-lg">
+         <button type="button" data-ng-click="mailboxMenuCollapsed = !mailboxMenuCollapsed" class="btn btn-sm btn-default hidden-lg pull-right">
+            <em class="fa fa-bars fa-fw fa-lg"></em>
+         </button>
+         <a ui-sref="app.mailbox.compose" class="btn btn-info visible-lg visible-xs-inline-block visible-sm-inline-block visible-md-inline-block">
+            <em class="icon-mail fa-fw"></em>
+            <span>Compose</span>
+         </a>
+      </div>
+      <div collapse="mailboxMenuCollapsed" class="mb-boxes">
+         <div class="panel panel-default m0">
+            <div class="list-group">
+               <a ui-sref="app.mailbox.folder.list({folder: folder.name})" ui-sref-opts="{notify: true}" ui-sref-active="active" data-ng-repeat="folder in mailboxFolders" class="list-group-item">
+                  <span class="label label-primary pull-right">{{ folder.count }}</span>
+                  <em data-ng-class="folder.icon" class="fa fa-fw fa-lg"></em>
+                  <span>{{ folder.name | titlecase }}</span>
+               </a>
+            </div>
+         </div>
+      </div>
+      <hr class="visible-lg" />
+   </div>
+   <div class="clearfix hidden-lg"></div>
+   <div ui-view="container" class="col-lg-10 data-ng-fadeInUp"></div>
+</div>

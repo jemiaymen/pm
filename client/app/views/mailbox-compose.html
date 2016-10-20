@@ -1,0 +1,128 @@
+<!-- START action buttons-->
+<div class="clearfix mb">
+   <div class="btn-group pull-left">
+      <button type="button" data-ng-class="{'active':mail.cc}" data-ng-click="mail.cc = !mail.cc" href="#" class="btn btn-default btn-sm">CC</button>
+      <button type="button" data-ng-class="{'active':mail.bcc}" data-ng-click="mail.bcc = !mail.bcc" href="#" class="btn btn-default btn-sm">BCC</button>
+   </div>
+</div>
+<!-- END action buttons-->
+<!-- START Mails-->
+<div class="panel panel-default">
+   <div class="panel-body">
+      <form role="form-horizontal" method="post">
+         <div class="input-group form-group">
+            <span class="input-group-addon text-sm">To:</span>
+            <input type="text" class="form-control" />
+         </div>
+         <div data-ng-show="mail.cc" class="input-group form-group">
+            <span class="input-group-addon text-sm">CC:</span>
+            <input type="text" class="form-control" />
+         </div>
+         <div data-ng-show="mail.bcc" class="input-group form-group">
+            <span class="input-group-addon text-sm">BCC:</span>
+            <input type="text" class="form-control" />
+         </div>
+         <div class="input-group form-group">
+            <span class="input-group-addon text-sm">Subject:</span>
+            <input type="text" class="form-control" />
+         </div>
+         <div class="mb-editor">
+            <!-- The wysiswyg toolbar buttons-->
+            <div data-role="editor-toolbar" data-target="#editor" class="btn-toolbar mb">
+               <div dropdown="dropdown" class="btn-group">
+                  <a dropdown-toggle="" tooltip="Font" class="btn btn-default dropdown-toggle">
+                     <em class="fa fa-font"></em><b class="caret"></b>
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li data-ng-repeat="ff in form.editorFontFamilyList"><a href="" data-edit="fontName {{ff}}" data-ng-attr-style="font-family: '{{ff}}';">{{ff}}</a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="btn-group dropdown">
+                  <button type="button" dropdown-toggle="" tooltip="Font Size" class="btn btn-default dropdown-toggle">
+                     <em class="fa fa-text-height"></em><b class="caret"></b>
+                  </button>
+                  <ul class="dropdown-menu">
+                     <li data-ng-repeat="fz in form.editorFontSizeList"><a href="" data-edit="fontSize {{fz.value}}" data-ng-attr-style="font-size: {{fz.value}};">{{fz.name}}</a>
+                     </li>
+                  </ul>
+               </div>
+               <div class="btn-group">
+                  <a data-edit="bold" tooltip="Bold (Ctrl/Cmd+B)" class="btn btn-default">
+                     <em class="fa fa-bold"></em>
+                  </a>
+                  <a data-edit="italic" tooltip="Italic (Ctrl/Cmd+I)" class="btn btn-default">
+                     <em class="fa fa-italic"></em>
+                  </a>
+                  <a data-edit="strikethrough" tooltip="Strikethrough" class="btn btn-default">
+                     <em class="fa fa-strikethrough"></em>
+                  </a>
+                  <a data-edit="underline" tooltip="Underline (Ctrl/Cmd+U)" class="btn btn-default">
+                     <em class="fa fa-underline"></em>
+                  </a>
+               </div>
+               <div class="btn-group">
+                  <a data-edit="insertunorderedlist" tooltip="Bullet list" class="btn btn-default">
+                     <em class="fa fa-list-ul"></em>
+                  </a>
+                  <a data-edit="insertorderedlist" tooltip="Number list" class="btn btn-default">
+                     <em class="fa fa-list-ol"></em>
+                  </a>
+                  <a data-edit="outdent" tooltip="Reduce indent (Shift+Tab)" class="btn btn-default">
+                     <em class="fa fa-dedent"></em>
+                  </a>
+                  <a data-edit="indent" tooltip="Indent (Tab)" class="btn btn-default">
+                     <em class="fa fa-indent"></em>
+                  </a>
+               </div>
+               <div class="btn-group">
+                  <a data-edit="justifyleft" tooltip="Align Left (Ctrl/Cmd+L)" class="btn btn-default">
+                     <em class="fa fa-align-left"></em>
+                  </a>
+                  <a data-edit="justifycenter" tooltip="Center (Ctrl/Cmd+E)" class="btn btn-default">
+                     <em class="fa fa-align-center"></em>
+                  </a>
+                  <a data-edit="justifyright" tooltip="Align Right (Ctrl/Cmd+R)" class="btn btn-default">
+                     <em class="fa fa-align-right"></em>
+                  </a>
+                  <a data-edit="justifyfull" tooltip="Justify (Ctrl/Cmd+J)" class="btn btn-default">
+                     <em class="fa fa-align-justify"></em>
+                  </a>
+               </div>
+               <div class="btn-group dropdown">
+                  <a dropdown-toggle="" tooltip="Hyperlink" class="btn btn-default dropdown-toggle">
+                     <em class="fa fa-link"></em>
+                  </a>
+                  <div class="dropdown-menu">
+                     <div class="input-group m-l-xs m-r-xs">
+                        <input onclick="return false;" placeholder="URL" type="text" data-edit="createLink" class="form-control input-sm" />
+                        <div class="input-group-btn">
+                           <button type="button" class="btn btn-sm btn-default">Add</button>
+                        </div>
+                     </div>
+                  </div>
+                  <a data-edit="unlink" tooltip="Remove Hyperlink" class="btn btn-default">
+                     <em class="fa fa-cut"></em>
+                  </a>
+               </div>
+               <div class="btn-group">
+                  <a id="pictureBtn" tooltip="Insert picture (or just drag &amp; drop)" class="btn btn-default">
+                     <em class="fa fa-picture-o"></em>
+                  </a>
+                  <input type="file" data-edit="insertImage" style="position: absolute; opacity: 0; width: 41px; height: 34px;" />
+               </div>
+               <div class="btn-group">
+                  <a data-edit="undo" tooltip="Undo (Ctrl/Cmd+Z)" class="btn btn-default">
+                     <em class="fa fa-undo"></em>
+                  </a>
+                  <a data-edit="redo" tooltip="Redo (Ctrl/Cmd+Y)" class="btn btn-default">
+                     <em class="fa fa-repeat"></em>
+                  </a>
+               </div>
+            </div>
+            <!-- The wysiswyg editor-->
+            <div id="editor" wysiwyg="" height="200px" max-height="300px" class="form-control">Type here..</div>
+         </div>
+      </form>
+   </div>
+</div>

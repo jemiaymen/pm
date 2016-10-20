@@ -1,0 +1,215 @@
+<!-- START Top Navbar-->
+<nav role="navigation" data-ng-controller="HeaderNavController" class="navbar topnavbar">
+   <!-- START navbar header-->
+   <div data-ng-class="app.theme.brand" class="navbar-header">
+      <a ui-sref="app.dashboard" class="navbar-brand">
+         <img src="app/img/logo-single.png" alt="App Logo" class="brand-logo" />
+         <img src="app/img/logo-single.png" alt="App Logo" class="brand-logo-collapsed" />
+      </a>
+      <!-- Mobile buttons-->
+      <div class="mobile-toggles">
+         <!-- Button to show/hide the header menu on mobile. Visible on mobile only.-->
+         <a href="#" toggle-state="hmenu-toggled" no-persist="no-persist" data-ng-click="toggleHeaderMenu()" class="menu-toggle">
+            <em class="fa fa-cog"></em>
+         </a>
+         <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+         <a href="#" toggle-state="aside-toggled" no-persist="no-persist" class="sidebar-toggle">
+            <em class="fa fa-navicon"></em>
+         </a>
+      </div>
+   </div>
+   <!-- END navbar header-->
+   <!-- START Nav wrapper-->
+   <div collapse="headerMenuCollapsed" class="nav-wrapper collapse navbar-collapse">
+      <!-- START Left navbar-->
+      <ul class="nav navbar-nav">
+         <li>
+            <!-- Button used to collapse the left sidebar. Only visible on tablet and desktops-->
+            <a href="#" data-ng-click="app.sidebar.isCollapsed = !app.sidebar.isCollapsed" class="hidden-xs">
+               <em data-ng-class="app.sidebar.isCollapsed ? 'fa-caret-right':'fa-caret-left'" class="fa"></em>
+            </a>
+         </li>
+      </ul>
+      <!-- END Left navbar-->
+      <!-- START Top navbar search form-->
+      <script type="text/ng-template" id="customSearch.html">
+         <a>
+            <span bind-html-unsafe="match.model.nom "></span>
+            <strong> <span bind-html-unsafe="match.model.uid "></span></strong>
+         </a>
+      </script>
+      <form role="search" class="search-form navbar-form navbar-left">
+         <div class="form-group">
+            <div data-ng-controller="SearchFormController" class="input-group" >
+               <span class="input-group-addon">
+                  <em class="icon-search"></em>
+               </span>
+               <input type="text" data-ng-model="routeSelected" typeahead="u as u.qry for u in uids | filter:{qry:$viewValue} | limitTo:10" placeholder="بحث" typeahead-on-select="onRouteSelect($model)"
+               class="form-control " typeahead-template-url="customSearch.html" typeahead-show-hint="true" typeahead-min-length="0" />
+            </div>
+         </div>
+         <button type="submit" class="hidden btn btn-default">Submit</button>
+      </form>
+      <!-- END Top navbar search form-->
+      <!-- START Right Navbar-->
+      <ul class="nav navbar-nav navbar-right">
+         <!-- START Alert menu-->
+         <li dropdown="" class="dropdown dropdown-list">
+            <a href="" dropdown-animate="" dropdown-toggle="" class="dropdown-toggle">
+               <div class="point-pin">
+                  <em class="icon-mail fa-fw"></em>
+                  <div class="point point-success point-lg"></div>
+               </div>
+               <span class="visible-xs-inline ml">View Alerts</span>
+            </a>
+            <!-- START Dropdown menu-->
+            <ul offcanvas-dropdown="" class="dropdown-menu fadeInLeft2 animated">
+               <!-- START list item-->
+               <li data-ng-init="offcontent1 = true" data-ng-click="cancel($event)">
+                  <a href="#" data-ng-click="offcontent1 = false" class="p">
+                     <!-- START media preview-->
+                     <div class="media">
+                        <div class="pull-left">
+                           <div class="point-pin">
+                              <img src="app/img/user/03.jpg" alt="user msg" class="img-responsive thumb32 img-circle" />
+                              <div class="point point-success point-lg"></div>
+                           </div>
+                        </div>
+                        <div class="media-body clearfix">
+                           <p class="m0">Francis Butler</p>
+                           <p class="m0 text-gray text-sm">5 minutes ago</p>
+                        </div>
+                     </div>
+                  </a>
+                  <!-- START offcanves content-->
+                  <div data-ng-hide="offcontent1" data-ng-click="cancel($event)" class="offcanvas-content p">
+                     <div class="offcanvas-toggle pull-right text-gray">
+                        <em data-ng-click="offcontent1 = true" class="fa fa-times"></em>
+                     </div>
+                     <div class="media mt0 mb clearfix">
+                        <div class="pull-left">
+                           <div class="point-pin">
+                              <img src="app/img/user/03.jpg" alt="user msg" class="img-responsive thumb32 img-circle" />
+                              <div class="point point-success point-lg"></div>
+                           </div>
+                        </div>
+                        <div class="media-body clearfix">
+                           <p class="m0">Clifford Bell</p>
+                           <p class="m0 text-gray text-sm">5 minutes ago</p>
+                        </div>
+                     </div>
+                     <p>
+                        <em>Donec ornare dui non eros dapibus ullamcorper. Cras nunc velit, bibendum vel imperdiet eget, posuere nec diam. Sed vel elementum ante.</em>
+                     </p>
+                  </div>
+               </li>
+               <!-- START list item-->
+               <li data-ng-init="offcontent2 = true" data-ng-click="cancel($event)" class="bt">
+                  <a href="#" data-ng-click="offcontent2 = false" class="p">
+                     <!-- START media preview-->
+                     <div class="media">
+                        <div class="pull-left">
+                           <div class="point-pin">
+                              <img src="app/img/user/04.jpg" alt="user msg" class="img-responsive thumb32 img-circle" />
+                              <div class="point point-warning point-lg"></div>
+                           </div>
+                        </div>
+                        <div class="media-body clearfix">
+                           <p class="m0">Arron Sutton</p>
+                           <p class="m0 text-gray text-sm">45 minutes ago</p>
+                        </div>
+                     </div>
+                  </a>
+                  <!-- START offcanves content-->
+                  <div data-ng-hide="offcontent2" data-ng-click="cancel($event)" class="offcanvas-content p">
+                     <div class="offcanvas-toggle pull-right text-gray">
+                        <em data-ng-click="offcontent2 = true" class="fa fa-times"></em>
+                     </div>
+                     <div class="media mt0 mb clearfix">
+                        <div class="pull-left">
+                           <div class="point-pin">
+                              <img src="app/img/user/04.jpg" alt="user msg" class="img-responsive thumb32 img-circle" />
+                              <div class="point point-warning point-lg"></div>
+                           </div>
+                        </div>
+                        <div class="media-body clearfix">
+                           <p class="m0">Clifford Bell</p>
+                           <p class="m0 text-gray text-sm">45 minutes ago</p>
+                        </div>
+                     </div>
+                     <p>
+                        <em>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</em>
+                     </p>
+                  </div>
+               </li>
+               <!-- START list item-->
+               <li data-ng-init="offcontent3 = true" data-ng-click="cancel($event)" class="bt">
+                  <a href="#" data-ng-click="offcontent3 = false" class="p">
+                     <!-- START media preview-->
+                     <div class="media">
+                        <div class="pull-left">
+                           <div class="point-pin">
+                              <img src="app/img/user/05.jpg" alt="user msg" class="img-responsive thumb32 img-circle" />
+                              <div class="point point-danger point-lg"></div>
+                           </div>
+                        </div>
+                        <div class="media-body clearfix">
+                           <p class="m0">Wallace Thompson</p>
+                           <p class="m0 text-gray text-sm">yesterday</p>
+                        </div>
+                     </div>
+                  </a>
+                  <!-- START offcanves content-->
+                  <div data-ng-hide="offcontent3" data-ng-click="cancel($event)" class="offcanvas-content p">
+                     <div class="offcanvas-toggle pull-right text-gray">
+                        <em data-ng-click="offcontent3 = true" class="fa fa-times"></em>
+                     </div>
+                     <div class="media mt0 mb clearfix">
+                        <div class="pull-left">
+                           <div class="point-pin">
+                              <img src="app/img/user/05.jpg" alt="user msg" class="img-responsive thumb32 img-circle" />
+                              <div class="point point-danger point-lg"></div>
+                           </div>
+                        </div>
+                        <div class="media-body clearfix">
+                           <p class="m0">Clifford Bell</p>
+                           <p class="m0 text-gray text-sm">yesterday</p>
+                        </div>
+                     </div>
+                     <p>
+                        <em>Etiam porttitor consectetur lectus, in adipiscing nisi bibendum eu. Phasellus sed dui massa, vitae dapibus augue. Proin non lacinia sapien. Nam enim libero, lacinia a tristique a, accumsan sed purus.</em>
+                     </p>
+                  </div>
+               </li>
+               <!-- START last list item-->
+               <li data-ng-init="offcontent3 = true" class="text-center bt">
+                  <a ui-sref="app.mailbox.folder.list" class="p">
+                     <small>View All</small>
+                  </a>
+               </li>
+            </ul>
+         </li>
+         <!-- Fullscreen (only desktops)-->
+         <li class="visible-lg">
+            <a href="#" toggle-fullscreen="toggle-fullscreen">
+               <em class="fa fa-expand"></em>
+            </a>
+         </li>
+         <!-- START lock screen-->
+         <li>
+            <a data-ng-click="logout()" title="Lock screen">
+               <em class="icon-lock fa-fw"></em>
+               <span class="visible-xs-inline ml">Logout</span>
+            </a>
+         </li>
+         <!-- END lock screen-->
+
+
+         <!-- END Alert menu-->
+      </ul>
+      <!-- END Right Navbar-->
+   </div>
+   <!-- END Nav wrapper-->
+
+</nav>
+<!-- END Top Navbar-->

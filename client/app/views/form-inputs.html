@@ -1,0 +1,858 @@
+<h3>Form Inputs
+   <small>Classic and new components</small>
+</h3>
+<!-- START panel-->
+<div data-ng-controller="FormInputController as form" class="container-fluid">
+   <div class="panel panel-default">
+      <h4 class="panel-heading">Classic inputs</h4>
+      <div class="panel-body">
+         <form method="get" action="/" novalidate="" class="form-horizontal">
+            <fieldset>
+               <div class="form-group">
+                  <label for="input-id-1" class="col-sm-2 control-label">Text</label>
+                  <div class="col-sm-10">
+                     <input id="input-id-1" type="text" class="form-control" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Password</label>
+                  <div class="col-sm-10">
+                     <input type="password" name="password" class="form-control" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Rounded Corners</label>
+                  <div class="col-sm-10">
+                     <input type="text" class="form-control form-control-rounded" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">With help</label>
+                  <div class="col-sm-10">
+                     <input type="text" class="form-control" />
+                     <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Placeholder</label>
+                  <div class="col-sm-10">
+                     <input type="text" placeholder="placeholder" class="form-control" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Disabled</label>
+                  <div class="col-sm-10">
+                     <input type="text" placeholder="Disabled input here..." disabled="" class="form-control" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Static control</label>
+                  <div class="col-sm-10">
+                     <p class="form-control-static">email@demo.com</p>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Checkboxes and radios</label>
+                  <div class="col-sm-10">
+                     <div class="checkbox">
+                        <label>
+                           <input type="checkbox" value="" />Option one is this and that—be sure to include why it's great</label>
+                     </div>
+                     <div class="radio">
+                        <label>
+                           <input id="optionsRadios1" type="radio" name="optionsRadios" value="option1" checked="" />Option one is this and that—be sure to include why it's great</label>
+                     </div>
+                     <div class="radio">
+                        <label>
+                           <input id="optionsRadios2" type="radio" name="optionsRadios" value="option2" />Option two can be something else and selecting it will deselect option one</label>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Inline checkboxes</label>
+                  <div class="col-sm-10">
+                     <label class="checkbox checkbox-inline">
+                        <input id="inlineCheckbox1" type="checkbox" value="option1" />a</label>
+                     <label class="checkbox-inline">
+                        <input id="inlineCheckbox2" type="checkbox" value="option2" />b</label>
+                     <label class="checkbox-inline">
+                        <input id="inlineCheckbox3" type="checkbox" value="option3" />c</label>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset class="last-child">
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Select</label>
+                  <div class="col-sm-10">
+                     <select name="account" class="form-control m-b">
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                        <option>Option 4</option>
+                     </select>
+                     <br/>
+                     <div class="row">
+                        <div class="col-lg-4">
+                           <select multiple="" class="form-control">
+                              <option>Option 1</option>
+                              <option>Option 2</option>
+                              <option>Option 3</option>
+                              <option>Option 4</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+         </form>
+      </div>
+   </div>
+   <div class="panel panel-default">
+      <h4 class="panel-heading">Variants</h4>
+      <div class="panel-body">
+         <form method="get" action="/" novalidate="" class="form-horizontal">
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Custom Checkboxes &amp; radios</label>
+                  <div class="col-sm-10">
+                     <div class="checkbox c-checkbox needsclick">
+                        <label class="needsclick">
+                           <input type="checkbox" value="" class="needsclick" />
+                           <span class="fa fa-check"></span>Option one</label>
+                     </div>
+                     <div class="checkbox c-checkbox">
+                        <label>
+                           <input type="checkbox" checked="" value="" />
+                           <span class="fa fa-check"></span>Option two checked</label>
+                     </div>
+                     <div class="checkbox c-checkbox">
+                        <label>
+                           <input type="checkbox" checked="" disabled="" value="" />
+                           <span class="fa fa-check"></span>Option three checked and disabled</label>
+                     </div>
+                     <div class="checkbox c-checkbox">
+                        <label>
+                           <input type="checkbox" disabled="" value="" />
+                           <span class="fa fa-check"></span>Option four disabled</label>
+                     </div>
+                     <div class="radio c-radio">
+                        <label>
+                           <input type="radio" name="a" value="option1" />
+                           <span class="fa fa-circle"></span>Option one</label>
+                     </div>
+                     <div class="radio c-radio">
+                        <label>
+                           <input type="radio" name="a" value="option2" checked="" />
+                           <span class="fa fa-circle"></span>Option two checked</label>
+                     </div>
+                     <div class="radio c-radio">
+                        <label>
+                           <input type="radio" value="option2" checked="" disabled="" />
+                           <span class="fa fa-circle"></span>Option three checked and disabled</label>
+                     </div>
+                     <div class="radio c-radio">
+                        <label>
+                           <input type="radio" name="a" disabled="" />
+                           <span class="fa fa-circle"></span>Option four disabled</label>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Inline checkboxes</label>
+                  <div class="col-sm-10">
+                     <div class="checkbox-inline c-checkbox">
+                        <label>
+                           <input id="inlineCheckbox10" type="checkbox" value="option1" />
+                           <span class="fa fa-check"></span>a</label>
+                     </div>
+                     <div class="checkbox-inline c-checkbox">
+                        <label>
+                           <input id="inlineCheckbox20" type="checkbox" value="option2" />
+                           <span class="fa fa-check"></span>b</label>
+                     </div>
+                     <div class="checkbox-inline c-checkbox">
+                        <label>
+                           <input id="inlineCheckbox30" type="checkbox" value="option3" />
+                           <span class="fa fa-check"></span>c</label>
+                     </div>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Circular</label>
+                  <div class="col-sm-10">
+                     <div class="checkbox c-checkbox c-checkbox-rounded">
+                        <label>
+                           <input id="roundedcheckbox10" type="checkbox" checked="checked" />
+                           <span class="fa fa-check"></span>Lorem</label>
+                     </div>
+                     <div class="checkbox c-checkbox c-checkbox-rounded">
+                        <label>
+                           <input id="roundedcheckbox20" type="checkbox" />
+                           <span class="fa fa-check"></span>Ipsum</label>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Inline radios</label>
+                  <div class="col-sm-10">
+                     <div class="radio-inline c-radio">
+                        <label>
+                           <input id="inlineradio1" type="radio" name="i-radio" value="option1" checked="checked" />
+                           <span class="fa fa-circle"></span>a</label>
+                     </div>
+                     <div class="radio-inline c-radio">
+                        <label>
+                           <input id="inlineradio2" type="radio" name="i-radio" value="option2" />
+                           <span class="fa fa-circle"></span>b</label>
+                     </div>
+                     <div class="radio-inline c-radio">
+                        <label>
+                           <input id="inlineradio3" type="radio" name="i-radio" value="option3" />
+                           <span class="fa fa-circle"></span>c</label>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Custom icons</label>
+                  <div class="col-sm-10">
+                     <div class="radio-inline c-radio">
+                        <label>
+                           <input id="inlineradio10" type="radio" name="i-radio" value="option1" checked="checked" />
+                           <span class="fa fa-check"></span>a</label>
+                     </div>
+                     <div class="radio-inline c-radio">
+                        <label>
+                           <input id="inlineradio20" type="radio" name="i-radio" value="option2" checked="checked" />
+                           <span class="fa fa-tint"></span>b</label>
+                     </div>
+                     <div class="radio-inline c-radio">
+                        <label>
+                           <input id="inlineradio30" type="radio" name="i-radio" value="option3" checked="checked" />
+                           <span class="fa fa-user"></span>c</label>
+                     </div>
+                     <br/>
+                     <div class="checkbox-inline c-checkbox">
+                        <label>
+                           <input id="inlinecheckbox10" type="checkbox" value="option1" checked="checked" />
+                           <span class="fa fa-paperclip"></span>a</label>
+                     </div>
+                     <div class="checkbox-inline c-checkbox">
+                        <label>
+                           <input id="inlinecheckbox20" type="checkbox" value="option2" checked="checked" />
+                           <span class="fa fa-star"></span>b</label>
+                     </div>
+                     <div class="checkbox-inline c-checkbox">
+                        <label>
+                           <input id="inlinecheckbox30" type="checkbox" value="option3" checked="checked" />
+                           <span class="fa fa-phone"></span>c</label>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Switch Small</label>
+                  <div class="col-sm-10">
+                     <label class="switch switch-sm">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Switch</label>
+                  <div class="col-sm-10">
+                     <label class="switch">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Switch Large</label>
+                  <div class="col-sm-10">
+                     <label class="switch switch-lg">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Switch Radio</label>
+                  <div class="col-sm-10">
+                     <label class="switch">
+                        <input type="radio" checked="checked" name="radioSwitch" />
+                        <span></span>
+                     </label>
+                     <label class="switch">
+                        <input type="radio" name="radioSwitch" />
+                        <span></span>
+                     </label>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Colors</label>
+                  <div class="col-sm-2">
+                     <label class="switch switch-info">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                     <label class="switch switch-danger">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                     <label class="switch switch-success">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                     <label class="switch switch-warning">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                     <label class="switch switch-inverse">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                     <label class="switch switch-turquoise">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                     <label class="switch switch-pink">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                     <label class="switch switch-purple">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                     <label class="switch switch-orange">
+                        <input type="checkbox" checked="checked" />
+                        <span></span>
+                     </label>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group has-success">
+                  <label class="col-sm-2 control-label">Input with success</label>
+                  <div class="col-sm-10">
+                     <input type="text" class="form-control" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group has-warning">
+                  <label class="col-sm-2 control-label">Input with warning</label>
+                  <div class="col-sm-10">
+                     <input type="text" class="form-control" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group has-error">
+                  <label class="col-sm-2 control-label">Input with error</label>
+                  <div class="col-sm-10">
+                     <input type="text" class="form-control" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Control sizing</label>
+                  <div class="col-sm-10">
+                     <input type="text" placeholder=".input-lg" class="form-control input-lg m-b" />
+                     <br/>
+                     <input type="text" placeholder="Default input" class="form-control m-b" />
+                     <br/>
+                     <input type="text" placeholder=".input-sm" class="form-control input-sm" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Column sizing</label>
+                  <div class="col-sm-10">
+                     <div class="row">
+                        <div class="col-md-2">
+                           <input type="text" placeholder=".col-md-2" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                           <input type="text" placeholder=".col-md-3" class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                           <input type="text" placeholder=".col-md-4" class="form-control" />
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Input groups</label>
+                  <div class="col-sm-10">
+                     <div class="input-group m-b">
+                        <span class="input-group-addon">@</span>
+                        <input type="text" placeholder="Username" class="form-control" />
+                     </div>
+                     <br/>
+                     <div class="input-group m-b">
+                        <input type="text" class="form-control" />
+                        <span class="input-group-addon">.00</span>
+                     </div>
+                     <br/>
+                     <div class="input-group m-b">
+                        <span class="input-group-addon">$</span>
+                        <input type="text" class="form-control" />
+                        <span class="input-group-addon">.00</span>
+                     </div>
+                     <br/>
+                     <div class="input-group m-b">
+                        <span class="input-group-addon">
+                           <input type="checkbox" />
+                        </span>
+                        <input type="text" class="form-control" />
+                     </div>
+                     <br/>
+                     <div class="input-group">
+                        <span class="input-group-addon">
+                           <input type="radio" />
+                        </span>
+                        <input type="text" class="form-control" />
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Button addons</label>
+                  <div class="col-sm-10">
+                     <div class="input-group m-b">
+                        <span class="input-group-btn">
+                           <button type="button" class="btn btn-default">Go!</button>
+                        </span>
+                        <input type="text" class="form-control" />
+                     </div>
+                     <br/>
+                     <div class="input-group">
+                        <input type="text" class="form-control" />
+                        <span class="input-group-btn">
+                           <button type="button" class="btn btn-default">Go!</button>
+                        </span>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">With dropdowns</label>
+                  <div class="col-sm-10">
+                     <div class="input-group m-b">
+                        <div dropdown="dropdown" class="input-group-btn">
+                           <button type="button" dropdown-toggle="" class="btn btn-default dropdown-toggle">Action
+                              <span class="caret"></span>
+                           </button>
+                           <ul class="dropdown-menu">
+                              <li><a href="#">Action</a>
+                              </li>
+                              <li><a href="#">Another action</a>
+                              </li>
+                              <li><a href="#">Something else here</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li><a href="#">Separated link</a>
+                              </li>
+                           </ul>
+                        </div>
+                        <input type="text" class="form-control" />
+                     </div>
+                     <br/>
+                     <div class="input-group">
+                        <input type="text" class="form-control" />
+                        <div dropdown="dropdown" class="input-group-btn">
+                           <button type="button" dropdown-toggle="" class="btn btn-default dropdown-toggle">Action
+                              <span class="caret"></span>
+                           </button>
+                           <ul class="dropdown-menu pull-right">
+                              <li><a href="#">Action</a>
+                              </li>
+                              <li><a href="#">Another action</a>
+                              </li>
+                              <li><a href="#">Something else here</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li><a href="#">Separated link</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset class="last-child">
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Segmented</label>
+                  <div class="col-sm-10">
+                     <div class="input-group m-b">
+                        <div dropdown="dropdown" class="input-group-btn">
+                           <button type="button" tabindex="-1" class="btn btn-default">Action</button>
+                           <button type="button" dropdown-toggle="" class="btn btn-default dropdown-toggle">
+                              <span class="caret"></span>
+                           </button>
+                           <ul class="dropdown-menu">
+                              <li><a href="#">Action</a>
+                              </li>
+                              <li><a href="#">Another action</a>
+                              </li>
+                              <li><a href="#">Something else here</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li><a href="#">Separated link</a>
+                              </li>
+                           </ul>
+                        </div>
+                        <input type="text" class="form-control" />
+                     </div>
+                     <br/>
+                     <div class="input-group">
+                        <input type="text" class="form-control" />
+                        <div dropdown="dropdown" class="input-group-btn">
+                           <button type="button" tabindex="-1" class="btn btn-default">Action</button>
+                           <button type="button" dropdown-toggle="" class="btn btn-default dropdown-toggle">
+                              <span class="caret"></span>
+                           </button>
+                           <ul class="dropdown-menu pull-right">
+                              <li><a href="#">Action</a>
+                              </li>
+                              <li><a href="#">Another action</a>
+                              </li>
+                              <li><a href="#">Something else here</a>
+                              </li>
+                              <li class="divider"></li>
+                              <li><a href="#">Separated link</a>
+                              </li>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+         </form>
+      </div>
+   </div>
+   <div class="panel panel-default">
+      <h4 class="panel-heading">New inputs</h4>
+      <div class="panel-body">
+         <form method="get" action="/" novalidate="" class="form-horizontal">
+            <fieldset>
+               <div class="form-group mb">
+                  <label class="col-sm-2 control-label">Chosen</label>
+                  <div class="col-sm-10">
+                     <select chosen="" data-ng-model="state" data-ng-options="s for s in form.states" class="chosen-select input-md"></select>
+                  </div>
+               </div>
+               <div class="form-group mb">
+                  <label class="col-sm-2 control-label">Chosen Groups</label>
+                  <div class="col-sm-10">
+                     <select chosen="" data-ng-model="team" class="chosen-select input-md">
+                        <option value="">
+                           <optgroup label="NFC EAST">
+                              <option>Dallas Cowboys</option>
+                              <option>New York Giants</option>
+                              <option>Philadelphia Eagles</option>
+                              <option>Washington Redskins</option>
+                           </optgroup>
+                           <optgroup label="NFC NORTH">
+                              <option>Chicago Bears</option>
+                              <option>Detroit Lions</option>
+                              <option>Green Bay Packers</option>
+                              <option>Minnesota Vikings</option>
+                           </optgroup>
+                           <optgroup label="NFC SOUTH">
+                              <option>Atlanta Falcons</option>
+                              <option>Carolina Panthers</option>
+                              <option>New Orleans Saints</option>
+                              <option>Tampa Bay Buccaneers</option>
+                           </optgroup>
+                           <optgroup label="NFC WEST">
+                              <option>Arizona Cardinals</option>
+                              <option>St. Louis Rams</option>
+                              <option>San Francisco 49ers</option>
+                              <option>Seattle Seahawks</option>
+                           </optgroup>
+                           <optgroup label="AFC EAST">
+                              <option>Buffalo Bills</option>
+                              <option>Miami Dolphins</option>
+                              <option>New England Patriots</option>
+                              <option>New York Jets</option>
+                           </optgroup>
+                           <optgroup label="AFC NORTH">
+                              <option>Baltimore Ravens</option>
+                              <option>Cincinnati Bengals</option>
+                              <option>Cleveland Browns</option>
+                              <option>Pittsburgh Steelers</option>
+                           </optgroup>
+                           <optgroup label="AFC SOUTH">
+                              <option>Houston Texans</option>
+                              <option>Indianapolis Colts</option>
+                              <option>Jacksonville Jaguars</option>
+                              <option>Tennessee Titans</option>
+                           </optgroup>
+                           <optgroup label="AFC WEST">
+                              <option>Denver Broncos</option>
+                              <option>Kansas City Chiefs</option>
+                              <option>Oakland Raiders</option>
+                              <option>San Diego Chargers</option>
+                           </optgroup>
+                        </option>
+                     </select>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Chosen Multiple</label>
+                  <div class="col-sm-10">
+                     <select chosen="" multiple="multiple" data-ng-model="team2" class="chosen-select form-control">
+                        <option value="">
+                           <option>Dallas Cowboys</option>
+                           <option>New York Giants</option>
+                           <option>Philadelphia Eagles</option>
+                           <option>Washington Redskins</option>
+                           <option>Chicago Bears</option>
+                           <option>Detroit Lions</option>
+                           <option>Green Bay Packers</option>
+                           <option>Minnesota Vikings</option>
+                           <option>Atlanta Falcons</option>
+                           <option>Carolina Panthers</option>
+                           <option>New Orleans Saints</option>
+                           <option>Tampa Bay Buccaneers</option>
+                           <option>Arizona Cardinals</option>
+                           <option>St. Louis Rams</option>
+                           <option>San Francisco 49ers</option>
+                           <option>Seattle Seahawks</option>
+                           <option>Buffalo Bills</option>
+                           <option>Miami Dolphins</option>
+                           <option>New England Patriots</option>
+                           <option>New York Jets</option>
+                           <option>Baltimore Ravens</option>
+                           <option>Cincinnati Bengals</option>
+                           <option>Cleveland Browns</option>
+                           <option>Pittsburgh Steelers</option>
+                           <option>Houston Texans</option>
+                           <option>Indianapolis Colts</option>
+                           <option>Jacksonville Jaguars</option>
+                           <option>Tennessee Titans</option>
+                           <option>Denver Broncos</option>
+                           <option>Kansas City Chiefs</option>
+                           <option>Oakland Raiders</option>
+                           <option>San Diego Chargers</option>
+                        </option>
+                     </select>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Editor</label>
+                  <div class="col-sm-10">
+                     <!-- The wysiswyg toolbar buttons-->
+                     <div data-role="editor-toolbar" data-target="#editor" class="btn-toolbar mb">
+                        <div dropdown="dropdown" class="btn-group">
+                           <a dropdown-toggle="" tooltip="Font" class="btn btn-default dropdown-toggle">
+                              <em class="fa fa-font"></em><b class="caret"></b>
+                           </a>
+                           <ul class="dropdown-menu">
+                              <li data-ng-repeat="ff in form.editorFontFamilyList"><a href="" data-edit="fontName {{ff}}" data-ng-attr-style="font-family: '{{ff}}';">{{ff}}</a>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="btn-group dropdown">
+                           <button type="button" dropdown-toggle="" tooltip="Font Size" class="btn btn-default dropdown-toggle">
+                              <em class="fa fa-text-height"></em><b class="caret"></b>
+                           </button>
+                           <ul class="dropdown-menu">
+                              <li data-ng-repeat="fz in form.editorFontSizeList"><a href="" data-edit="fontSize {{fz.value}}" data-ng-attr-style="font-size: {{fz.value}};">{{fz.name}}</a>
+                              </li>
+                           </ul>
+                        </div>
+                        <div class="btn-group">
+                           <a data-edit="bold" tooltip="Bold (Ctrl/Cmd+B)" class="btn btn-default">
+                              <em class="fa fa-bold"></em>
+                           </a>
+                           <a data-edit="italic" tooltip="Italic (Ctrl/Cmd+I)" class="btn btn-default">
+                              <em class="fa fa-italic"></em>
+                           </a>
+                           <a data-edit="strikethrough" tooltip="Strikethrough" class="btn btn-default">
+                              <em class="fa fa-strikethrough"></em>
+                           </a>
+                           <a data-edit="underline" tooltip="Underline (Ctrl/Cmd+U)" class="btn btn-default">
+                              <em class="fa fa-underline"></em>
+                           </a>
+                        </div>
+                        <div class="btn-group">
+                           <a data-edit="insertunorderedlist" tooltip="Bullet list" class="btn btn-default">
+                              <em class="fa fa-list-ul"></em>
+                           </a>
+                           <a data-edit="insertorderedlist" tooltip="Number list" class="btn btn-default">
+                              <em class="fa fa-list-ol"></em>
+                           </a>
+                           <a data-edit="outdent" tooltip="Reduce indent (Shift+Tab)" class="btn btn-default">
+                              <em class="fa fa-dedent"></em>
+                           </a>
+                           <a data-edit="indent" tooltip="Indent (Tab)" class="btn btn-default">
+                              <em class="fa fa-indent"></em>
+                           </a>
+                        </div>
+                        <div class="btn-group">
+                           <a data-edit="justifyleft" tooltip="Align Left (Ctrl/Cmd+L)" class="btn btn-default">
+                              <em class="fa fa-align-left"></em>
+                           </a>
+                           <a data-edit="justifycenter" tooltip="Center (Ctrl/Cmd+E)" class="btn btn-default">
+                              <em class="fa fa-align-center"></em>
+                           </a>
+                           <a data-edit="justifyright" tooltip="Align Right (Ctrl/Cmd+R)" class="btn btn-default">
+                              <em class="fa fa-align-right"></em>
+                           </a>
+                           <a data-edit="justifyfull" tooltip="Justify (Ctrl/Cmd+J)" class="btn btn-default">
+                              <em class="fa fa-align-justify"></em>
+                           </a>
+                        </div>
+                        <div class="btn-group dropdown">
+                           <a dropdown-toggle="" tooltip="Hyperlink" class="btn btn-default dropdown-toggle">
+                              <em class="fa fa-link"></em>
+                           </a>
+                           <div class="dropdown-menu">
+                              <div class="input-group m-l-xs m-r-xs">
+                                 <input onclick="return false;" placeholder="URL" type="text" data-edit="createLink" class="form-control input-sm" />
+                                 <div class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-default">Add</button>
+                                 </div>
+                              </div>
+                           </div>
+                           <a data-edit="unlink" tooltip="Remove Hyperlink" class="btn btn-default">
+                              <em class="fa fa-cut"></em>
+                           </a>
+                        </div>
+                        <div class="btn-group">
+                           <a id="pictureBtn" tooltip="Insert picture (or just drag &amp; drop)" class="btn btn-default">
+                              <em class="fa fa-picture-o"></em>
+                           </a>
+                           <input type="file" data-edit="insertImage" style="position: absolute; opacity: 0; width: 41px; height: 34px;" />
+                        </div>
+                        <div class="btn-group">
+                           <a data-edit="undo" tooltip="Undo (Ctrl/Cmd+Z)" class="btn btn-default">
+                              <em class="fa fa-undo"></em>
+                           </a>
+                           <a data-edit="redo" tooltip="Redo (Ctrl/Cmd+Y)" class="btn btn-default">
+                              <em class="fa fa-repeat"></em>
+                           </a>
+                        </div>
+                     </div>
+                     <!-- The wysiswyg editor-->
+                     <div id="editor" wysiwyg="" height="200px" max-height="300px" class="form-control">Type here..</div>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Datepicker</label>
+                  <div class="col-sm-10 col-lg-4">
+                     <p class="input-group">
+                        <input type="text" datepicker-popup="{{format}}" data-ng-model="form.dt" is-open="form.opened" min-date="false" max-date="false" datepicker-options="form.dateOptions" date-disabled="form.disabled(form.date, form.mode)" close-text="Close"
+                        class="form-control" />
+                        <span class="input-group-btn">
+                           <button type="button" data-ng-click="form.open($event)" class="btn btn-default">
+                              <em class="fa fa-calendar"></em>
+                           </button>
+                        </span>
+                     </p>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Timepicker</label>
+                  <div class="col-sm-10">
+                     <timepicker data-ng-model="form.mytime" data-ng-change="form.changed()" show-meridian="form.ismeridian"></timepicker>
+                     <p>Time is: {{form.mytime | date:'shortTime' }}</p>
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Slider
+                     <br/>
+                     <small class="text-muted">Vertical, Horizontal and Range sliders</small>
+                  </label>
+                  <div class="col-sm-4">
+                     <input bootstrap-slider="" type="text" value="" data-slider-min="5" data-slider-max="20" data-slider-step="1" data-slider-value="10" data-slider-orientation="horizontal" class="slider slider-horizontal" />
+                     <br/>
+                     <br/>
+                     <input bootstrap-slider="" type="text" value="" data-slider-min="5" data-slider-max="35" data-slider-step="1" data-slider-value="30" data-slider-orientation="vertical" class="slider slider-vertical" />
+                     <input bootstrap-slider="" type="text" value="" data-slider-min="5" data-slider-max="35" data-slider-step="1" data-slider-value="25" data-slider-orientation="vertical" class="slider slider-vertical" />
+                     <input bootstrap-slider="" type="text" value="" data-slider-min="5" data-slider-max="35" data-slider-step="1" data-slider-value="20" data-slider-orientation="vertical" class="slider slider-vertical" />
+                     <input bootstrap-slider="" type="text" value="" data-slider-min="5" data-slider-max="35" data-slider-step="1" data-slider-value="15" data-slider-orientation="vertical" class="slider slider-vertical" />
+                     <input bootstrap-slider="" type="text" value="" data-slider-min="5" data-slider-max="35" data-slider-step="1" data-slider-value="20" data-slider-orientation="vertical" class="slider slider-vertical" />
+                     <input bootstrap-slider="" type="text" value="" data-slider-min="5" data-slider-max="35" data-slider-step="1" data-slider-value="25" data-slider-orientation="vertical" class="slider slider-vertical" />
+                     <br/>
+                     <br/>
+                     <input id="sl2" bootstrap-slider="" type="text" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,750]" class="slider" />
+                  </div>
+               </div>
+            </fieldset>
+            <fieldset>
+               <div class="form-group">
+                  <label class="col-sm-2 control-label">Masked input</label>
+                  <div class="col-sm-10">
+                     <div class="row">
+                        <div class="col-sm-6">
+                           <input type="text" masked="999-99-999-9999-9" placeholder="ISBN" class="form-control" />
+                           <span class="help-block">masked="999-99-999-9999-9"</span>
+                        </div>
+                        <div class="col-sm-6">
+                           <input type="text" masked="99/99/9999" placeholder="Date" class="form-control" />
+                           <span class="help-block">masked="99/99/9999"</span>
+                        </div>
+                        <div class="col-sm-6">
+                           <input type="text" masked="(999) 999-9999" placeholder="Phone number" class="form-control" />
+                           <span class="help-block">masked="(999) 999-9999"</span>
+                        </div>
+                        <div class="col-sm-6">
+                           <input type="text" masked="aaaa-9999-aa99-9999" placeholder="Custom Key" class="form-control" />
+                           <span class="help-block">masked="aaaa-9999-aa99-9999"</span>
+                        </div>
+                        <div class="col-sm-6">
+                           <input type="text" masked="$ 999.999.999,99" placeholder="Currency Dolar" class="form-control" />
+                           <span class="help-block">masked="$ 999.999.999,99"</span>
+                        </div>
+                        <div class="col-sm-6">
+                           <input type="text" masked="€ 999.999.999,99" placeholder="Currency Euro" class="form-control" />
+                           <span class="help-block">masked="€ 999.999.999,99"</span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </fieldset>
+         </form>
+      </div>
+   </div>
+   <!-- END panel-->
+</div>
