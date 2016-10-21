@@ -13,6 +13,7 @@
    <!-- App CSS-->
    <link rel="stylesheet" href="app/css/app.css" data-ng-if="!app.layout.isRTL">
    <link rel="stylesheet" href="app/css/apprtl.css" data-ng-if="app.layout.isRTL">
+   <base href="/">
 </head>
 
 <body data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.sidebar.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'aside-slide' : app.sidebar.slide, 'in-app': $state.includes('app')}">

@@ -91,7 +91,7 @@ var App = angular.module('pm', ['ngRoute', 'ngAnimate', 'ngStorage', 'ngCookies'
 
     });
 
-    //$rootScope.getSearchData();
+    $rootScope.getSearchData();
     
 
   }
@@ -212,6 +212,13 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
 
       // default route to dashboard
       $urlRouterProvider.otherwise('/page/login');
+
+      if(window.history && window.history.pushState){
+        $locationProvider.html5Mode({
+          enabled: true,
+          requireBase: false
+        });
+      }
 
       // 
       // App Routes
@@ -390,6 +397,11 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
           templateUrl : basepath ('addaff.html'),
         })
 
+        .state('app.addech',{
+          url : '/addech',
+          templateUrl : basepath ('addech.html'),
+        })
+
         .state('app.updateuser',{
           url :'/updateuser',
           templateUrl : basepath ('updateuser.html'),
@@ -418,6 +430,63 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
           templateUrl : basepath ('editcert.html')
         })
 
+        .state('app.searchech',{
+          url :'/getech',
+          templateUrl : basepath('ech.html')
+        })
+        
+
+        .state('app.editech',{
+          url :'/editech/:ech/:nb',
+          templateUrl : basepath ('editech.html')
+        })
+
+
+        .state('app.searchfct',{
+          url :'/getfct',
+          templateUrl : basepath('fct.html')
+        })
+        
+
+        .state('app.editfct',{
+          url :'/editfct/:fct/:nb',
+          templateUrl : basepath ('editfct.html')
+        })
+
+
+        .state('app.searchgrad',{
+          url :'/getgrad',
+          templateUrl : basepath('grad.html')
+        })
+        
+
+        .state('app.editgrad',{
+          url :'/editgrad/:grad/:nb',
+          templateUrl : basepath ('editgrad.html')
+        })
+
+
+        .state('app.searchstate',{
+          url :'/getstate',
+          templateUrl : basepath('state.html')
+        })
+        
+
+        .state('app.editstate',{
+          url :'/editstate/:state/:nb',
+          templateUrl : basepath ('editstate.html')
+        })
+
+        .state('app.searchaff',{
+          url :'/getaff',
+          templateUrl : basepath('af.html')
+        })
+        
+
+        .state('app.editaff',{
+          url :'/editaff/:aff/:nb',
+          templateUrl : basepath ('editaff.html')
+        })
       
 
         ;
@@ -3925,7 +3994,7 @@ App.directive('ngFiles', ['$parse', function ($parse) {
     }
 }]);
 
-App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams","toaster",'userService', function ($rootScope,$scope,$http,$cookies,$stateParams,toaster,userService){
+App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams","toaster",'userService','GestionUserService', function ($rootScope,$scope,$http,$cookies,$stateParams,toaster,userService,GestionUserService){
   'use strict';
 
   $http.defaults.headers.common['Authorization'] = $cookies.getObject('tk');
@@ -3933,7 +4002,7 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
 
   if($stateParams.id){
     userService.getUser($stateParams.id).success(function(data,status){
-      $scope.userav  = data._items[0];
+      $scope.userav  = data;
     });
   }else if($stateParams.doc){
     userService.getDoc($stateParams.doc).success(function(d,status){
@@ -3945,10 +4014,57 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
     userService.getUser($stateParams.cert).success(function(d,status){
       $rootScope.certs = d.certif;
       $scope.editcert = d.certif[$stateParams.nb];
-      $scope.editcert.dt = new Date(d.certif[$stateParams.nb].dt);
+      $scope.editcert.f = new Date($scope.editcert.f);
+      $scope.editcert.to = new Date($scope.editcert.to);
       $scope.nb = $stateParams.nb;
       $scope.id = d._id;
       $scope.etag = d._etag;
+      $scope.avatar = $scope.editcert.src;
+    });
+  }else if ($stateParams.ech && $stateParams.nb){
+    userService.getUser($stateParams.ech).success(function(e,status){
+      $rootScope.echs = e.ech;
+      $scope.editech = e.ech[$stateParams.nb];
+      $scope.editech.dt = new Date($scope.editech.dt);
+      $scope.nb = $stateParams.nb;
+      $scope.id = e._id;
+      $scope.etag = e._etag;
+    });
+  }else if($stateParams.fct && $stateParams.nb){
+    userService.getUser($stateParams.fct).success(function(e,status){
+      $rootScope.foncts = e.fct;
+      $scope.editfct = e.fct[$stateParams.nb];
+      $scope.editfct.dt = new Date($scope.editfct.dt);
+      $scope.nb = $stateParams.nb;
+      $scope.id = e._id;
+      $scope.etag = e._etag;
+    });
+  }else if($stateParams.grad && $stateParams.nb){
+    userService.getUser($stateParams.grad).success(function(e,status){
+      $rootScope.gradess = e.grade;
+      $scope.editgrade = e.grade[$stateParams.nb];
+      $scope.editgrade.dt = new Date($scope.editgrade.dt);
+      $scope.nb = $stateParams.nb;
+      $scope.id = e._id;
+      $scope.etag = e._etag;
+    });
+  }else if($stateParams.state && $stateParams.nb){
+    userService.getUser($stateParams.state).success(function(e,status){
+      $rootScope.states = e.state;
+      $scope.editstate = e.state[$stateParams.nb];
+      $scope.editstate.dt = new Date($scope.editstate.dt);
+      $scope.nb = $stateParams.nb;
+      $scope.id = e._id;
+      $scope.etag = e._etag;
+    });
+  }else if($stateParams.aff && $stateParams.nb){
+    userService.getUser($stateParams.aff).success(function(e,status){
+      $rootScope.affs = e.aff;
+      $scope.editaff = e.aff[$stateParams.nb];
+      $scope.editaff.dt = new Date($scope.editaff.dt);
+      $scope.nb = $stateParams.nb;
+      $scope.id = e._id;
+      $scope.etag = e._etag;
     });
   }
   
@@ -4185,6 +4301,36 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
 
   };
 
+
+  $scope.addEch = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var dt = new Date($scope.dt).toGMTString();
+    var ech = [{"ref" : $scope.ref ,"deg" : $scope.deg ,"dt" : dt} ];
+    
+
+    if($scope.echs){
+      ech = ech.concat($scope.echs);
+    }
+    
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"ech" : ech },
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success();
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
   $scope.setFam = function(){
     $http.defaults.headers.common['If-Match'] = $scope.etag ;
     var kids = [];
@@ -4292,7 +4438,99 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
     });
   };
 
+  $scope.get4Fct = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.id = data._id;
+
+      if(data.fct){
+        $scope.fonctions = data.fct;
+      }
+
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+  $scope.get4Grad = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.id = data._id;
+
+      if(data.grade){
+        $scope.grades = data.grade;
+      }
+
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+  $scope.getU4Ech = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+
+      if(data.ech){
+        $scope.echs = data.ech;
+      }
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+
+  $scope.get4State = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+
+      if(data.state){
+        $scope.sts = data.state;
+      }else{
+        $scope.error();
+      }
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+
+  $scope.get4Aff = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+
+      if(data.aff){
+        $scope.afs = data.aff;
+      }else{
+        $scope.error();
+      }
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
   $scope.getU4cert = function(){
+    console.log($scope.uid);
     userService.getUser($scope.uid)
     .success(function(data){
 
@@ -4301,7 +4539,6 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
       if(data.certif){
         $scope.certifs = data.certif;
       }
-
       
     })
     .error(function(error){
@@ -4380,8 +4617,7 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
   };
 
   $scope.preEditDoc = function(){
-    console.log(formdata);
-    if(formdata){
+    if(formdata.get("img")){
       userService.addAvatar(formdata,'doc')
         .success(function(data){
           $scope.editDoc(data);
@@ -4429,6 +4665,9 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
   };
 
 
+
+
+
   $scope.getDoc = function(){
     userService.getDocWithUserId($scope.id).
       success(function(data,status){
@@ -4447,11 +4686,34 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
       });
   };
 
-  $scope.editCert = function(){
+
+  $scope.preEditCert = function(){
+
+    if(formdata.get("img")){
+      userService.addAvatar(formdata,'cert')
+        .success(function(data){
+          $scope.editCert(data);
+        })
+        .error(function(err){
+          $scope.error();
+      });
+    }else {
+      $scope.editCert();
+    }
+    
+  };
+
+  $scope.editCert = function(src){
 
     $http.defaults.headers.common['If-Match'] = $scope.etag ;
 
-    $scope.editcert.dt = new Date($scope.editcert.dt).toGMTString();
+    $scope.editcert.f = new Date($scope.editcert.f).toGMTString();
+    $scope.editcert.to = new Date($scope.editcert.to).toGMTString();
+
+
+    if(src){
+      $scope.editcert.src = src;
+    }
     
     $rootScope.certs[$scope.nb] = $scope.editcert ;
 
@@ -4471,6 +4733,172 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
             $scope.error();
           });
 
+  };
+
+  $scope.editEch = function(){
+
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+
+    $scope.editech.dt = new Date($scope.editech.dt).toGMTString();
+    
+    $rootScope.echs[$scope.nb] = $scope.editech ;
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"ech" : $rootScope.echs},
+                cache: false,
+              };
+    $http(req)
+          .success(function(data){
+            $scope.success("لقد تم التحيين بنجاح");
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.editFct = function(){
+
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+
+    $scope.editfct.dt = new Date($scope.editfct.dt).toGMTString();
+
+    $scope.editfct.fct = $scope.editfct.fct.title;
+    
+    $rootScope.foncts[$scope.nb] = $scope.editfct ;
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"fct" : $rootScope.foncts},
+                cache: false,
+              };
+    $http(req)
+          .success(function(data){
+            $scope.success("لقد تم التحيين بنجاح");
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.editGrad = function(){
+
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+
+    $scope.editgrade.dt = new Date($scope.editgrade.dt).toGMTString();
+
+    $scope.editgrade.grade = $scope.editgrade.grade.title;
+    
+    $rootScope.gradess[$scope.nb] = $scope.editgrade ;
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"grade" : $rootScope.gradess},
+                cache: false,
+              };
+    $http(req)
+          .success(function(data){
+            $scope.success("لقد تم التحيين بنجاح");
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.editState = function(){
+
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+
+    $scope.editstate.dt = new Date($scope.editstate.dt).toGMTString();
+
+    
+    $rootScope.states[$scope.nb] = $scope.editstate ;
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"state" : $rootScope.states},
+                cache: false,
+              };
+    $http(req)
+          .success(function(data){
+            $scope.success("لقد تم التحيين بنجاح");
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+
+  $scope.editAff = function(){
+
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+
+    $scope.editaff.dt = new Date($scope.editaff.dt).toGMTString();
+
+    $scope.editaff.struct = $scope.struct.struct;
+    $scope.editaff.substruct = $scope.substruct.substruct;
+    $scope.editaff.subsubstruct = $scope.subsubstruct;
+
+    
+    $rootScope.affs[$scope.nb] = $scope.editaff ;
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"aff" : $rootScope.affs},
+                cache: false,
+              };
+    $http(req)
+          .success(function(data){
+            $scope.success("لقد تم التحيين بنجاح");
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.initFctOptions = function(){
+    GestionUserService.getFonction()
+    .success(function(data){
+      $scope.fcts = data._items;
+    });
+
+  };
+
+  $scope.initGradeOptions = function(){
+    GestionUserService.getGrade()
+    .success(function(data){
+      $scope.gs = data._items;
+    });
+  };
+
+  $scope.initStructOptions = function(){
+    GestionUserService.getStruct()
+    .success(function(data){
+      $scope.structs = data._items;
+    });
+  };
+
+  $scope.initSubStructOptions = function(data){
+    $scope.substructs = data.substruct;
+  };
+
+  $scope.initSubSubStructOptions = function(data){
+    $scope.subsubstructs = data.subsubstruct;
   };
 
 

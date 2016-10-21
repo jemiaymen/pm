@@ -15689,6 +15689,11 @@ body .jvectormap-zoomout {
   height: 128px !important;
 }
 
+.thumb250 {
+  width: 250px !important;
+  height: 250px !important;
+}
+
 .align-middle {
   vertical-align: middle;
 }

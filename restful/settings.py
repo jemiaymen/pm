@@ -392,7 +392,29 @@ user_schema = {
     'avatar' : {
         'type' : 'string',
         'required' : True,
-    }
+    },
+    'ech': {
+        'type': 'list',
+        'schema' : {
+            'type': 'dict',
+            'schema' : {
+
+                'deg': {
+                'type': 'integer',
+                'required' : True,
+                'min' : 1,
+                'max' : 25,
+                },
+                'dt' : {
+                    'type' : 'datetime',
+                    'required' : True,
+                },
+                'ref' : {
+                    'type' : 'string'
+                },
+            }
+        }
+    },
 
 
 }

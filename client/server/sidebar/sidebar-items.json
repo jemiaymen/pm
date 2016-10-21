@@ -28,6 +28,7 @@
       {"text": "إضافة  خطة وظيفية",   "sref": "app.addfct" },
       {"text": "إضافة  رتبة",   "sref": "app.addgrade" },
       {"text": "إضافة  تعيين",   "sref": "app.addaff" },
+      {"text": "إضافة  تدرج",   "sref": "app.addech" },
 
       {
         "type": "separator"
@@ -37,6 +38,20 @@
       {"text": "إضافة أو تحيين المستوى العلمي",   "sref": "app.edu" },
       {"text": "إضافة أو تحيين الحالة العائلية",   "sref": "app.family" },
       {"text": "تحيين الوثائق",   "sref": "app.searchdoc" },
+      {"text": "تحيين تدرج",   "sref": "app.searchech" },
+      {"text": "تحيين دورات تكوينية",   "sref": "app.searchcertif" },
+
+      {
+        "type": "separator"
+      },
+
+      {"text": "تحيين خطة وظيفية",   "sref": "app.searchfct" },
+      {"text": "تحيين رتبة",   "sref": "app.searchgrad" },
+      {"text": "تحيين الوضعية الإدارية",   "sref": "app.searchstate" },
+      {"text": "تحيين تعيين",   "sref": "app.searchaff" },
+
+      
+
 
       
 

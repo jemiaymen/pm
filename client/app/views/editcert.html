@@ -7,7 +7,7 @@
    <div class="col-md-12">
       <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
       
-      <form onsubmit="return false;" name="formd" class="form-validate form-horizontal" data-ng-submit=" editCert()">
+      <form onsubmit="return false;" name="formd" class="form-validate form-horizontal" data-ng-submit="formd.$valid && preEditCert()">
          <!-- START panel-->
          <div class="panel panel-default">
             <div class="panel-heading">
@@ -18,8 +18,26 @@
                <fieldset>
                   <div class="form-group">
                      <label class="col-sm-2 control-label">#</label>
-                     <div class="col-sm-6">
+                     <div class="col-sm-9">
                         <input type="text" data-ng-model="id" data-ng-pattern="/^[a-f\d]{24}$/i" class="form-control"  readonly required  />
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label"></label>
+                     <div class="col-sm-9">
+                        <img data-ng-src="{{avatar}}" style="max-width:120px;">
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">صورة</label>
+                     <div class="col-sm-9">
+                        <input type="file" class="form-control" onchange="angular.element(this).scope().setFile(this)" accept="image/*" data-ng-files="getTheFiles($files)" name="img" >
                      </div>
                   </div>
                </fieldset>
@@ -30,7 +48,7 @@
                <fieldset>
                   <div class="form-group">
                      <label class="col-sm-2 control-label">الشهادة</label>
-                     <div class="col-sm-6">
+                     <div class="col-sm-9">
                         <input type="text" data-ng-model="editcert.title" class="form-control"  required ng-minlength="3" ng-maxlength="200"/>
                      </div>
                   </div>
@@ -38,9 +56,14 @@
 
                <fieldset>
                   <div class="form-group">
-                     <label class="col-sm-2 control-label">تاريخ التفعيل</label>
-                     <div class="col-sm-6">
-                        <input type="date" data-ng-model="editcert.dt"  class="form-control" required  />
+                     <label class="col-sm-2 control-label">من</label>
+                     <div class="col-sm-4">
+                        <input type="date" data-ng-model="editcert.f"  class="form-control" required  />
+                     </div>
+
+                     <label class="col-sm-1 control-label">إلى</label>
+                     <div class="col-sm-4">
+                        <input type="date" data-ng-model="editcert.to"  class="form-control" required  />
                      </div>
                   </div>
                </fieldset>
@@ -48,8 +71,8 @@
                <fieldset>
                   <div class="form-group">
                      <label class="col-sm-2 control-label">معطيات أخرى</label>
-                     <div class="col-sm-6">
-                        <input type="text" data-ng-model="editcert.ref" class="form-control"  ng-minlength="3" ng-maxlength="200"/>
+                     <div class="col-sm-9">
+                        <input type="text" data-ng-model="editcert.ref" class="form-control"  ng-minlength="3" ng-maxlength="500"/>
                      </div>
                   </div>
                </fieldset>
