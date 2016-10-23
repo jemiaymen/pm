@@ -213,12 +213,12 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
       // default route to dashboard
       $urlRouterProvider.otherwise('/page/login');
 
-      if(window.history && window.history.pushState){
+      /*if(window.history && window.history.pushState){
         $locationProvider.html5Mode({
           enabled: true,
           requireBase: false
         });
-      }
+      }*/
 
       // 
       // App Routes
@@ -4003,6 +4003,50 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
   if($stateParams.id){
     userService.getUser($stateParams.id).success(function(data,status){
       $scope.userav  = data;
+      $scope.userav.dtenter = new Date($scope.userav.dtenter);
+      $scope.userav._updated = new Date($scope.userav._updated);
+      $scope.userav.born = new Date($scope.userav.born);
+
+      if($scope.userav.familystate.cong.born){
+        $scope.userav.familystate.cong.born= new Date($scope.userav.familystate.cong.born);
+      }
+
+      if($scope.userav.familystate.kids[0]){
+        var i = 0;
+        for(var i = 0 ; i <  $scope.userav.familystate.kids.length ; i++){
+           if($scope.userav.familystate.kids[i].born){
+            $scope.userav.familystate.kids[i].born = new Date($scope.userav.familystate.kids[i].born);
+           }
+        }
+      }
+
+      if($scope.userav.edu.dt){
+        $scope.userav.edu.dt = new Date($scope.userav.edu.dt);
+      }
+
+      if($scope.userav.certif[0]){
+        for(var i = 0 ; i < $scope.userav.certif.length ; i ++){
+          $scope.userav.certif[i].f = new Date($scope.userav.certif[i].f);
+          $scope.userav.certif[i].to = new Date($scope.userav.certif[i].to);
+        }
+      }
+
+      if($scope.userav.grade[0]){
+        for(var i = 0 ; i < $scope.userav.grade.length ; i++){
+          if($scope.userav.grade[i].dt){
+            $scope.userav.grade[i].dt = new Date($scope.userav.grade[i].dt);
+          }
+        }
+      }
+
+      if($scope.userav.fct[0]){
+        for(var i = 0 ; i < $scope.userav.fct.length ; i++){
+          if($scope.userav.fct[i].dt){
+            $scope.userav.fct[i].dt = new Date($scope.userav.fct[i].dt);
+          }
+        }
+      }
+
     });
   }else if($stateParams.doc){
     userService.getDoc($stateParams.doc).success(function(d,status){

@@ -11,7 +11,7 @@ app = Eve()
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
-UPLOAD_FOLDER = 'd:\\pm\\client\\'
+UPLOAD_FOLDER = 'd:/pm/client/'
 
 
 
@@ -37,7 +37,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 def name_file(filename,src):
-    return 'app\\img\\' + src +'\\' + str(uuid.uuid1()) + '.' + filename.rsplit('.', 1)[1]
+    return 'app/img/' + src +'/' + str(uuid.uuid1()) + '.' + filename.rsplit('.', 1)[1]
 
 
 

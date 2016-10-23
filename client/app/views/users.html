@@ -3,152 +3,165 @@
    <small data-ng-bind="app.name + ' - ' + app.description"></small>
 </h3>
 
-<div data-ng-controller="Users" class="row" >
-   <!-- START dashboard content-->
-
-
-   <div class="col-md-4 fw-boxed">
-      <div class="row">
-         <div class="panel panel-default">
-            <div class="panel-heading">
-                  <div class="panel-title">
-                     <img data-ng-src="{{userav.avatar}}" alt="Image" class="media-object img-responsive " />
-                  </div>
-            </div> 
-            <ul class="list-group">
-                  <li class="list-group-item">
-                     <div class="media">
-                        <!-- Contact info-->
-                        <div class="media-body">
-                              <p class="mb-sm">
-                                 <span class="text-muted">الإسم</span>
-                                 <strong><a href="#" class="text-inverse">{{userav.nom}} </a></strong>
-                              </p>
-                              <p class="mb-sm">
-                                 <span class="text-muted">اللقب</span>
-                                 <strong><a href="#" class="text-inverse">{{userav.pren}} </a></strong>
-                              </p>
-                              <p class="mb-sm">
-                                 <span class="text-muted">المعرف الوحيد</span>
-                                 <strong><a href="#" class="text-inverse">{{userav.uid}} </a></strong>
-                              </p>
-                        </div>
-                     </div>
-                  </li>
-                  <li class="list-group-item">
-                     <div class="media">
-                        <!-- Contact info-->
-                        <div class="media-body">
-                              <p class="mb-sm">
-                                 <span class="text-muted">الرتبة</span>
-                                 <strong><a href="#" class="text-inverse">{{userav.grade[0].grade}} </a></strong>
-                              </p>
-                              <p class="mb-sm">
-                                 <span class="text-muted">الخطة الوظيفية</span>
-                                 <strong><a href="#" class="text-inverse">{{userav.fct[0].fct}} </a></strong>
-                              </p>
-                              <p class="mb-sm">
-                                 <span class="text-muted">مكان العمل</span>
-                                 <strong><a href="#" class="text-inverse">{{userav.aff[0].subsubstruct}} - {{userav.aff[0].substruct}} - {{userav.aff[0].struct}} </a></strong>
-                              </p>
-                        </div>
-                     </div>
-                  </li>
-            </ul> 
-
-             
-         </div>
-      </div>
-   </div>
-
-
-
-   <div class="col-md-8 fw-boxed">
-    	<div class="row">
-         
-         <div class="col-md-12">
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <div class="panel-title">القائمة الجملية</div>
-               </div>
-               <!-- List group -->
-               <ul class="list-group">
-                  <li class="list-group-item">
-                     <div class="media">
-                        <div class="pull-left">
-                           <!-- Contact avatar-->
-                           <div class="point-pin">
-                              <a href="#">
-                                 
-                              </a>
-                              <div class="point point-success point-lg"></div>
-                           </div>
-                        </div>
-                        <!-- Contact info-->
-                        <div class="media-body">
-                           <div class="media-heading">
-                              <p class="mb-sm">
-                                 <strong><a href="#" class="text-inverse">Same Anderson </a>
-                                 </strong>-
-                                 <em class="text-muted">#41545</em>
-                              </p>
-                              <small class="text-muted">Phasellus ultricies tempor purus, nec congue.</small>
-                           </div>
-                        </div>
-                     </div>
-                  </li>
-                  <li class="list-group-item">
-                     <div class="media">
-                        <div class="pull-left">
-                           <!-- Contact avatar-->
-                           <div class="point-pin">
-                              <a href="#">
-                                 <img src="app/img/user/02.jpg" alt="Image" class="media-object img-circle thumb32" />
-                              </a>
-                              <div class="point point-warning point-lg"></div>
-                           </div>
-                        </div>
-                        <!-- Contact info-->
-                        <div class="media-body">
-                           <div class="media-heading">
-                              <p class="mb-sm">
-                                 <strong><a href="#" class="text-inverse">Myrtle James</a>
-                                 </strong>-
-                                 <em class="text-muted">#54878</em>
-                              </p>
-                              <small class="text-muted">Vivamus tempus vehicula facilisis.</small>
-                           </div>
-                        </div>
-                     </div>
-                  </li>
-                  <li class="list-group-item">
-                     <div class="media">
-                        <div class="pull-left">
-                           <!-- Contact avatar-->
-                           <div class="point-pin">
-                              <a href="#">
-                                 <img src="app/img/user/06.jpg" alt="Image" class="media-object img-circle thumb32" />
-                              </a>
-                              <div class="point point-danger point-lg"></div>
-                           </div>
-                        </div>
-                        <!-- Contact info-->
-                        <div class="media-body">
-                           <div class="media-heading">
-                              <p class="mb-sm">
-                                 <strong><a href="#" class="text-inverse">Jeremiah Peterson</a>
-                                 </strong>-
-                                 <em class="text-muted">#13547</em>
-                              </p>
-                              <small class="text-muted">Integer fermentum accumsan metus, id sagittis.</small>
-                           </div>
-                        </div>
-                     </div>
-                  </li>
-               </ul>
-            </div>
-         </div>
-      </div>
-   </div>
-   
+<div class="row">
+   {{userav | json}}
 </div>
+<div class="row" data-ng-controller="Users">
+      <div class="col-sm-4">
+       <div class="panel panel-card">
+         <div class="r-t pos-rlt img-profile" style="background:url('{{userav.avatar}}') center center; background-size:cover">
+            <a href class="inline">
+             <img data-ng-src="{{userav.avatar}}" class="img-circle img-responsive w-xs" >
+           </a>
+           <div class="bg-white-overlay text-center r-t">
+             
+             <div class="m-b m-t-sm h2">
+               <span >{{ userav.nom }} {{ userav.pren }}</span>
+             </div>
+             <p>
+               {{ userav.uid }}
+             </p>
+           </div>
+         </div>
+         <div class="list-group no-radius no-border">
+
+           <a class="list-group-item">
+            <span class="pull-right h4 block font-bold"> {{userav.aff[0].subsubstruct}} - {{userav.aff[0].substruct}} - {{userav.aff[0].struct}}</span> <span class="h4 block font-bold">التعيين</span>
+           </a>
+
+           <a class="list-group-item" data-ng-show="userav.fct[0]">
+            <span class="pull-right h4 block font-bold">{{userav.fct[0].fct}}</span> <span class="h4 block font-bold">الخطة وظيفية</span>
+           </a>
+
+           <a class="list-group-item">
+            <span class="pull-right h4 block font-bold">{{userav.grade[0].grade}}</span> <span class="h4 block font-bold">الرتبة</span>
+           </a>
+
+           <a class="list-group-item">
+            <span class="pull-right h4 block font-bold">{{userav.dtenter | date:'yyyy/MM/dd'}}</span> <span class="h4 block font-bold">تاريخ الدخول للإدارة</span>
+           </a>
+
+           <a class="list-group-item">
+            <span class="pull-right h4 block font-bold">{{userav.state[0].st}}</span> <span class="h4 block font-bold">الوضعية الإدارية</span>
+           </a>
+           <a class="list-group-item">
+            <span class="pull-right h4 block font-bold">{{userav._updated | date:'yyyy/MM/dd'}}</span> <span class="h4 block font-bold">أخر تحيين</span>
+           </a>
+         </div>
+       </div>
+   </div>
+  <div class="col-sm-8">
+    <div class="panel panel-card clearfix">
+         <div class="list-group no-radius no-border">
+
+           <li class="list-group-item">
+            <div class="block font-bold h3 text-center">معطيات شخصية</div>
+           </li>
+
+           <li class="list-group-item">
+            <p class="h4 block font-bold col-xs-6"> إسم الأب  : {{userav.father}}</p>
+            <p class="h4 block font-bold col-xs-6"> إسم الأم  : {{userav.mother}}</p>
+            <p class="h4 block font-bold col-xs-6">  تاريخ الميلاد  : {{userav.born | date:'yyyy/MM/dd'}}</p>
+            <p class="h4 block font-bold col-xs-6">  العنوان : {{userav.location.address}}, {{userav.location.city}}</p>
+            <p class="h4 block font-bold col-xs-6">  بطاقات التعريف  : {{userav.cin.num}}</p>
+            <p class="h4 block font-bold col-xs-6" data-ng-show="userav.tel">  الهاتف  : {{userav.tel}}</p>
+            <p class="h4 block font-bold col-xs-12" data-ng-show="userav.email">  البريد الإلكتروني : {{userav.email}}</p>      
+            <p >&nbsp;</p>
+
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.familystate">
+            <div class="block font-bold h3 text-center">الحالة العائلية ( {{userav.familystate.r}} )</div>
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.familystate.r == 'متزوج'">
+            <p class="h4 block font-bold col-xs-6"> إسم القرين  : {{ userav.familystate.cong.name}} </p>
+            <p class="h4 block font-bold col-xs-6" data-ng-show="userav.familystate.cong.born" > تاريخ الولادة : {{ userav.familystate.cong.born | date:'yyyy/MM/dd'}} </p>
+            <p class="h4 block font-bold col-xs-6" data-ng-show="userav.familystate.cong.job">  المهنة  : {{ userav.familystate.cong.job}} </p>
+            <p class="h4 block font-bold col-xs-6" data-ng-show="userav.familystate.cong.tel">  الهاتف: {{ userav.familystate.cong.tel}}</p>
+
+            
+
+            <div data-ng-show="userav.familystate.kids[0]" data-ng-repeat="kid in userav.familystate.kids">
+               <p class="h4 block font-bold col-xs-6">  إسم الإبن  : {{kid.name}} </p>
+               <p class="h4 block font-bold col-xs-6">  تاريخ الولادة : {{kid.born | date:'yyyy/MM/dd'}}</p>
+            </div>
+   
+            <p >&nbsp;</p>
+
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.edu">
+            <div class="block font-bold h3 text-center">المستوى العلمي ( {{userav.edu.niv}} ) </div>
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.edu">
+            <p class="h4 block font-bold col-xs-6" data-ng-show="userav.edu.title"> الشهادة  : {{userav.edu.title}} </p>
+            <p class="h4 block font-bold col-xs-6" data-ng-show="userav.edu.univ"> المعهد  : {{userav.edu.univ}} </p>
+            <p class="h4 block font-bold col-xs-6" data-ng-show="userav.edu.nbr">  عدد السنوات  : {{userav.edu.nbr}} </p>
+            <p class="h4 block font-bold col-xs-6" data-ng-show="userav.edu.dt">  تاريخ الحصول على الشهادة : {{userav.edu.dt | date:'yyyy/MM/dd'}} </p>
+            <p >&nbsp;</p>
+
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.grade[0]">
+            <div class="block font-bold h3 text-center">التدرج فالرتبة </div>
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.grade[0]">
+            <p class="h4 block font-bold col-xs-4"> الرتبة </p>
+            <p class="h4 block font-bold col-xs-4"> تاريخ الحصول على الرتبة</p>
+            <p class="h4 block font-bold col-xs-4"> المرجع </p>
+
+            <div data-ng-repeat="f in userav.grade">
+               <p class="h4 block font-bold col-xs-4" data-ng-show="f.grade"> {{f.grade}} </p>
+               <p class="h4 block font-bold col-xs-4" data-ng-show="f.dt"> {{f.dt | date:'yyyy/MM/dd'}} </p>
+               <p class="h4 block font-bold col-xs-4" data-ng-show="f.ref"> {{f.ref}} </p>
+            </div>
+            <p >&nbsp;</p>
+
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.fct[0]">
+            <div class="block font-bold h3 text-center">التدرج فالخطة الوظيفية </div>
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.fct[0]">
+            <p class="h4 block font-bold col-xs-3"> الخطة الوظيفية </p>
+            <p class="h4 block font-bold col-xs-5"> تاريخ الحصول على الخطة الوظيفية</p>
+            <p class="h4 block font-bold col-xs-4"> المرجع </p>
+            
+            <div data-ng-repeat="f in userav.fct">
+               <p class="h4 block font-bold col-xs-3" data-ng-show="f.fct"> {{f.fct}} </p>
+               <p class="h4 block font-bold col-xs-5" data-ng-show="f.dt"> {{f.dt | date:'yyyy/MM/dd'}} </p>
+               <p class="h4 block font-bold col-xs-4" data-ng-show="f.ref"> {{f.ref}} </p>
+            </div>
+
+            <p >&nbsp;</p>
+
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.certif[0]">
+            <div class="block font-bold h3 text-center">الدورات التكوينية </div>
+           </li>
+
+           <li class="list-group-item" data-ng-show="userav.certif[0]">
+            <p class="h4 block col-xs-6"> إسم الدورة</p>
+            <p class="h4 block col-xs-3"> من</p>
+            <p class="h4 block col-xs-3"> إلى</p>
+
+            
+            <div data-ng-show="userav.familystate.kids[0]" data-ng-repeat="ct in userav.certif">
+               <p class="h4 block font-bold col-xs-6">{{ct.title}} </p>
+               <p class="h4 block font-bold col-xs-3">{{ct.f | date:'yyyy/MM/dd'}}</p>
+               <p class="h4 block font-bold col-xs-3">{{ct.to | date:'yyyy/MM/dd'}}</p>
+            </div>
+
+            <p >&nbsp;</p>
+
+           </li>
+       </div>
+    </div>
+  </div>
+</div>
+

@@ -16418,3 +16418,14 @@ fieldset[disabled] [role~="flatdoc-content"] .button.active {
 
 
 /* add by me jemix */
+
+.w-xs {
+  margin-left: auto;
+  margin-right: auto;
+  width:90px;
+}
+
+.bg-white-overlay {
+  background-color :rgba(221,221,221, 0.60);
+  margin-top: 115px;
+}
