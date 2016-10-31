@@ -195,10 +195,7 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
       App.value      = $provide.value;
 
 
-      /*$locationProvider.html5Mode({
-        enabled: true,
-        requireBase : false,
-      });*/
+      $locationProvider.html5Mode(true);
 
       // LAZY LOAD MODULES
       // ----------------------------------- 
@@ -211,7 +208,7 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
 
 
       // default route to dashboard
-      $urlRouterProvider.otherwise('/page/login');
+      $urlRouterProvider.otherwise('/app/dashboard');
 
       /*if(window.history && window.history.pushState){
         $locationProvider.html5Mode({
@@ -243,6 +240,27 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
             url: '/documentation',
             templateUrl: basepath('documentation.html'),
             resolve: requireDeps('flatdoc')
+        })
+        .state('app.icons-feather', {
+            url: '/icons-feather',
+            templateUrl: basepath('icons-feather.html')
+        })
+        .state('app.icons-fa', {
+            url: '/icons-fa',
+            templateUrl: basepath('icons-fa.html')
+        })
+        .state('app.icons-weather', {
+            url: '/icons-weather',
+            templateUrl: basepath('icons-weather.html')
+        })
+        .state('app.icons-climacon', {
+            url: '/icons-climacon',
+            templateUrl: basepath('icons-climacon.html')
+        })
+        .state('app.table-ngtable', {
+            url: '/table-ngtable',
+            templateUrl: basepath('table-ngtable.html'),
+            resolve: requireDeps('ngTable', 'ngTableExport')
         })
 
         // Mailbox
@@ -289,11 +307,10 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
         .state('page', {
             url: '/page',
             abstract: true,
+            templateUrl: 'app/pages/page.html',
             data: {
               requireLogin: false 
             },
-
-            templateUrl: 'app/pages/page.html',
         })
         .state('page.login', {
             url: '/login',
@@ -311,17 +328,16 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
         })
         .state('page.lock', {
             url: '/lock',
-            data: {
-              requireLogin: false 
-            },
             templateUrl: 'app/pages/lock.html'
         })
         .state('page.404', {
             url: '/404',
-            data: {
-              requireLogin: false 
-            },
             templateUrl: 'app/pages/404.html'
+        })
+
+        .state('page.travail', {
+            url: '/travail',
+            templateUrl: 'app/pages/travail.html'
         })
         // 
         // CUSTOM RESOLVE FUNCTION
@@ -347,6 +363,7 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
         })
         .state('app.user', {
             url: '/user/:id',
+            controller: 'Users',
             templateUrl: basepath('users.html'),
 
         })
@@ -488,6 +505,79 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
           templateUrl : basepath ('editaff.html')
         })
       
+        .state('app.FCT',{
+          url :'/FCT',
+          templateUrl : basepath ('F-C-T.html')
+        })
+
+        .state('app.eFCT',{
+          url :'/FCT/:fct/:id/:etag',
+          templateUrl : basepath ('F-C-T.html')
+        })
+
+        .state('app.GRADE',{
+          url :'/GRADE',
+          templateUrl : basepath ('G-R-A-D-E.html')
+        })
+
+        .state('app.eGRADE',{
+          url :'/GRADE/:grade/:id/:etag',
+          templateUrl : basepath ('G-R-A-D-E.html')
+        })
+
+        .state('app.search',{
+          url : '/search',
+          controller: 'SearchSpec',
+          templateUrl : basepath ('search.html'),
+        })
+
+        .state('app.searchsp',{
+          url : '/searchsp',
+          controller: 'SearchSpec',
+          templateUrl : basepath ('searchsp.html')
+        })
+
+        .state('app.search-fct',{
+          url : '/search-fct',
+          controller: 'SearchSpec',
+          templateUrl : basepath ('search-fct.html'),
+          resolve: requireDeps('ngTableExport')
+        })
+
+        .state('app.search-grade',{
+          url : '/search-grade',
+          controller: 'SearchSpec',
+          templateUrl : basepath ('search-grade.html'),
+          resolve: requireDeps('ngTableExport')
+        })
+
+
+        .state('app.titulaire',{
+          url : '/titulaire',
+          templateUrl : basepath ('titulaire.html')
+        })
+
+        .state('doc', {
+            url: '/doc',
+            abstract: true,
+            templateUrl: basepath ('d.html'),
+            data: {
+              requireLogin: true 
+            },
+        })
+
+        .state('doc.trav',{
+          url : '/trav/:id',
+          controller : 'GenerateDocs',
+          templateUrl : basepath ('travail.html')
+        })
+
+        .state('doc.note',{
+          url : '/note/:id',
+          controller : 'GenerateDocs',
+          templateUrl : basepath ('note.html')
+        })
+
 
         ;
 
@@ -612,7 +702,7 @@ App
                                           'app/vendor/angular-chosen/angular-chosen.js']},
       {name: 'ngTable',           files: ['app/vendor/ng-table/ng-table.min.js',
                                           'app/vendor/ng-table/ng-table.min.css']},
-      {name: 'ngTableExport',     files: ['app/vendor/ng-table-export/ng-table-export.js']},
+      {name: 'ngTableExport',     files: ['app/vendor/ng-table-export/ng-table-to-csv.min.js']},
       {name: 'AngularGM',         files: ['app/vendor/AngularGM/angular-gm.min.js']},
       {name: 'ui.calendar',       files: ['app/vendor/fullcalendar/dist/fullcalendar.min.js',
                                           'app/vendor/fullcalendar/dist/fullcalendar.css',
@@ -3971,15 +4061,10 @@ App.controller('Authentificate', ["$rootScope","$scope","$http","$cookies","$sta
       });
   };
 
-
-
 }]);
 
 
-/**=========================================================
- * Module: Users 
- * users Controller
- =========================================================*/
+
 App.directive('ngFiles', ['$parse', function ($parse) {
 
     function fn_link(scope, element, attrs) {
@@ -3994,6 +4079,11 @@ App.directive('ngFiles', ['$parse', function ($parse) {
     }
 }]);
 
+/**=========================================================
+ * Module: Users 
+ * users Controller
+ =========================================================*/
+
 App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams","toaster",'userService','GestionUserService', function ($rootScope,$scope,$http,$cookies,$stateParams,toaster,userService,GestionUserService){
   'use strict';
 
@@ -4007,31 +4097,41 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
       $scope.userav._updated = new Date($scope.userav._updated);
       $scope.userav.born = new Date($scope.userav.born);
 
-      if($scope.userav.familystate.cong.born){
-        $scope.userav.familystate.cong.born= new Date($scope.userav.familystate.cong.born);
-      }
+      if($scope.userav.familystate){
+        if($scope.userav.familystate.cong){
+          if($scope.userav.familystate.cong.born){
+            $scope.userav.familystate.cong.born= new Date($scope.userav.familystate.cong.born);
+          }
+        }
 
-      if($scope.userav.familystate.kids[0]){
-        var i = 0;
-        for(var i = 0 ; i <  $scope.userav.familystate.kids.length ; i++){
-           if($scope.userav.familystate.kids[i].born){
-            $scope.userav.familystate.kids[i].born = new Date($scope.userav.familystate.kids[i].born);
-           }
+        if($scope.userav.familystate.kids[0]){
+          var i = 0;
+          for(var i = 0 ; i <  $scope.userav.familystate.kids.length ; i++){
+             if($scope.userav.familystate.kids[i].born){
+              $scope.userav.familystate.kids[i].born = new Date($scope.userav.familystate.kids[i].born);
+             }
+          }
+        }
+      }
+      
+
+      
+      if($scope.userav.edu){
+        if($scope.userav.edu.dt){
+          $scope.userav.edu.dt = new Date($scope.userav.edu.dt);
         }
       }
 
-      if($scope.userav.edu.dt){
-        $scope.userav.edu.dt = new Date($scope.userav.edu.dt);
-      }
+      
 
-      if($scope.userav.certif[0]){
+      if($scope.userav.certif){
         for(var i = 0 ; i < $scope.userav.certif.length ; i ++){
           $scope.userav.certif[i].f = new Date($scope.userav.certif[i].f);
           $scope.userav.certif[i].to = new Date($scope.userav.certif[i].to);
         }
       }
 
-      if($scope.userav.grade[0]){
+      if($scope.userav.grade){
         for(var i = 0 ; i < $scope.userav.grade.length ; i++){
           if($scope.userav.grade[i].dt){
             $scope.userav.grade[i].dt = new Date($scope.userav.grade[i].dt);
@@ -4039,7 +4139,7 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
         }
       }
 
-      if($scope.userav.fct[0]){
+      if($scope.userav.fct){
         for(var i = 0 ; i < $scope.userav.fct.length ; i++){
           if($scope.userav.fct[i].dt){
             $scope.userav.fct[i].dt = new Date($scope.userav.fct[i].dt);
@@ -4265,6 +4365,29 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
     $http(req)
           .success(function(data){
             $scope.success();
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.Titulaire = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var dt = new Date($scope.dt).toGMTString();
+    var doc = {"titulaire" : dt};
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: doc,
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success("تم ترسيم العون بنجاح");
             $scope.init();
           })
           .error(function(err){
@@ -4945,9 +5068,7 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
     $scope.subsubstructs = data.subsubstruct;
   };
 
-
 }]);
-
 
 App.controller('GestionUser',["$rootScope","$scope","$http","$cookies","toaster","GestionUserService","userService",function($rootScope,$scope,$http,$cookies,toaster,GestionUserService,userService){
   'use strict';
@@ -5216,5 +5337,482 @@ App.controller('GestionUser',["$rootScope","$scope","$http","$cookies","toaster"
             $scope.error();
           });
   };
+
+}]);
+
+App.controller('ConfigStatic',["$rootScope","$scope","$http","$cookies","$stateParams","toaster","GestionUserService",function($rootScope,$scope,$http,$cookies,$stateParams,toaster,GestionUserService){
+  'use strict';
+  $http.defaults.headers.common['Authorization'] = $cookies.getObject('tk');
+
+  if($stateParams.fct && $stateParams.id && $stateParams.etag){
+    $scope.editfct = $stateParams.fct;
+    $scope.id = $stateParams.id;
+    $scope.etag = $stateParams.etag;
+  }else if($stateParams.grade && $stateParams.id && $stateParams.etag){
+    $scope.editgrad = $stateParams.grade;
+    $scope.id = $stateParams.id;
+    $scope.etag = $stateParams.etag;
+  }
+
+  $scope.initFct = function(){
+    $scope.fct= "";
+  };
+
+  $scope.initGrade = function(){
+    $scope.grade = "";
+  }
+
+  $scope.success = function(msg){
+    $scope.toaster = {
+      type:  'success',
+      title: 'اظافة',
+      text:  'لقد تمت الاظافة بنجاح'
+    };
+    if(msg){
+      $scope.toaster.text = msg;
+    }
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.error = function(){
+    $scope.toaster = {
+      type:  'error',
+      title: 'خطأ',
+      text:  'هناك خطأ تثبت في المعلومات'
+    };
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.addFct = function(){
+    var req = {
+                method: 'POST',
+                url: $rootScope.app.url.db + '/fct',
+                data: {"title": $scope.fct},
+                cache: false,
+              };
+    $http(req)
+      .success(function(data){
+        if(data._status ==="OK"){
+          $scope.initFct();
+          $scope.success();
+          $scope.getfct();
+        }
+      })
+      .error(function(err){
+        $scope.error();
+      });
+  };
+
+  $scope.getfct = function(){
+    GestionUserService.getFonction()
+      .success(function(f){
+        $scope.FCT = f._items;
+      })
+      .error(function(err){
+        $scope.error();
+      });
+  };
+
+  $scope.editFct = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/fct/' + $scope.id,
+                data: {"title": $scope.editfct},
+                cache: false,
+              };
+    $http(req)
+      .success(function(data){
+        if(data._status ==="OK"){
+          $scope.success("تم التحيين بنجاح");
+          $scope.getfct();
+        }
+      })
+      .error(function(err){
+        $scope.error();
+      });
+  };
+
+  $scope.addGrade = function(){
+    var req = {
+                method: 'POST',
+                url: $rootScope.app.url.db + '/grade',
+                data: {"title" : $scope.grade } ,
+                cache: false,
+              };
+    $http(req)
+      .success(function(data){
+        if(data._status ==="OK"){
+          $scope.initGrade();
+          $scope.getGrad();
+          $scope.success();
+        }
+      })
+      .error(function(err){
+        $scope.error();
+      });
+  };
+
+  $scope.getGrad = function(){
+    GestionUserService.getGrade()
+      .success(function(g){
+        $scope.GRADE = g._items;
+      })
+      .error(function(err){
+        $scope.error();
+      });
+  };
+
+  $scope.editGrade = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/grade/' + $scope.id,
+                data: {"title": $scope.editgrad },
+                cache: false,
+              };
+    $http(req)
+      .success(function(data){
+        if(data._status ==="OK"){
+          $scope.success("تم التحيين بنجاح");
+          $scope.getGrad();
+        }
+      })
+      .error(function(err){
+        $scope.error();
+      });
+  };
+
+}]);
+
+
+App.controller('SearchSpec',["$rootScope","$scope","$http","$cookies","$stateParams","$filter","toaster","GestionUserService",function($rootScope,$scope,$http,$cookies,$stateParams,$filter,toaster,GestionUserService){
+  'use strict';
+  $http.defaults.headers.common['Authorization'] = $cookies.getObject('tk');
+
+  $scope.Clear = function(){
+    delete $scope.res;
+    $scope.q = "";
+    $scope.gender = "";
+    $scope.r = "";
+    $scope.st = "";
+    $scope.nom  = false;
+    $scope.cin = false;
+    $scope.uid = false;
+    $scope.pren = false;
+    
+    if($scope.fct){
+      $scope.fct.title = "";
+    }
+    if($scope.grade){
+      $scope.grade.title = "";
+    }
+    
+  };
+
+  $scope.Search = function(){
+    $scope.qry = '/user?where={';
+
+    if($scope.gender){
+      $scope.qry += '"gender":"'+$scope.gender+'"';
+    }
+
+    if($scope.r && !$scope.gender){
+      $scope.qry += '"familystate.r":"'+$scope.r+'"';
+    }else if($scope.r ){
+      $scope.qry += ',"familystate.r":"'+$scope.r+'"';
+    }
+
+    if($scope.fct && !$scope.gender && !$scope.r){
+      $scope.qry += '"fct.0.fct":"'+$scope.fct.title +'"';
+    }else if($scope.fct ){
+      $scope.qry += ',"fct.0.fct":"'+$scope.fct.title +'"';
+    }
+
+    if($scope.grade && !$scope.gender && !$scope.r && !$scope.fct){
+      $scope.qry += '"grade.0.grade":"'+$scope.grade.title +'"';
+    }else if($scope.grade ){
+      $scope.qry += ',"grade.0.grade":"'+$scope.grade.title +'"';
+    }
+
+    if($scope.st && !$scope.gender && !$scope.r && !$scope.fct && !$scope.grade){
+      $scope.qry += '"state.0.st":"'+$scope.st +'"';
+    }else if($scope.st ){
+      $scope.qry += ',"state.0.st":"'+$scope.st +'"';
+    }
+
+    if($scope.nom && !$scope.grade && !$scope.gender && !$scope.r && !$scope.fct && !$scope.st){
+      $scope.qry += '"nom":"'+$scope.q +'"';
+    }else if($scope.nom){
+      $scope.qry += ',"nom":"'+$scope.q +'"';
+    }
+
+    if($scope.pren && !$scope.grade && !$scope.gender && !$scope.r && !$scope.fct && !$scope.st){
+      $scope.qry += '"pren":"'+$scope.q +'"';
+    }else if($scope.pren){
+      $scope.qry += ',"pren":"'+$scope.q +'"';
+    }
+
+    if($scope.cin && !$scope.grade && !$scope.gender && !$scope.r && !$scope.fct && !$scope.st){
+      $scope.qry += '"cin.num":"'+$scope.q +'"';
+    }else if($scope.cin){
+      $scope.qry += ',"cin.num":"'+$scope.q +'"';
+    }
+
+    if($scope.uid && !$scope.grade && !$scope.gender && !$scope.r && !$scope.fct && !$scope.st){
+      $scope.qry += '"uid":"'+$scope.q +'"';
+    }else if($scope.uid){
+      $scope.qry += ',"uid":"'+$scope.q +'"';
+    }
+
+    if($scope.struct && !$scope.grade && !$scope.gender && !$scope.r && !$scope.fct && !$scope.st){
+      $scope.qry += '"aff.0.struct":"'+ $scope.struct.struct +'"';
+    }else if($scope.struct){
+      $scope.qry += ',"aff.0.struct":"'+ $scope.struct.struct +'"';
+    }
+
+    if($scope.substruct && !$scope.grade && !$scope.gender && !$scope.r && !$scope.fct && !$scope.st && !$scope.struct){
+      $scope.qry += '"aff.0.substruct":"'+ $scope.substruct.substruct +'"';
+    }else if($scope.substruct){
+      $scope.qry += ',"aff.0.substruct":"'+ $scope.substruct.substruct +'"';
+    }
+
+    if($scope.subsubstruct && !$scope.grade && !$scope.grade && !$scope.gender && !$scope.r && !$scope.fct && !$scope.st && !$scope.struct && !$scope.substruct){
+      $scope.qry += '"aff.0.subsubstruct":"'+ $scope.subsubstruct +'"';
+    }else if($scope.uid){
+      $scope.qry += ',"aff.0.subsubstruct":"'+ $scope.subsubstruct +'"';
+    }
+
+    if(!$scope.limit){
+      $scope.qry += '}&max_results=10';
+    }else {
+      $scope.qry += '}&max_results=' + $scope.limit;
+    }
+
+    
+
+    if($scope.page){
+      $scope.qry += '&page=' + $scope.page;
+    }else {
+      $scope.qry += '&page=1';
+      $scope.page = 1;
+    }
+    
+      var req = {
+                 method : 'GET',
+                 url : $rootScope.app.url.db + $scope.qry,
+                 cache : false,
+                };
+      $http(req)
+        .success(function(data){
+          if(!data._items[0]){
+            $scope.NotFound();
+          }else {
+            $scope.res = data._items;
+            $scope.count = data._meta.total;
+            if(!$scope.limit){
+              $scope.nbrpage = data._meta.total / 10;
+            }else{
+              $scope.nbrpage = data._meta.total / $scope.limit;
+            }
+            if($scope.nbrpage > 1){
+              $scope.listpage = [];
+              for(var i = 0 ; i < $scope.nbrpage ; i ++){
+                $scope.listpage[i] = i+ 1;
+              }
+            }
+          }
+          
+        })
+        .error(function(err){
+          console.log(err);
+        });
+  };
+
+  $scope.SearchFct = function(){
+
+    $scope.qry = '/user?where={';
+
+    if($scope.fct){
+      $scope.qry += '"fct.0.fct":"'+$scope.fct.title +'"';
+    }
+
+    if($scope.to && $scope.f){
+      var to = new Date($scope.to).toGMTString();
+      var f = new Date($scope.f).toGMTString();
+
+      $scope.qry += ',"fct.0.dt":{"$gte":"'+ f +'","$lte":"'+ to +'"}';
+
+    }else if($scope.to){
+      var to = new Date($scope.to).toGMTString();
+      $scope.qry += ',"fct.0.dt":{"$lte":"'+ to +'"}';
+
+    }else if($scope.f){
+      var f = new Date($scope.f).toGMTString();
+      $scope.qry += ',"fct.0.dt":{"$gte":"'+ f +'"}';
+    }
+
+    $scope.qry += '}&max_results=200';
+
+    
+      var req = {
+                 method : 'GET',
+                 url : $rootScope.app.url.db + $scope.qry,
+                 cache : false,
+                };
+      $http(req)
+        .success(function(data){
+          if(!data._items[0]){
+            $scope.NotFound();
+          }else {
+
+            for(var i = 0 ;i < data._meta.total ; i++){
+              data._items[i].born = new Date(data._items[i].born);
+              data._items[i].dtenter = new Date(data._items[i].dtenter);
+              data._items[i].fct[0].dt = new Date(data._items[i].fct[0].dt);
+              data._items[i].ech[0].dt = new Date(data._items[i].ech[0].dt);
+              if(data._items[i].titulaire) 
+                data._items[i].titulaire = new Date(data._items[i].titulaire);
+            }
+
+            $scope.res = data._items;
+            $scope.count = data._meta.total;
+          }
+          
+        })
+        .error(function(err){
+          console.log(err);
+        });
+  };
+
+
+  $scope.SearchGrade = function(){
+
+    $scope.qry = '/user?where={';
+
+    if($scope.grade){
+      $scope.qry += '"grade.0.grade":"'+$scope.grade.title +'"';
+    }
+
+    if($scope.to && $scope.f){
+      var to = new Date($scope.to).toGMTString();
+      var f = new Date($scope.f).toGMTString();
+
+      $scope.qry += ',"grade.0.dt":{"$gte":"'+ f +'","$lte":"'+ to +'"}';
+
+    }else if($scope.to){
+      var to = new Date($scope.to).toGMTString();
+      $scope.qry += ',"grade.0.dt":{"$lte":"'+ to +'"}';
+
+    }else if($scope.f){
+      var f = new Date($scope.f).toGMTString();
+      $scope.qry += ',"grade.0.dt":{"$gte":"'+ f +'"}';
+    }
+
+    $scope.qry += '}&max_results=200';
+
+    
+      var req = {
+                 method : 'GET',
+                 url : $rootScope.app.url.db + $scope.qry,
+                 cache : false,
+                };
+      $http(req)
+        .success(function(data){
+          if(!data._items[0]){
+            $scope.NotFound();
+          }else {
+
+            for(var i = 0 ;i < data._meta.total ; i++){
+              data._items[i].born = new Date(data._items[i].born);
+              data._items[i].dtenter = new Date(data._items[i].dtenter);
+              data._items[i].grade[0].dt = new Date(data._items[i].grade[0].dt);
+              data._items[i].ech[0].dt = new Date(data._items[i].ech[0].dt);
+              if(data._items[i].titulaire) 
+                data._items[i].titulaire = new Date(data._items[i].titulaire);
+            }
+
+            $scope.res = data._items;
+            $scope.count = data._meta.total;
+          }
+          
+        })
+        .error(function(err){
+          console.log(err);
+        });
+  };
+  $scope.initPage = function(pos){
+    $scope.page = pos;
+    $scope.Search();
+  };
+
+  $scope.isSelected = function(pos){
+    pos += 1;
+    console.log($scope.l + "   " + $scope.page);
+    return pos == $scope.page;
+  };
+
+
+  $scope.NotFound = function(){
+    $scope.toaster = {
+      type:  'info',
+      title: 'بحث',
+      text:  'لا توجد نتيجة !'
+    };
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+
+  $scope.initFctOptions = function(){
+    GestionUserService.getFonction()
+    .success(function(data){
+      $scope.fcts = data._items;
+    });
+
+  };
+
+  $scope.initGradeOptions = function(){
+    GestionUserService.getGrade()
+    .success(function(data){
+      $scope.gs = data._items;
+    });
+  };
+
+  $scope.initStructOptions = function(){
+    GestionUserService.getStruct()
+    .success(function(data){
+      $scope.structs = data._items;
+    });
+  };
+
+  $scope.initSubStructOptions = function(data){
+    $scope.substructs = data.substruct;
+  };
+
+  $scope.initSubSubStructOptions = function(data){
+    $scope.subsubstructs = data.subsubstruct;
+  };
+
+}]);
+
+
+App.controller('GenerateDocs',["$rootScope","$scope","$http","$cookies","$stateParams","$filter","userService",function($rootScope,$scope,$http,$cookies,$stateParams,$filter,userService){
+  'use strict';
+  $http.defaults.headers.common['Authorization'] = $cookies.getObject('tk');
+
+  if($stateParams.id){
+    userService.getUser($stateParams.id)
+      .success(function(data){
+        data.born = new Date(data.born);
+        data.aff[0].dt = new Date(data.aff[0].dt);
+        data.now = $filter('date')(new Date(), 'yyyy/MM/dd');
+        data.uid = data.uid.split('');
+        $scope.usr = data;
+      })
+      .error(function(err){
+
+      });
+  }
+
 
 }]);

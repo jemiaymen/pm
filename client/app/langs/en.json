@@ -6,10 +6,10 @@
   },
   "sidebar": {
     "heading": {
-      "HEADER": "Main Navigation"
+      "HEADER": "قائمة الاختيارات"
     },
     "nav": {
-      "DASHBOARD": "Dashboard",
+      "DASHBOARD": "الرئيسية",
       "DOCUMENTATION": "Documentation",
       "component": {
         "COMPONENTS": "Components",

@@ -1,0 +1,85 @@
+<h3 class="hidden-print">بحث</h3>
+
+<div class="row hidden-print">
+   <div class="col-md-4 form-horizontal">
+
+      <div class="form-group mb-xl">
+         <label class="col-sm-4 control-label" style="font-size:16px;">الرتبة</label>
+         <div class="col-sm-8">
+             <select data-ng-model="grade" class="form-control" data-ng-options="g as g.title for g in gs track by g._id" data-ng-init="initGradeOptions()" required></select>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-3 form-horizontal">
+      <div class="form-group mb-xl">
+         <label class="col-sm-2 control-label" style="font-size:16px;">من</label>
+         <div class="col-sm-10">
+            <input type="date" data-ng-model="f"  class="form-control" />
+         </div>
+      </div>
+   </div>
+   <div class="col-md-3 form-horizontal">
+      <div class="form-group mb-xl">
+         <label class="col-sm-2 control-label" style="font-size:16px;">إلى</label>
+         <div class="col-sm-10">
+            <input type="date" data-ng-model="to"  class="form-control" />
+         </div>
+      </div>
+   </div>
+   <div class="col-md-2">
+      <button type="button" data-ng-click="SearchGrade()" class="btn btn-primary pull-right" >بحث</button>
+   </div>
+</div>
+
+
+<div class="row hidden-print">
+   <div class="col-xs-6">
+      <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+   </div>
+</div>
+
+<div class="row" data-ng-show="res[0]">
+   <div class="col-lg-12">
+      <!-- START panel-->
+      <center class="visible-print"><p class="h1">قائمة في الأعوان حسب المعايير التالية </p><p class="h1"> الرتبة : {{grade.title}}</p> <br/><br/></center>
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <a data-ng-mousedown="csv.generate()" data-ng-href="{{ csv.link() }}" download="grad.csv" class="pull-right btn btn-xs btn-default">export</a>
+            <paneltool tool-refresh="traditional">العدد الجملي</paneltool>
+            <span class="text-success h4">{{count}}</span>
+         </div>
+         <!-- START table-responsive-->
+         <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover"  separator=";" export-csv-ignore="ignore" export-csv="csv" >
+               <thead>
+                  <th>المعرف الوحيد</th>
+                  <th>الإسم واللقب</th>
+                  <th>تاريخ الولادة</th>
+                  <th>الوضعية الإدارية</th>
+                  <th>تاريخ الإنتداب</th>
+                  <th>تاريخ الرتبة</th>
+                  <th>تاريخ الترسيم</th>
+                  <th>تاريخ أخر تدرج</th>
+                  <th>الدرجة</th>
+                  <th>الهيكل</th>
+               </thead>
+               <tbody>
+                  <tr data-ng-repeat="u in res">
+                     <td> {{u.uid}} </td>
+                     <td> {{u.nom}} {{u.pren}} </td>
+                     <td>{{u.born | date:'yyyy/MM/dd'}} </td>
+                     <td> {{u.state[0].st }} </td>
+                     <td> {{u.dtenter | date:'yyyy/MM/dd'}}  </td>
+                     <td> {{u.grade[0].dt | date:'yyyy/MM/dd'}} </td>
+                     <td> {{u.titulaire | date:'yyyy/MM/dd'}} </td>
+                     <td> {{u.ech[0].dt | date:'yyyy/MM/dd'}}</td>
+                     <td> {{u.ech[0].deg}} </td>
+                     <td>{{u.aff[0].struct}} </td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <!-- END panel-->
+   </div>
+</div>

@@ -1,12 +1,12 @@
 <h3>
-   نتيجة بحث
-   <small data-ng-bind="app.name + ' - ' + app.description"></small>
+  <div class="pull-right">
+    <button  data-ng-click="$state.go('doc.trav',{'id': userav._id});" class="btn btn-success">شهادة عمل <em class="fa fa-address-card-o"></em></button>
+    <button  data-ng-click="$state.go('doc.note',{'id': userav._id});" class="btn btn-success"> العدد المهني <em class="fa fa-address-card-o"></em></button>
+  </div>
+  <small data-ng-bind="app.name + ' - ' + app.description"></small>
 </h3>
 
-<div class="row">
-   {{userav | json}}
-</div>
-<div class="row" data-ng-controller="Users">
+<div class="row" >
       <div class="col-sm-4">
        <div class="panel panel-card">
          <div class="r-t pos-rlt img-profile" style="background:url('{{userav.avatar}}') center center; background-size:cover">
@@ -26,7 +26,7 @@
          <div class="list-group no-radius no-border">
 
            <a class="list-group-item">
-            <span class="pull-right h4 block font-bold"> {{userav.aff[0].subsubstruct}} - {{userav.aff[0].substruct}} - {{userav.aff[0].struct}}</span> <span class="h4 block font-bold">التعيين</span>
+            <span class="pull-right h4 block font-bold"> {{userav.aff[0].substruct}} </span> <span class="h4 block font-bold">التعيين</span>
            </a>
 
            <a class="list-group-item" data-ng-show="userav.fct[0]">
@@ -151,7 +151,7 @@
             <p class="h4 block col-xs-3"> إلى</p>
 
             
-            <div data-ng-show="userav.familystate.kids[0]" data-ng-repeat="ct in userav.certif">
+            <div data-ng-show="userav.certif[0]" data-ng-repeat="ct in userav.certif">
                <p class="h4 block font-bold col-xs-6">{{ct.title}} </p>
                <p class="h4 block font-bold col-xs-3">{{ct.f | date:'yyyy/MM/dd'}}</p>
                <p class="h4 block font-bold col-xs-3">{{ct.to | date:'yyyy/MM/dd'}}</p>

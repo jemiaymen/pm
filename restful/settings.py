@@ -56,12 +56,6 @@ grade_schema = {
         'maxlength': 500,
         'required' : True,
     },
-    'core': {
-        'type': 'string',
-        'minlength': 3,
-        'maxlength': 500,
-        'required' : True,
-    },
     'ref': {
         'type': 'string',
     }
@@ -414,6 +408,9 @@ user_schema = {
                 },
             }
         }
+    },
+    'titulaire' : {
+        'type' : 'datetime',
     },
 
 

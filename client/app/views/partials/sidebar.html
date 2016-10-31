@@ -12,7 +12,7 @@
                   <small>{{User.uid}}</small>
                </div>
             </div>
-            <div class="text-center">
+            <!-- <div class="text-center">
                <div class="text-muted mt-sm clearfix">
                   <a href="#" compile="app/views/partials/contacts.html" class="text-sm btn-sidebar pull-left">
                      <em class="icon-speech-bubble fa-fw"></em>
@@ -21,7 +21,7 @@
                      <em class="icon-cog fa-fw"></em>
                   </a>
                </div>
-            </div>
+            </div> -->
          </div>
          <!-- END sidebar buttons-->
          <!-- START sidebar nav-->
@@ -35,7 +35,7 @@
    </side-bar>
    <!-- data-ng-template for sidebar item markup-->
    <script type="text/ng-template" id="sidebar-items.html">
-      <span data-ng-switch-when="heading" translate="{{item.translate}}" class="text-muted">{{item.text}}</span><hr data-ng-switch-when="separator"/><a data-ng-switch-default="" ui-sref="{{item.sref}}" title="{{item.text}}"><em data-ng-hide="inSubmenu" class="sidebar-item-icon {{item.icon}}"></em><em data-ng-if="item.subnav" data-ng-class="app.layout.isRTL?'fa-angle-left':'fa-angle-right'" class="sidebar-item-caret fa pull-right"></em><div data-ng-if="item.alert" data-ng-class="item.alert.class || 'label-default'" class="label pull-right">{{item.alert.text}}</div><span translate="{{item.translate}}">{{item.text}}</span></a><ul data-ng-switch-default="" data-ng-if="item.subnav" collapse="isCollapse($index)" is-disabled="isSidebarSlider()" data-ng-init="addCollapse($index, item)" data-ng-click="cancel($event)" class="nav sidebar-subnav"><li class="sidebar-subnav-header"><a><em data-ng-class="(app.layout.isRTL)? 'fa-angle-right' : 'fa-angle-left'" class="sidebar-item-icon fa"></em>{{ item.translate | translate }}</a></li><li data-ng-repeat="item in item.subnav" data-ng-include="'sidebar-items.html'" data-ng-class="getSidebarItemClass(item)" data-ng-init="inSubmenu = true" data-ng-switch="item.type"></li></ul>
+      <span data-ng-switch-when="heading" translate="{{item.translate}}" style="font-size:26px !important;" class="text-muted">{{item.text}}</span><hr data-ng-switch-when="separator"/><a data-ng-switch-default="" ui-sref="{{item.sref}}" title="{{item.text}}"><em data-ng-hide="inSubmenu" class="sidebar-item-icon {{item.icon}}"></em><em data-ng-if="item.subnav" data-ng-class="app.layout.isRTL?'fa-angle-left':'fa-angle-right'" class="sidebar-item-caret fa pull-right"></em><div data-ng-if="item.alert" data-ng-class="item.alert.class || 'label-default'" class="label pull-right">{{item.alert.text}}</div><span translate="{{item.translate}}">{{item.text}}</span></a><ul data-ng-switch-default="" data-ng-if="item.subnav" collapse="isCollapse($index)" is-disabled="isSidebarSlider()" data-ng-init="addCollapse($index, item)" data-ng-click="cancel($event)" class="nav sidebar-subnav"><li class="sidebar-subnav-header"><a><em data-ng-class="(app.layout.isRTL)? 'fa-angle-right' : 'fa-angle-left'" class="sidebar-item-icon fa"></em>{{ item.translate | translate }}</a></li><li data-ng-repeat="item in item.subnav" data-ng-include="'sidebar-items.html'" data-ng-class="getSidebarItemClass(item)" data-ng-init="inSubmenu = true" data-ng-switch="item.type"></li></ul>
    </script>
 </div>
 <!-- END Sidebar-->

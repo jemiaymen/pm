@@ -1,15 +1,17 @@
 [
   {
-    "text": "Main Navigation",
+    "text": "قائمة الاختيارات",
     "type": "heading",
     "translate": "sidebar.heading.HEADER"
   },
   {
-    "text": "Dashboard",
+    "text": "الرئيسية",
     "sref": "app.dashboard",
-    "icon": "icon-bar-graph",
-    "translate": "sidebar.nav.DASHBOARD",
-    "alert": {"text":"3", "class": "label-info"}
+    "icon": "icon-command",
+    "translate": "sidebar.nav.DASHBOARD"
+  },
+  {
+    "type": "separator"
   },
   {
     "text": "التصرف في الأعوان",
@@ -34,9 +36,23 @@
         "type": "separator"
       },
 
-      {"text": "تحيين المعطيات الشخصية",   "sref": "app.updateuser" },
+      {"text": "ترسيم عون",   "sref": "app.titulaire" }
+
+    ]
+  },
+  {
+    "text": "التحيين",
+    "sref": "#",
+    "icon": "icon-check",
+    "subnav": [
+
+      
       {"text": "إضافة أو تحيين المستوى العلمي",   "sref": "app.edu" },
       {"text": "إضافة أو تحيين الحالة العائلية",   "sref": "app.family" },
+      {
+        "type": "separator"
+      },
+      {"text": "تحيين المعطيات الشخصية",   "sref": "app.updateuser" },
       {"text": "تحيين الوثائق",   "sref": "app.searchdoc" },
       {"text": "تحيين تدرج",   "sref": "app.searchech" },
       {"text": "تحيين دورات تكوينية",   "sref": "app.searchcertif" },
@@ -48,113 +64,49 @@
       {"text": "تحيين خطة وظيفية",   "sref": "app.searchfct" },
       {"text": "تحيين رتبة",   "sref": "app.searchgrad" },
       {"text": "تحيين الوضعية الإدارية",   "sref": "app.searchstate" },
-      {"text": "تحيين تعيين",   "sref": "app.searchaff" },
+      {"text": "تحيين تعيين",   "sref": "app.searchaff" }
 
-      
-
-
-      
-
-      {
-        "type": "separator"
-      },
-
-      {"text": "Panels",        "sref": "app.panels", "translate": "sidebar.nav.component.PANEL" },
-      {"text": "Portlets",      "sref": "app.portlets", "translate": "sidebar.nav.component.PORTLET" },
-      {
-        "type": "separator"
-      },
-      {"text": "Grid",          "sref": "app.grid", "translate": "sidebar.nav.component.GRID" },
-      {"text": "Grid Masonry",  "sref": "app.grid-masonry", "translate": "sidebar.nav.component.GRID_MASONRY" },
-      {"text": "Typography",    "sref": "app.typo", "translate": "sidebar.nav.component.TYPO" },
-      {"text": "Palette",        "sref": "app.palette", "translate": "sidebar.nav.component.PALETTE" }
     ]
   },
   {
     "type": "separator"
   },
   {
-    "text": "Forms",
+    "text": "التصرف في الثوابت",
     "sref": "#",
-    "icon": "icon-book",
+    "icon": "icon-cog",
     "subnav": [
-      {"text": "Inputs",   "sref": "app.form-inputs", "translate": "sidebar.nav.form.INPUT" },
-      {"text": "Validation", "sref": "app.form-validation", "translate": "sidebar.nav.form.VALIDATION" },
-      {"text": "Wizard",     "sref": "app.form-wizard", "translate": "sidebar.nav.form.WIZARD" }
-    ],
-    "translate": "sidebar.nav.form.FORM"
-  },
-  {
-    "text": "Tables",
-    "sref": "#",
-    "icon": "icon-grid",
-    "subnav": [
-      { "text": "Responsive",   "sref": "app.table-responsive", "translate": "sidebar.nav.table.RESPONSIVE" },
-      { "text": "ngTables", "sref": "app.table-ngtable" }
-    ],
-    "translate": "sidebar.nav.table.TABLE"
-  },
-  {
-    "text": "Charts",
-    "sref": "app.charts",
-    "icon": "icon-pie-graph",
-    "translate": "sidebar.nav.CHART",
-    "alert": {"text":"12", "class": "label-success"}
-  },
-  {
-    "text": "Maps",
-    "sref": "#",
-    "icon": "icon-map",
-    "subnav": [
-      {"text": "Google Maps",   "sref": "app.maps-google", "translate": "sidebar.nav.map.GOOGLE" },
-      {"text": "Vector Maps",   "sref": "app.maps-vector", "translate": "sidebar.nav.map.VECTOR" }
-    ],
-    "translate": "sidebar.nav.map.MAP"
-  },
-  {
-    "text": "Icons",
-    "sref": "#",
-    "icon": "icon-play",
-    "subnav": [
-      {"text": "Feather Icons", "sref": "app.icons-feather", "translate": "sidebar.nav.icon.FEATHER" },
-      {"text": "Font Awesome", "sref": "app.icons-fa", "alert": "+400", "translate": "sidebar.nav.icon.FA"  },
-      {"text": "Climacons", "sref": "app.icons-climacon", "translate": "sidebar.nav.icon.CLIMA" },
-      {"text": "Weather Icons", "sref": "app.icons-weather", "alert": "+100", "translate": "sidebar.nav.icon.WEATHER" }
-    ],
-    "translate": "sidebar.nav.icon.ICON"
+      {"text": "خطة وظيفية",   "sref": "app.FCT"  },
+      {"text": "رتبة", "sref": "app.GRADE" },
+      {"text": "إضافة هيكل",     "sref": "app.form-wizard" }
+    ]
   },
   {
     "type": "separator"
   },
+
   {
-    "text": "Extras",
-    "type": "heading"
+    "text": "البحث",
+    "sref": "#",
+    "icon": "icon-search",
+    "subnav": [
+      {"text": "بحث 1",   "sref": "app.search" },
+      {"text": "بحث 2", "sref": "app.searchsp" },
+      {
+        "type": "separator"
+      },
+      {"text": "بحث (رتبة)",     "sref": "app.search-grade"},
+      {"text": "بحث (الخطة الوظيفية)",     "sref": "app.search-fct"}
+    ]
   },
   {
-    "text": "Apps",
+    "text": "التحيين",
     "sref": "#",
-    "icon": "icon-ribbon",
+    "icon": "icon-check",
     "subnav": [
-      { "text": "Mailbox",  "sref": "app.mailbox.folder.list({folder: 'inbox'})", "translate": "sidebar.nav.app.MAILBOX" },
-      { "text": "Calendar", "sref": "app.calendar", "translate": "sidebar.nav.app.CALENDAR" },
-      { "text": "Tasks List", "sref": "app.tasks", "translate": "sidebar.nav.app.TASK" }
-    ],
-    "translate": "sidebar.nav.app.APP"
-  },
-  {
-    "text": "pg",
-    "sref": "#",
-    "icon": "icon-stack",
-    "subnav": [
-      { "text": "Login",            "sref": "page.login", "translate": "sidebar.nav.pages.LOGIN" },
-      { "text": "Sign up",          "sref": "page.register", "translate": "sidebar.nav.pages.REGISTER" },
-      { "text": "Recover Password", "sref": "page.recover", "translate": "sidebar.nav.pages.RECOVER" },
-      { "text": "Lock",             "sref": "page.lock", "translate": "sidebar.nav.pages.LOCK" },
-      { "text": "Starter Template", "sref": "app.template", "translate": "sidebar.nav.pages.BLANK" },
-      { "text": "Invoice",  "sref": "app.invoice", "translate": "sidebar.nav.pages.INVOICE" },
-      { "text": "Price",   "sref": "app.price", "translate": "sidebar.nav.pages.PRICE" },
-      { "text": "Search",   "sref": "app.search", "translate": "sidebar.nav.pages.SEARCH" }
-    ],
-    "translate": "sidebar.nav.pages.PAGES"
+      {"text": "Inputs",   "sref": "app.form-inputs", "translate": "sidebar.nav.form.INPUT" },
+      {"text": "Validation", "sref": "app.form-validation", "translate": "sidebar.nav.form.VALIDATION" },
+      {"text": "Wizard",     "sref": "app.form-wizard", "translate": "sidebar.nav.form.WIZARD" }
+    ]
   }
 ]

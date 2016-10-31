@@ -1,0 +1,130 @@
+<style>
+	.header-font { 
+	   font-family: 'GranadaRegular'; 
+	   font-weight: normal; 
+	   font-style: normal; 
+	   font-size:36px;
+	}
+
+	.modif-input {
+		border: 0;
+		width: 118px;
+		background: #f7f9fb;
+	}
+
+	.title-doc {
+		font-size: 48px;
+		font-weight: bold;
+		padding-top:40px;
+		padding-bottom: 70px;
+	}
+
+
+	.body-text {
+		font-size: 20px;
+	}
+
+	.body-text-number {
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	.body-text-bold {
+		font-size: 22px;
+		font-weight: bold;
+	}
+
+	.bottom-text {
+		padding-top:55px;
+	}
+
+	table td {
+		border: 1px solid black !important;
+		padding : 5px !important;
+	}
+
+</style>
+
+
+
+<div class="row">
+	<div class="col-xs-5">
+		<p class="header-font ">الجمهورية التونسية </p> 
+		<p class="header-font"> رئاسة الحكومة</p>
+		<p >الإدارة العامة للمصالح المشتركة عدد : <input class="modif-input" type="text" data-ng-model="nbr" /></p>
+	</div>
+	<div class="col-xs-3">
+		<img data-ng-src="app/img/logo-single.png" >
+	</div>
+</div>
+
+<div class="row title-doc">
+	<p class=" text-center">شهادة عمل</p>
+</div>
+
+<div class="row ">
+	<div class="col-xs-1">
+		<img data-ng-src="app/img/amal.gif"  />
+		
+	</div>
+	<div class="col-xs-11">
+		<p class="body-text-bold">يشهد رئيس الحكومة أن</p>
+	</div>
+	<div class="col-xs-11">
+		<p class="body-text">السيد : <span class="body-text-bold">{{usr.nom}} {{usr.pren}} </span> </p>
+	</div>
+	<div class="col-xs-3">
+		<p class="body-text" style="margin-top:11px">صاحب المعرف الوحيد :</p>
+	</div>
+	<div class="col-xs-7">
+		<table class="table table-bordered table-responsive" >
+			<tr class="body-text-number" >
+				<td class="text-center" data-ng-repeat="a in usr.uid track by $index">{{a}}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-offset-1 col-xs-3">
+		<p class="body-text">المولود في :</p>
+	</div>
+	<div class="col-xs-8">
+		<p class="body-text-bold">{{usr.born | date:'yyyy/MM/dd'}}</p>
+	</div>
+
+	<div class="col-xs-offset-1 col-xs-3">
+		<p class="body-text">رتبته أو صنفه :</p>
+	</div>
+	<div class="col-xs-8">
+		<p class="body-text-bold">{{usr.grade[0].grade}}</p>
+	</div>
+
+	<div class="col-xs-offset-1 col-xs-3">
+		<p class="body-text">خطته الوظيفية :</p>
+	</div>
+	<div class="col-xs-8">
+		<p class="body-text-bold" data-ng-if="!usr.fct[0]">{{"&#8212;"}}</p>
+		<p class="body-text-bold" data-ng-if="usr.fct[0]">{{usr.fct[0].fct}}</p>
+	</div>
+
+	<div class="col-xs-offset-1 col-xs-3">
+		<p class="body-text">يعمل حاليا ب:</p>
+	</div>
+	<div class="col-xs-8">
+		<p class="body-text-bold">{{usr.aff[0].struct}}</p>
+	</div>
+	
+</div>
+
+<div class="row bottom-text">
+	<div class="col-xs-offset-1 col-xs-11">
+		<p class="body-text-bold">{{"سلمت هذي الشهادة بطلب منه لأداء بها لدى من يهمه الأمر ."}}</p>
+	</div>
+</div>
+
+<div class="row bottom-text">
+	<div class="col-xs-offset-7 col-xs-5">
+		<p class="body-text-bold text-center"> حرر بتونس في : <input class="modif-input body-text" type="text" data-ng-model="usr.now" /></p>
+		<p class="body-text-bold text-center">الإمضاء والختم</p>
+	</div>
+</div>

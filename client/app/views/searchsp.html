@@ -1,79 +1,20 @@
-<h3>بحث</h3>
-<form>
-   <div class="form-group mb-xl">
-      <div class="input-group">
-         <input type="text" class="form-control" data-ng-model="q" />
-         <span class="input-group-btn">
-            <button type="button" data-ng-click="Search()" class="btn btn-primary" >بحث</button>
-         </span>
-      </div>
-   </div>
-</form>
-<div class="row">
-   <div class="col-md-4">
-      <div class="form-group mb-xl">
-         <div class="checkbox c-checkbox">
-            <label class="h3 font-bold">
-               <input  type="checkbox" data-ng-model="nom" />
-               <span class="fa fa-check"></span>الإسم </label>
-         </div>
-         <div class="checkbox c-checkbox">
-            <label class="h3 font-bold">
-               <input  type="checkbox" data-ng-model="pren" />
-               <span class="fa fa-check"></span> اللقب</label>
-         </div>
+<h3 class="hidden-print">بحث</h3>
 
-         <div class="checkbox c-checkbox">
-            <label class="h3 font-bold">
-               <input  type="checkbox" data-ng-model="uid" />
-               <span class="fa fa-check"></span>المعرف الوحيد</label>
-         </div>
-
-         <div class="checkbox c-checkbox">
-            <label class="h3 font-bold">
-               <input  type="checkbox" data-ng-model="cin" />
-               <span class="fa fa-check"></span>رقم بطاقة التعريف </label>
-         </div>
-         
-      </div>
-      
-   </div>
-   <div class="col-md-8 form-horizontal">
+<div class="row hidden-print">
+   <div class="col-md-7 form-horizontal">
       <div class="form-group mb-xl">
-         <label class="col-sm-4 control-label" style="font-size:16px;">(ذكر /أنثى)</label>
-         <div class="col-sm-8">
-            <select class="form-control" data-ng-model="gender">
-               <option></option>
-               <option value="ذكر">ذكر</option>
-               <option value="أنثى">أنثى</option>
-            </select>
-         </div>
-      </div>
-      <div class="form-group mb-xl">
-         <label class="col-sm-4 control-label" style="font-size:16px;">الحالة العائلية</label>
-         <div class="col-sm-8">
-            <select data-ng-model="r" class="form-control" >
-               <option></option>
-               <option value="أعزب">أعزب</option>
-               <option value="متزوج">متزوج</option>
-               <option value="أرمل">أرمل</option>
-               <option value="مطلق">مطلق</option>
-            </select>
-         </div>
-      </div>
-      <div class="form-group">
          <label class="col-sm-4 control-label" style="font-size:16px;">الرتبة</label>
          <div class="col-sm-8">
             <select data-ng-model="grade" class="form-control" data-ng-options="g as g.title for g in gs track by g._id" data-ng-init="initGradeOptions()" ></select>
          </div>
       </div>
-      <div class="form-group">
+      <div class="form-group mb-xl">
          <label class="col-sm-4 control-label" style="font-size:16px;">الخطة وظيفية</label>
          <div class="col-sm-8">
             <select data-ng-model="fct" class="form-control" data-ng-options="f as f.title for f in fcts track by f._id" data-ng-init="initFctOptions()" ></select>
          </div>
       </div>
-      <div class="form-group">
+      <div class="form-group mb-xl">
          <label class="col-sm-4 control-label" style="font-size:16px;">الوضعية الإدارية</label>
          <div class="col-sm-8">
             <select data-ng-model="st" class="form-control" required>
@@ -85,10 +26,33 @@
             </select>
          </div>
       </div>
+      <div class="form-group mb-xl">
+         <label class="col-sm-4 control-label" style="font-size:16px;">الهيكل الرئيسي</label>
+         <div class="col-sm-8">
+            <select data-ng-model="struct" data-ng-options="s as s.struct for s in structs track by s._id" data-ng-init="initStructOptions()" class="form-control" required data-ng-change="initSubStructOptions(struct)"></select>
+         </div>
+      </div>
+
+      <div class="form-group mb-xl">
+         <label class="col-sm-4 control-label" style="font-size:16px;">الهيكل الفرعي 1</label>
+         <div class="col-sm-8">
+            <select data-ng-model="substruct"  data-ng-options="s as s.substruct for s in substructs " class="form-control" data-ng-change="initSubSubStructOptions(substruct)" ></select>
+         </div>
+      </div>
+      <div class="form-group mb-xl">
+         <label class="col-sm-4 control-label" style="font-size:16px;">الهيكل الفرعي 2</label>
+         <div class="col-sm-8">
+            <select data-ng-model="subsubstruct" data-ng-options="s as s for s in subsubstructs " class="form-control" ></select>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-5">
+      <button type="button" data-ng-click="Search()" class="btn btn-primary pull-right" >بحث</button>
    </div>
 </div>
 
-<div class="row">
+
+<div class="row hidden-print">
    <div class="col-xs-6">
       <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
    </div>
@@ -99,9 +63,9 @@
       <!-- START panel-->
       <div class="panel panel-default">
          <div class="panel-heading">
-            <button data-ng-click="Clear()" class="pull-right btn btn-xs btn-default">فسخ</button>{{count}}
-            <span class="text-success">{{q}}</span>
-            <paneltool tool-refresh="traditional"></paneltool>
+            
+            <paneltool tool-refresh="traditional">العدد الجملي</paneltool>
+            <span class="text-success h4">{{count}}</span>
          </div>
          <!-- START table-responsive-->
          <div class="table-responsive">

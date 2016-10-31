@@ -16429,3 +16429,35 @@ fieldset[disabled] [role~="flatdoc-content"] .button.active {
   background-color :rgba(221,221,221, 0.60);
   margin-top: 115px;
 }
+
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+
+  img[src]:after{
+    content: none !important;
+  }
+}
+
+.updown {
+    -webkit-transform:rotate(270deg);
+    -moz-transform:rotate(270deg);
+    -o-transform: rotate(270deg);
+    -ms-transform:rotate(270deg);
+    transform: rotate(270deg);
+}
+
+@font-face {
+    font-family: 'GranadaRegular';
+    src: url('../vendor/Granada/GranadaRegular.ttf')  format('truetype');
+    font-weight: normal;
+    font-style: normal;
+} 
+
+@font-face {
+    font-family: 'Granada';
+    src: url('../vendor/Granada/GranadaRegular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
