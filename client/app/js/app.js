@@ -91,7 +91,7 @@ var App = angular.module('pm', ['ngRoute', 'ngAnimate', 'ngStorage', 'ngCookies'
 
     });
 
-    $rootScope.getSearchData();
+    //$rootScope.getSearchData();
     
 
   }
@@ -210,12 +210,12 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
       // default route to dashboard
       $urlRouterProvider.otherwise('/app/dashboard');
 
-      /*if(window.history && window.history.pushState){
+      if(window.history && window.history.pushState){
         $locationProvider.html5Mode({
           enabled: true,
           requireBase: false
         });
-      }*/
+      }
 
       // 
       // App Routes
@@ -335,10 +335,7 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
             templateUrl: 'app/pages/404.html'
         })
 
-        .state('page.travail', {
-            url: '/travail',
-            templateUrl: 'app/pages/travail.html'
-        })
+
         // 
         // CUSTOM RESOLVE FUNCTION
         //   Add your own resolve properties
@@ -359,8 +356,153 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
         // -------------my route-------------- 
         .state('app.adduser', {
             url: '/adduser',
-            templateUrl: basepath('adduser.html'),
+            controller: 'USR',
+            templateUrl: basepath('USR/adduser.html'),
         })
+
+        .state('app.updateuser',{
+          url :'/updateuser',
+          controller: 'USR',
+          templateUrl : basepath ('USR/updateuser.html'),
+        })
+
+
+        .state('app.searchdoc',{
+          url :'/getdoc',
+          controller: 'DOC',
+          templateUrl : basepath('DOC/doc.html')
+        })
+        
+
+        .state('app.editdoc',{
+          url :'/editdoc/:doc',
+          controller: 'DOC',
+          templateUrl : basepath ('DOC/editdoc.html')
+        })
+
+        .state('app.adddoc', {
+            url: '/adddoc',
+            controller: 'DOC',
+            templateUrl: basepath('DOC/adddoc.html'),
+
+        })
+
+        .state('app.addcert', {
+            url: '/addcert',
+            controller: 'CERT',
+            templateUrl: basepath('CERT/addcert.html'),
+
+        })
+
+        .state('app.searchcertif',{
+          url :'/getcertif',
+          controller: 'CERT',
+          templateUrl : basepath('CERT/cert.html')
+        })
+        
+
+        .state('app.editcertif',{
+          url :'/editcert/:cert/:nb',
+          controller: 'CERT',
+          templateUrl : basepath ('CERT/editcert.html')
+        })
+
+        .state('app.adstate',{
+          url : '/setadstate',
+          controller: 'PINALITY',
+          templateUrl : basepath ('STATE/adstate.html'),
+          resolve: requireDeps('moment')
+        })
+
+        .state('app.searchstate',{
+          url :'/getstate',
+          controller: 'PINALITY',
+          templateUrl : basepath('STATE/state.html')
+        })
+        
+
+        .state('app.editstate',{
+          url :'/editstate/:state/:nb',
+          controller: 'PINALITY',
+          templateUrl : basepath ('STATE/editstate.html')
+        })
+
+
+        .state('app.delday',{
+          url : '/delday',
+          controller: 'PINALITY',
+          templateUrl : basepath ('PINALITY/delday.html'),
+          resolve: requireDeps('moment')
+        })
+
+
+        .state('app.addgrade',{
+          url : '/addgrade',
+          controller: 'PINALITY',
+          templateUrl : basepath ('GRADE/addgrade.html'),
+          resolve: requireDeps('moment')
+        })
+
+        .state('app.searchgrad',{
+          url :'/getgrad',
+          controller: 'PINALITY',
+          templateUrl : basepath('GRADE/grad.html'),
+          resolve: requireDeps('moment')
+        })
+        
+
+        .state('app.editgrad',{
+          url :'/editgrad/:grad/:nb',
+          controller: 'PINALITY',
+          templateUrl : basepath ('GRADE/editgrad.html'),
+          resolve: requireDeps('moment')
+        })
+
+        .state('app.titulaire',{
+          url : '/titulaire',
+          controller: 'PINALITY',
+          templateUrl : basepath ('USR/titulaire.html'),
+          resolve: requireDeps('moment')
+        })
+
+        .state('doc', {
+            url: '/doc',
+            abstract: true,
+            templateUrl: basepath ('USR/d.html'),
+            data: {
+              requireLogin: true 
+            },
+        })
+
+        .state('doc.trav',{
+          url : '/trav/:id',
+          controller : 'GenerateDocs',
+          templateUrl : basepath ('USR/travail.html')
+        })
+
+        .state('doc.note',{
+          url : '/note/:id',
+          controller : 'GenerateDocs',
+          templateUrl : basepath ('USR/note.html')
+        })
+
+        .state('doc.prim',{
+          url : '/prim/:id/:nb',
+          controller : 'GenerateDocs',
+          templateUrl : basepath ('USR/prim.html')
+        })
+
+        .state('doc.khad',{
+          url : '/khad/:id',
+          controller : 'GenerateDocs',
+          templateUrl : basepath ('USR/trav.html'),
+          resolve: requireDeps('moment')
+        })
+
+
+
+        //wsolt l houni
+
         .state('app.user', {
             url: '/user/:id',
             controller: 'Users',
@@ -368,11 +510,7 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
 
         })
 
-        .state('app.adddoc', {
-            url: '/adddoc',
-            templateUrl: basepath('adddoc.html'),
-
-        })
+        
 
         .state('app.edu', {
             url: '/edu',
@@ -381,11 +519,7 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
         })
 
 
-        .state('app.addcert', {
-            url: '/addcert',
-            templateUrl: basepath('addcert.html'),
-
-        })
+        
 
         .state('app.family', {
             url: '/setfamily',
@@ -393,10 +527,7 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
 
         })
 
-        .state('app.adstate',{
-          url : '/setadstate',
-          templateUrl : basepath ('adstate.html'),
-        })
+        
 
 
         .state('app.addfct',{
@@ -404,10 +535,7 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
           templateUrl : basepath ('addfct.html'),
         })
 
-        .state('app.addgrade',{
-          url : '/addgrade',
-          templateUrl : basepath ('addgrade.html'),
-        })
+        
 
         .state('app.addaff',{
           url : '/addaff',
@@ -419,33 +547,12 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
           templateUrl : basepath ('addech.html'),
         })
 
-        .state('app.updateuser',{
-          url :'/updateuser',
-          templateUrl : basepath ('updateuser.html'),
-        })
-
-
-        .state('app.searchdoc',{
-          url :'/getdoc',
-          templateUrl : basepath('doc.html')
-        })
         
 
-        .state('app.editdoc',{
-          url :'/editdoc/:doc',
-          templateUrl : basepath ('editdoc.html')
-        })
 
-        .state('app.searchcertif',{
-          url :'/getcertif',
-          templateUrl : basepath('cert.html')
-        })
         
 
-        .state('app.editcertif',{
-          url :'/editcert/:cert/:nb',
-          templateUrl : basepath ('editcert.html')
-        })
+        
 
         .state('app.searchech',{
           url :'/getech',
@@ -471,28 +578,10 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
         })
 
 
-        .state('app.searchgrad',{
-          url :'/getgrad',
-          templateUrl : basepath('grad.html')
-        })
         
 
-        .state('app.editgrad',{
-          url :'/editgrad/:grad/:nb',
-          templateUrl : basepath ('editgrad.html')
-        })
 
-
-        .state('app.searchstate',{
-          url :'/getstate',
-          templateUrl : basepath('state.html')
-        })
         
-
-        .state('app.editstate',{
-          url :'/editstate/:state/:nb',
-          templateUrl : basepath ('editstate.html')
-        })
 
         .state('app.searchaff',{
           url :'/getaff',
@@ -552,32 +641,13 @@ App.config(['$locationProvider','$routeProvider','$stateProvider','$urlRouterPro
         })
 
 
-        .state('app.titulaire',{
-          url : '/titulaire',
-          templateUrl : basepath ('titulaire.html')
-        })
+        
 
-        .state('doc', {
-            url: '/doc',
-            abstract: true,
-            templateUrl: basepath ('d.html'),
-            data: {
-              requireLogin: true 
-            },
-        })
+        
 
-        .state('doc.trav',{
-          url : '/trav/:id',
-          controller : 'GenerateDocs',
-          templateUrl : basepath ('travail.html')
-        })
 
-        .state('doc.note',{
-          url : '/note/:id',
-          controller : 'GenerateDocs',
-          templateUrl : basepath ('note.html')
-        })
 
+        
 
         ;
 
@@ -4290,10 +4360,6 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
   };
 
 
-  
-
-  
-
   $scope.preAddUser = function(){
     userService.addAvatar(formdata,'user')
       .success(function(data){
@@ -4632,6 +4698,8 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
         $scope.grades = data.grade;
       }
 
+      
+
     })
     .error(function(error){
       console.log(error);
@@ -4656,6 +4724,24 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
     });
   };
 
+  $scope.getU4T = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+
+      if(data.travlist){
+        $scope.travlist = data.travlist;
+      }
+
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
 
   $scope.get4State = function(){
     userService.getUser($scope.uid)
@@ -4669,6 +4755,12 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
       }else{
         $scope.error();
       }
+
+
+      if(data.travlist){
+        $scope.travlist = data.travlist;
+      }
+
     })
     .error(function(error){
       console.log(error);
@@ -4751,6 +4843,65 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
     });
   };
 
+  $scope.getU4DelDay = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+
+      if(data.delday){
+        $scope.deldays = data.delday;
+      }
+
+      if(data.travlist){
+        $scope.travlist = data.travlist;
+      }
+
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+  
+  $scope.addDelDay = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var f = new Date($scope.f).toGMTString();
+    var to = new Date($scope.to).toGMTString();
+    var mf = moment(f);
+    var mto = moment(to);
+
+    var day = mto.diff(mf,'days');
+
+    var d = [{
+              "days" : day,
+              "ref" : $scope.ref,
+              "f" : f,
+              "to" : to
+            }];
+
+    if($scope.deldays){
+      d = d.concat($scope.deldays);
+    }
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"delday": d},
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success();
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+  };
+
   $scope.setState = function(){
 
     $http.defaults.headers.common['If-Match'] = $scope.etag ;
@@ -4830,9 +4981,6 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
           });
 
   };
-
-
-
 
 
   $scope.getDoc = function(){
@@ -5068,6 +5216,68 @@ App.controller('Users', ["$rootScope","$scope","$http","$cookies","$stateParams"
     $scope.subsubstructs = data.subsubstruct;
   };
 
+
+  $scope.datediff = function(f,to){
+    moment.locale('ar-tn');
+
+    var b = moment(new Date(t));
+    var a = moment(new Date(to));
+
+
+    var y = a.diff(b, 'year');
+    b.add(y, 'years');
+
+    var m = a.diff(b, 'months');
+    b.add(m, 'months');
+
+    var d = a.diff(b, 'days');
+    return {"d":d,"m":m,"y":y};
+  };
+
+  $scope.dateexplod = function(tabdate){
+    var d = 0;
+    var m = 0;
+    var y = 0;
+
+    var tmpd = 0;
+
+    var tmpm = 0;
+
+    for(var i = 0 ; i < tabdate.length ; i++){
+      d += tabdate[i].d;
+      m += tabdate[i].m;
+      y += tabdate[i].y;
+    }
+
+    tmpd = Math.floor(d/30);
+    d = d % 30;
+
+    m += tmpd;
+    tmpm = Math.floor(m / 12);
+
+    m = m % 12;
+
+    y+= tmpm;
+
+    return {"d":d,"m":m,"y":y};
+
+  };
+
+  $scope.addListTrav = function(lists,struct,grade,f,to,c,ref){
+    var diff = $scope.datediff(f,to);
+    var lst = {
+              "struct": struct,"grade" : grade,"f" : f , 
+              "to":to ,"cause" : c , "m":diff.m, "y" : diff.y , "d" : diff.d, "ref" : ref 
+            };
+    if(lists){
+      lists.push(lst);
+      return lists;
+    }
+    return [lst];
+    
+  };
+  
+
 }]);
 
 App.controller('GestionUser',["$rootScope","$scope","$http","$cookies","toaster","GestionUserService","userService",function($rootScope,$scope,$http,$cookies,toaster,GestionUserService,userService){
@@ -5250,9 +5460,16 @@ App.controller('GestionUser',["$rootScope","$scope","$http","$cookies","toaster"
               "ref" : $scope.ref,
               "dt" : dt,
             }];
+    /*var lst = [];
+
+    //lists,struct,grade,f,to,c,ref
+    if($scope.travlist){
+      lst = $scope.addListTrav($scope.travlist,$scope.,$scope.gradetmp[0].grade ,);
+    }*/
 
     if($scope.gradetmp){
       g = g.concat($scope.gradetmp);
+
     }
 
     var req = {
@@ -5319,7 +5536,6 @@ App.controller('GestionUser',["$rootScope","$scope","$http","$cookies","toaster"
     delete u._id;
     delete u._etag;
 
-    console.log($scope.u);
 
     var req = {
                 method: 'PATCH',
@@ -5336,6 +5552,66 @@ App.controller('GestionUser',["$rootScope","$scope","$http","$cookies","toaster"
           .error(function(err){
             $scope.error();
           });
+  };
+
+  $scope.datediff = function(f,to){
+    moment.locale('ar-tn');
+
+    var b = moment(new Date(t));
+    var a = moment(new Date(to));
+
+
+    var y = a.diff(b, 'year');
+    b.add(y, 'years');
+
+    var m = a.diff(b, 'months');
+    b.add(m, 'months');
+
+    var d = a.diff(b, 'days');
+    return {"d":d,"m":m,"y":y};
+  };
+
+  $scope.dateexplod = function(tabdate){
+    var d = 0;
+    var m = 0;
+    var y = 0;
+
+    var tmpd = 0;
+
+    var tmpm = 0;
+
+    for(var i = 0 ; i < tabdate.length ; i++){
+      d += tabdate[i].d;
+      m += tabdate[i].m;
+      y += tabdate[i].y;
+    }
+
+    tmpd = Math.floor(d/30);
+    d = d % 30;
+
+    m += tmpd;
+    tmpm = Math.floor(m / 12);
+
+    m = m % 12;
+
+    y+= tmpm;
+
+    return {"d":d,"m":m,"y":y};
+
+  };
+
+  $scope.addListTrav = function(lists,struct,grade,f,to,c,ref){
+    var diff = $scope.datediff(f,to);
+    var lst = {
+              "struct": struct,"grade" : grade,"f" : f , 
+              "to":to ,"cause" : c , "m":diff.m, "y" : diff.y , "d" : diff.d, "ref" : ref 
+            };
+    if(lists){
+      lists.push(lst);
+      return lists;
+    }
+    return [lst];
+    
   };
 
 }]);
@@ -5781,7 +6057,8 @@ App.controller('SearchSpec',["$rootScope","$scope","$http","$cookies","$statePar
   $scope.initStructOptions = function(){
     GestionUserService.getStruct()
     .success(function(data){
-      $scope.structs = data._items;
+      console.log(data);
+      $scope.strs = data._items;
     });
   };
 
@@ -5801,18 +6078,1168 @@ App.controller('GenerateDocs',["$rootScope","$scope","$http","$cookies","$stateP
   $http.defaults.headers.common['Authorization'] = $cookies.getObject('tk');
 
   if($stateParams.id){
+
+    if($stateParams.nb){
+      $scope.nbr = $stateParams.nb;
+    }
+
     userService.getUser($stateParams.id)
       .success(function(data){
         data.born = new Date(data.born);
         data.aff[0].dt = new Date(data.aff[0].dt);
         data.now = $filter('date')(new Date(), 'yyyy/MM/dd');
-        data.uid = data.uid.split('');
+
+        data.uid = $scope.fixuid(data.uid.split(''));
         $scope.usr = data;
+        $scope.today = moment().locale('ar-tn').format('LL');
+
+        $scope.fixtab(data.travlist,moment().locale('ar-tn').format('L'));
+
       })
       .error(function(err){
 
       });
   }
 
+  $scope.fixuid = function(uid){
+    var ind = 0;
+    var ud = [];
+    for(var i = uid.length - 1 ; i >= 0 ; i --){ 
+      ud[ind] = uid[i];
+      ind += 1;
+    }
+    return ud;
+  };
+
+  $scope.dateexplod = function(tabdate){
+    var d = 0;
+    var m = 0;
+    var y = 0;
+
+    var tmpd = 0;
+
+    var tmpm = 0;
+
+    for(var i = 0 ; i < tabdate.length ; i++){
+      d += tabdate[i].d;
+      m += tabdate[i].m;
+      y += tabdate[i].y;
+    }
+
+    tmpd = Math.floor(d/30);
+    d = d % 30;
+
+    m += tmpd;
+    tmpm = Math.floor(m / 12);
+
+    m = m % 12;
+
+    y+= tmpm;
+
+    return {"d":d,"m":m,"y":y};
+
+  };
+
+  $scope.datediff = function(f,to){
+    var fexp = f.split('/');
+    var toexp = to.split('/');
+
+    var a = moment(toexp[1] + "/" + toexp[0] + "/" + toexp[2]);
+    var b = moment(fexp[1] + "/" + fexp[0] + "/" + fexp[2]);
+
+    var y = a.diff(b, 'year');
+    b.add(y, 'years');
+
+    var m = a.diff(b, 'months');
+    b.add(m, 'months');
+
+    var d = a.diff(b, 'days');
+
+    console.log({"d":d,"m":m,"y":y});
+
+    return {"d":d,"m":m,"y":y};
+
+
+  };
+
+  $scope.addListTrav = function(lists,struct,grade,f,to,c,ref,del){
+    var diff = $scope.datediff(f,to);
+
+    if(del){
+      var lst = {
+              "struct": struct,"grade" : grade,"f" : f , 
+              "to":to ,"cause" : c , "m":diff.m, "y" : diff.y , "d" : diff.d, "ref" : ref , "del" : del
+            };
+    }else {
+      var lst = {
+              "struct": struct,"grade" : grade,"f" : f , 
+              "to":to ,"cause" : c , "m":diff.m, "y" : diff.y , "d" : diff.d, "ref" : ref 
+            };
+    }
+    
+    if(lists){
+      lists.push(lst);
+      return lists;
+    }
+    return [lst];
+    
+  };
+
+
+  $scope.fixtab = function(tab,today){
+    console.log(tab);
+    var n = tab.length - 1;
+    var lst = $scope.addListTrav(tab,tab[n].struct,tab[n].grade,tab[n].to,today,' ',' ');
+
+    for(var i = 0 ; i <= n ; i ++){
+      var tmp = lst[i].to.split('/');
+      var to = moment(tmp[1] + "/" + tmp[0] + "/" + tmp[2]).subtract(1,'days').locale('ar-tn').format('L');
+      lst[i].to = to;
+    }
+
+
+
+    $scope.res = $scope.dateexplod(lst);
+
+    for(var i = 0 ; i < lst.length ; i ++){
+      var tmp = lst[i].to.split('/');
+      var to = moment(tmp[1] + "/" + tmp[0] + "/" + tmp[2]).toDate(); 
+      var t = lst[i].f.split('/');
+      var f = moment(t[1] + "/" + t[0] + "/" + t[2]).toDate();
+      lst[i].to = to;
+      lst[i].f = f;
+    }
+
+    lst[n + 1].to = '--';
+
+    $scope.tab = lst;
+  };
 
 }]);
+
+
+App.controller('USR', ["$rootScope","$scope","$http","$cookies","toaster","userService", function ($rootScope,$scope,$http,$cookies,toaster,userService){
+  'use strict';
+  $http.defaults.headers.common['Authorization'] = $cookies.getObject('tk');
+
+  var formdata = new FormData();
+
+  $scope.success = function(msg){
+    $scope.toaster = {
+      type:  'success',
+      title: 'اظافة',
+      text:  'لقد تمت الاظافة بنجاح'
+    };
+    if(msg){
+      $scope.toaster.text = msg;
+    }
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.error = function(){
+    $scope.toaster = {
+      type:  'error',
+      title: 'خطأ',
+      text:  'هناك خطأ تثبت في المعلومات'
+    };
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.setFile = function(element) {
+    $scope.currentFile = element.files[0];
+     var reader = new FileReader();
+
+    reader.onload = function(event) {
+      $scope.avatar = event.target.result;
+      $scope.$apply();
+
+    }
+    reader.readAsDataURL(element.files[0]);
+  }
+  
+  $scope.getTheFiles = function ($files) {
+      angular.forEach($files, function (value, key) {
+          formdata.append("img", value);
+      });
+  };
+
+
+  $scope.init = function(){
+        $scope.uid = "";
+        $scope.nom = "";
+        $scope.pren = "";
+        $scope.father = "";
+        $scope.mother = "";
+        $scope.gender = "";
+        $scope.born = "";
+        $scope.dtenter = "";
+        $scope.dtcin = "";
+        $scope.cin = "";
+        $scope.adrcin = "";
+        $scope.tel = "";
+        $scope.email = "";
+        $scope.address = "";
+        $scope.city = "";
+        $scope.dt = "";
+        $scope.ref = "";
+        $scope.imginput = "";
+        $scope.etag = "";
+        $scope.id = "";
+
+  };
+
+  $scope.preAddUser = function(){
+    userService.addAvatar(formdata,'user')
+      .success(function(data){
+        $scope.addUser(data);
+      })
+      .error(function(err){
+        $scope.error();
+    });
+  };
+
+  $scope.addUser = function(avatar){
+        var dtcin = new Date($scope.dtcin).toGMTString();
+        var born = new Date($scope.born).toGMTString();
+        var dtenter = new Date($scope.dtenter).toGMTString();
+        var user = {
+              "uid" : $scope.uid , "nom" : $scope.nom ,"father" : $scope.father,
+              "pren" : $scope.pren, "mother" : $scope.mother, "gender" : $scope.gender,
+              "born" : born , "dtenter" : dtenter ,
+              "cin" : {"num" : $scope.cin , "address" : $scope.adrcin ,"dt" : dtcin } ,
+              "tel" : $scope.tel,"email" : $scope.email , 
+              "location" : {"address" : $scope.address , "city" : $scope.city},
+              "avatar" : avatar,
+            };
+
+        var req = {
+                method: 'POST',
+                url: $rootScope.app.url.db + '/user',
+                data: user,
+                cache: false,
+              };
+        $http(req)
+          .success(function(data){
+            if(data._status ==="OK")
+              $scope.success();
+              $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });   
+  }; 
+
+  $scope.updateUser = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.u._etag ;
+
+    $scope.u.dtenter = new Date( $scope.u.dtenter).toGMTString();
+    $scope.u.cin.dt = new Date($scope.u.cin.dt).toGMTString();
+    $scope.u.born = new Date($scope.u.born).toGMTString();
+
+    var u = {};
+    angular.copy($scope.u,u);
+
+    delete u._id;
+    delete u._etag;
+
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db +'/user/' + $scope.u._id,
+                data: u,
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success("تم التحيين بنجاح");
+            $scope.u = {};
+          })
+          .error(function(err){
+            $scope.error();
+          });
+  };
+
+  $scope.getU4Uuser = function(){
+    userService.getUser($scope.u.uid)
+    .success(function(data){
+        $scope.u = data;
+        $scope.u.dtenter = new Date( data.dtenter);
+        $scope.u.cin.dt = new Date(data.cin.dt);
+        $scope.u.born = new Date(data.born);
+        delete $scope.u._updated;
+        delete $scope.u._created;
+        delete $scope.u._links;
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+}]);
+
+App.controller('DOC',["$rootScope","$scope","$http","$cookies","$stateParams","toaster","userService", function ($rootScope,$scope,$http,$cookies,$stateParams,toaster,userService){
+  'use strict';
+  $http.defaults.headers.common['Authorization'] = $cookies.getObject('tk');
+
+  var formdata = new FormData();
+
+
+  if($stateParams.doc){
+    userService.getDoc($stateParams.doc).success(function(d,status){
+      $scope.editdoc = d;
+      $scope.avatar = d.src;
+      $scope.editdoc.dt = new Date(d.dt);
+    });
+  }
+
+  $scope.success = function(msg){
+    $scope.toaster = {
+      type:  'success',
+      title: 'اظافة',
+      text:  'لقد تمت الاظافة بنجاح'
+    };
+    if(msg){
+      $scope.toaster.text = msg;
+    }
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.error = function(){
+    $scope.toaster = {
+      type:  'error',
+      title: 'خطأ',
+      text:  'هناك خطأ تثبت في المعلومات'
+    };
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.setFile = function(element) {
+    $scope.currentFile = element.files[0];
+     var reader = new FileReader();
+
+    reader.onload = function(event) {
+      $scope.avatar = event.target.result;
+      $scope.$apply();
+
+    }
+    reader.readAsDataURL(element.files[0]);
+  }
+  
+  $scope.getTheFiles = function ($files) {
+      angular.forEach($files, function (value, key) {
+          formdata.append("img", value);
+      });
+  };
+
+
+  $scope.init = function(){
+        $scope.uid = "";
+        $scope.dt = "";
+        $scope.ref = "";
+        $scope.title = "";
+        $scope.etag = "";
+        $scope.id = "";
+
+  };
+
+  $scope.getDoc = function(){
+    userService.getDocWithUserId($scope.id).
+      success(function(data,status){
+
+        if(data._items[0]){
+          $scope.id = "";
+          $scope.docs = data._items;
+        }else {
+          $scope.error();
+          $scope.id = "";
+        }
+      })
+      .error(function(err){
+        $scope.error();
+        $scope.id = "";
+      });
+  };
+
+  $scope.preAddDoc = function(){
+    userService.addAvatar(formdata,'doc')
+      .success(function(data){
+        $scope.addDoc(data);
+      })
+      .error(function(err){
+        $scope.error();
+    });
+  };
+
+  $scope.addDoc = function(src){
+    var dt = new Date($scope.dt).toGMTString();
+    var doc = {"src" : src ,"title" : $scope.title,"ref": $scope.ref ,"dt" : dt,"user" : $scope.id  };
+
+    var req = {
+                method: 'POST',
+                url: $rootScope.app.url.db + '/doc',
+                data: doc,
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success();
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.preEditDoc = function(){
+    if(formdata.get("img")){
+      userService.addAvatar(formdata,'doc')
+        .success(function(data){
+          $scope.editDoc(data);
+        })
+        .error(function(err){
+          $scope.error();
+      });
+    }else {
+      $scope.editDoc();
+    }
+    
+  };
+
+  $scope.editDoc = function(src){
+
+    $http.defaults.headers.common['If-Match'] = $scope.editdoc._etag ;
+
+    var dt = new Date($scope.editdoc.dt).toGMTString();
+
+    var doc = {};
+
+    if( src){
+      doc = {"src" : src ,"title" : $scope.editdoc.title,"ref": $scope.editdoc.ref ,"dt" : dt };
+    }else {
+      doc = {"title" : $scope.editdoc.title,"ref": $scope.editdoc.ref ,"dt" : dt };
+    }
+    
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/doc/' + $scope.editdoc._id,
+                data: doc,
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success("لقد تم التحيين بنجاح");
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.get4Doc = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+}]);
+
+
+App.controller('CERT',["$rootScope","$scope","$http","$cookies","$stateParams","toaster","userService", function ($rootScope,$scope,$http,$cookies,$stateParams,toaster,userService){
+  'use strict';
+  $http.defaults.headers.common['Authorization'] = $cookies.getObject('tk');
+
+  var formdata = new FormData();
+
+
+  if($stateParams.cert && $stateParams.nb){
+    userService.getUser($stateParams.cert).success(function(d,status){
+      $rootScope.certs = d.certif;
+      $scope.editcert = d.certif[$stateParams.nb];
+      $scope.editcert.f = new Date($scope.editcert.f);
+      $scope.editcert.to = new Date($scope.editcert.to);
+      $scope.nb = $stateParams.nb;
+      $scope.id = d._id;
+      $scope.etag = d._etag;
+      $scope.avatar = $scope.editcert.src;
+    });
+  }
+
+  $scope.success = function(msg){
+    $scope.toaster = {
+      type:  'success',
+      title: 'اظافة',
+      text:  'لقد تمت الاظافة بنجاح'
+    };
+    if(msg){
+      $scope.toaster.text = msg;
+    }
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.error = function(){
+    $scope.toaster = {
+      type:  'error',
+      title: 'خطأ',
+      text:  'هناك خطأ تثبت في المعلومات'
+    };
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.setFile = function(element) {
+    $scope.currentFile = element.files[0];
+     var reader = new FileReader();
+
+    reader.onload = function(event) {
+      $scope.avatar = event.target.result;
+      $scope.$apply();
+
+    }
+    reader.readAsDataURL(element.files[0]);
+  }
+  
+  $scope.getTheFiles = function ($files) {
+      angular.forEach($files, function (value, key) {
+          formdata.append("img", value);
+      });
+  };
+
+
+  $scope.init = function(){
+        $scope.uid = "";
+        $scope.f = "";
+        $scope.ref = "";
+        $scope.to = "";
+        $scope.title = "";
+        $scope.etag = "";
+        $scope.id = "";
+
+  };
+
+  $scope.preEditCert = function(){
+
+    if(formdata.get("img")){
+      userService.addAvatar(formdata,'cert')
+        .success(function(data){
+          $scope.editCert(data);
+        })
+        .error(function(err){
+          $scope.error();
+      });
+    }else {
+      $scope.editCert();
+    }
+    
+  };
+
+  $scope.editCert = function(src){
+
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+
+    $scope.editcert.f = new Date($scope.editcert.f).toGMTString();
+    $scope.editcert.to = new Date($scope.editcert.to).toGMTString();
+
+
+    if(src){
+      $scope.editcert.src = src;
+    }
+    
+    $rootScope.certs[$scope.nb] = $scope.editcert ;
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"certif" : $rootScope.certs},
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success("لقد تم التحيين بنجاح");
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.getU4cert = function(){
+    console.log($scope.uid);
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+      if(data.certif){
+        $scope.certifs = data.certif;
+      }
+      
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+  $scope.getU = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+      if(data.certif){
+        $scope.certifs = data.certif;
+      }
+
+      
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+  $scope.updateUid = function($model){
+    $scope.uid = $model.id;
+    $scope.etag = $model.etag;
+    $scope.certif = $model.certif;
+  };
+
+  $scope.addCert = function(src){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var f = new Date($scope.f).toGMTString();
+    var to = new Date($scope.to).toGMTString();
+    var cert = [{"ref" : $scope.ref ,"title" : $scope.title ,"f" : f,"to" : to ,"src" : src } ];
+    
+
+    if($scope.certifs){
+      cert = cert.concat($scope.certifs);
+    }
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"certif" : cert },
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success();
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+}]);
+
+App.controller('PINALITY',["$rootScope","$scope","$http","$cookies","$stateParams","toaster","userService","GestionUserService", function ($rootScope,$scope,$http,$cookies,$stateParams,toaster,userService,GestionUserService){
+  'use strict';
+  $http.defaults.headers.common['Authorization'] = $cookies.getObject('tk');
+
+
+  if($stateParams.state && $stateParams.nb){
+    userService.getUser($stateParams.state).success(function(e,status){
+      $rootScope.states = e.state;
+      $scope.editstate = e.state[$stateParams.nb];
+      $scope.editstate.dt = new Date($scope.editstate.dt);
+      $scope.nb = $stateParams.nb;
+      $scope.id = e._id;
+      $scope.etag = e._etag;
+    });
+  }else if($stateParams.grad && $stateParams.nb){
+    userService.getUser($stateParams.grad).success(function(e,status){
+      $rootScope.gradess = e.grade;
+      $scope.editgrade = e.grade[$stateParams.nb];
+      $scope.editgrade.dt = new Date($scope.editgrade.dt);
+      $scope.nb = $stateParams.nb;
+      $scope.id = e._id;
+      $scope.etag = e._etag;
+    });
+  }
+
+  $scope.success = function(msg){
+    $scope.toaster = {
+      type:  'success',
+      title: 'اظافة',
+      text:  'لقد تمت الاظافة بنجاح'
+    };
+    if(msg){
+      $scope.toaster.text = msg;
+    }
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.error = function(){
+    $scope.toaster = {
+      type:  'error',
+      title: 'خطأ',
+      text:  'هناك خطأ تثبت في المعلومات'
+    };
+    toaster.pop($scope.toaster.type, $scope.toaster.title, $scope.toaster.text);
+  };
+
+  $scope.datediff = function(f,to){
+    var fexp = f.split('/');
+    var toexp = to.split('/');
+
+    var a = moment(toexp[1] + "/" + toexp[0] + "/" + toexp[2]);
+    var b = moment(fexp[1] + "/" + fexp[0] + "/" + fexp[2]);
+
+    var y = a.diff(b, 'year');
+    b.add(y, 'years');
+
+    var m = a.diff(b, 'months');
+    b.add(m, 'months');
+
+    var d = a.diff(b, 'days');
+
+    console.log({"d":d,"m":m,"y":y});
+
+    return {"d":d,"m":m,"y":y};
+
+
+  };
+
+
+  $scope.addListTrav = function(lists,struct,grade,f,to,c,ref,del){
+    var diff = $scope.datediff(f,to);
+
+    if(del){
+      var lst = {
+              "struct": struct,"grade" : grade,"f" : f , 
+              "to":to ,"cause" : c , "m":diff.m, "y" : diff.y , "d" : diff.d, "ref" : ref , "del" : del
+            };
+    }else {
+      var lst = {
+              "struct": struct,"grade" : grade,"f" : f , 
+              "to":to ,"cause" : c , "m":diff.m, "y" : diff.y , "d" : diff.d, "ref" : ref 
+            };
+    }
+    
+    if(lists){
+      lists.push(lst);
+      return lists;
+    }
+    return [lst];
+    
+  };
+
+  $scope.init = function(){
+        $scope.uid = "";
+        $scope.dt = "";
+        $scope.ref = "";
+        $scope.st = "";
+        $scope.etag = "";
+        $scope.id = "";
+
+  };
+
+  $scope.editState = function(){
+
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+
+    $scope.editstate.dt = new Date($scope.editstate.dt).toGMTString();
+
+    
+    $rootScope.states[$scope.nb] = $scope.editstate ;
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"state" : $rootScope.states},
+                cache: false,
+              };
+    $http(req)
+          .success(function(data){
+            $scope.success("لقد تم التحيين بنجاح");
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.get4State = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+
+      if(data.state){
+        $scope.sts = data.state;
+      }else{
+        $scope.error();
+      }
+
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+  $scope.setState = function(){
+
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var dt = new Date($scope.dt).toGMTString();
+    var state = [{
+                  "st" : $scope.st,
+                  "dt" : dt,
+                  "ref" : $scope.ref,
+                }];
+
+    var to = moment(dt).locale('ar-tn').format('L');
+
+
+    var lst = [];
+    if($scope.statetmp){
+      state = state.concat($scope.statetmp); 
+    }
+   
+    if($scope.ultrav.travlist){
+      var last = $scope.ultrav.travlist[$scope.ultrav.travlist.length - 1];
+      var f = last.to;
+      if(last.del){
+        var tmp = last.to.split('/');
+        f = moment(tmp[1] + "/" + tmp[0] + "/" + tmp[2]).add(last.del,'days').locale('ar-tn').format('L');
+      }
+
+      var lst = $scope.addListTrav($scope.ultrav.travlist,$scope.ultrav.aff[0].struct,
+                $scope.ultrav.grade[0].grade,f,to,$scope.ref,' ');  
+    }else if($scope.ultrav.state){
+        var f = moment(new Date($scope.ultrav.state[0].dt)).locale('ar-tn').format('L');
+        lst = $scope.addListTrav($scope.ultrav.travlist,$scope.ultrav.aff[0].struct,
+              $scope.ultrav.grade[0].grade,f,to,$scope.ref,' ');
+    }
+
+    if(lst[0]){
+      var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"state" : state , "travlist" : lst },
+                cache: false,
+              };
+    }else {
+      var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"state" : state },
+                cache: false,
+              };
+    }
+    
+
+    $http(req)
+          .success(function(data){
+            $scope.success();
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+  };
+
+  $scope.addDelDay = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    moment.locale('ar-tn');
+    var ff = new Date($scope.f).toGMTString();
+    var to = new Date($scope.to).toGMTString();
+    var mf = moment(new Date($scope.f));
+    var mto = moment(new Date($scope.to));
+
+    var day = mto.diff(mf,'days');
+
+    var d = [{
+              "days" : day,
+              "ref" : $scope.ref,
+              "f" : ff,
+              "to" : to
+            }];
+
+    if($scope.deldays){
+      d = d.concat($scope.deldays);
+    }
+
+    if($scope.ultrav.travlist){
+      var last = $scope.ultrav.travlist[$scope.ultrav.travlist.length - 1];
+      var f = last.to;
+      var t = moment($scope.f).locale('ar-tn').format('L');
+      var lst = $scope.addListTrav($scope.ultrav.travlist,$scope.ultrav.aff[0].struct,
+      $scope.ultrav.grade[0].grade,f,t,$scope.ultrav.state[0].st,$scope.ref,day);
+
+    }else if($scope.ultrav.state){
+      var f = moment(new Date($scope.ultrav.state[0].dt)).locale('ar-tn').format('L');
+      var t = moment($scope.f).locale('ar-tn').format('L');
+      var lst = $scope.addListTrav($scope.ultrav.travlist,$scope.ultrav.aff[0].struct,
+      $scope.ultrav.grade[0].grade,f,t,$scope.ultrav.state[0].st,$scope.ref,day);
+
+    } else if($scope.ultrav.grade){
+      var f = moment(new Date($scope.ultrav.grade[0].dt)).locale('ar-tn').format('L');
+      var t = moment($scope.f).locale('ar-tn').format('L');
+      var lst = $scope.addListTrav($scope.ultrav.travlist,$scope.ultrav.aff[0].struct,
+      $scope.ultrav.grade[0].grade,f,t,$scope.ultrav.state[0].st,$scope.ref,day);
+    }
+    
+    
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"delday": d , "travlist" : lst},
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success();
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+  };
+
+  $scope.getU = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+
+      if(data.state){
+        $scope.statetmp = data.state;
+      }
+
+        if(data.grade){
+          $scope.gradetmp = data.grade;
+        }
+
+        if(data.aff){
+          $scope.afftmp = data.aff;
+        }
+
+      $scope.ultrav = data;
+
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+  $scope.getU4DelDay = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.etag = data._etag;
+      $scope.id = data._id;
+
+      if(data.delday){
+        $scope.deldays = data.delday;
+      }
+
+      $scope.ultrav = data;
+
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+  $scope.regDate = function(delday,f,to){
+
+    var days = 0;
+    for(var i = 0 ; i< delday.length ; i ++){
+      if(moment(new Date(delday[i].f)).isBetween(f,to) && moment(new Date(delday[i].to)).isBetween(f, to) ){
+        days += delday[i].days;
+      }
+
+    }
+    return days;
+  };
+
+  $scope.addGrade = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var dt = new Date($scope.dt).toGMTString();
+
+    var g = [{
+              "grade" : $scope.grade.title,
+              "ref" : $scope.ref,
+              "dt" : dt,
+            }];
+    var lst = [];
+
+    if($scope.ultrav.travlist){
+      var last = $scope.ultrav.travlist[$scope.ultrav.travlist.length - 1];
+      var f = last.to;
+      var t = moment($scope.dt).locale('ar-tn').format('L');
+      lst = $scope.addListTrav($scope.ultrav.travlist,$scope.ultrav.aff[0].struct,
+      $scope.ultrav.grade[0].grade,f,t,$scope.ref,' ');
+
+    }else if($scope.ultrav.grade){
+
+      var f = moment(new Date($scope.ultrav.grade[0].dt)).locale('ar-tn').format('L');
+      var t = moment($scope.dt).locale('ar-tn').format('L');
+      lst = $scope.addListTrav($scope.ultrav.travlist,$scope.ultrav.aff[0].struct,
+      $scope.ultrav.grade[0].grade,f,t,$scope.ref,' ');
+
+      
+
+    }
+
+    if($scope.gradetmp){
+      g = g.concat($scope.gradetmp);
+    }
+
+    if(lst[0]){
+      var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"grade" : g , "travlist" : lst },
+                cache: false,
+              };
+    }else {
+      var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: {"grade": g},
+                cache: false,
+              };
+    }
+
+    
+
+    $http(req)
+          .success(function(data){
+            $scope.success();
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+  };
+
+  $scope.Titulaire = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var dt = new Date($scope.dt).toGMTString();
+    var f ;
+
+    if($scope.ultrav.travlist){
+      var last = $scope.ultrav.travlist[$scope.ultrav.travlist.length - 1];
+      f = last.to;
+    }else if($scope.ultrav.state){
+      var d = new Date($scope.ultrav.state[0].dt);
+      f = moment(d).locale('ar-tn').format('L');
+    }else if($scope.ultrav.grade){
+      var d = new Date($scope.ultrav.grade[0].dt);
+      f = moment(d).locale('ar-tn').format('L');
+    }
+
+    
+    var t = moment($scope.dt).locale('ar-tn').format('L');
+    var lst = $scope.addListTrav($scope.ultrav.travlist,$scope.ultrav.aff[0].struct,
+    $scope.ultrav.grade[0].grade,f,t,'ترسيم',' ');
+
+    var doc = {"titulaire" : dt,"travlist" : lst};
+
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/user/' + $scope.id,
+                data: doc,
+                cache: false,
+              };
+
+    $http(req)
+          .success(function(data){
+            $scope.success("تم ترسيم العون بنجاح");
+            $scope.init();
+          })
+          .error(function(err){
+            $scope.error();
+          });
+
+  };
+
+  $scope.get4Grad = function(){
+    userService.getUser($scope.uid)
+    .success(function(data){
+
+      $scope.id = data._id;
+
+      if(data.grade){
+        $scope.grades = data.grade;
+      }
+
+      
+
+    })
+    .error(function(error){
+      console.log(error);
+      $scope.error();
+    });
+  };
+
+  $scope.initGradeOptions = function(){
+    GestionUserService.getGrade()
+    .success(function(data){
+      $scope.gs = data._items;
+    });
+  };
+
+  $scope.getGrad = function(){
+    GestionUserService.getGrade()
+      .success(function(g){
+        $scope.GRADE = g._items;
+      })
+      .error(function(err){
+        $scope.error();
+      });
+  };
+
+  $scope.editGrade = function(){
+    $http.defaults.headers.common['If-Match'] = $scope.etag ;
+    var req = {
+                method: 'PATCH',
+                url: $rootScope.app.url.db + '/grade/' + $scope.id,
+                data: {"title": $scope.editgrad },
+                cache: false,
+              };
+    $http(req)
+      .success(function(data){
+        if(data._status ==="OK"){
+          $scope.success("تم التحيين بنجاح");
+          $scope.getGrad();
+        }
+      })
+      .error(function(err){
+        $scope.error();
+      });
+  };
+
+
+}]);
+
+
+/*App.controller('',[,function(){
+
+}]);*/

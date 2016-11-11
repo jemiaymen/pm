@@ -100,13 +100,11 @@
     ]
   },
   {
-    "text": "التحيين",
+    "text": "العقوبات",
     "sref": "#",
-    "icon": "icon-check",
+    "icon": "icon-ban",
     "subnav": [
-      {"text": "Inputs",   "sref": "app.form-inputs", "translate": "sidebar.nav.form.INPUT" },
-      {"text": "Validation", "sref": "app.form-validation", "translate": "sidebar.nav.form.VALIDATION" },
-      {"text": "Wizard",     "sref": "app.form-wizard", "translate": "sidebar.nav.form.WIZARD" }
+      {"text": "خصم أيام",   "sref": "app.delday" }
     ]
   }
 ]

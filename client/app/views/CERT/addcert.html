@@ -1,0 +1,99 @@
+<h3>التصرف في الأعوان
+   <small data-ng-bind="app.name + ' - ' + app.description"></small>
+</h3>
+<!-- START row-->
+<div data-ng-controller="Users" class="row">
+
+   <div class="col-md-12">
+      <toaster-container toaster-options="{'position-class': 'toast-top-center', 'close-button':true}"></toaster-container>
+      
+      <form onsubmit="return false;" name="formv" class="form-validate form-horizontal" data-ng-submit="formv.$valid && preAddCert()">
+         <!-- START panel-->
+         <div class="panel panel-default">
+            <div class="panel-heading">
+               <div class="panel-title"><h3>إضافة دورات تكوينية</h3></div>
+            </div>
+            <div class="panel-body">
+            
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">المعرف الوحيد</label>
+                     <div class="col-sm-4">
+                        <div class="input-group">
+                           <input type="text" data-ng-model="uid" data-ng-pattern="/^[0-9]{10,12}$/i" class="form-control"   required  />
+                           <span class="input-group-btn">
+                              <button type="button" data-ng-click="getU4cert()" class="btn btn-primary">بحث</button>
+                           </span>
+                        </div>
+                     </div>
+                     <label class="col-sm-1 control-label">#</label>
+                     <div class="col-sm-4">
+                        <input type="text" data-ng-model="id" data-ng-pattern="/^[a-f\d]{24}$/i" class="form-control"   required  readonly />
+                     </div>
+                  </div>
+               </fieldset>
+
+
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label"></label>
+                     <div class="col-sm-9">
+                        <img ng-src="{{avatar}}" style="max-width:120px;">
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">صورة</label>
+                     <div class="col-sm-9">
+                        <input type="file" class="form-control" onchange="angular.element(this).scope().setFile(this)" accept="image/*" data-ng-files="getTheFiles($files)" name="img" required>
+                     </div>
+                  </div>
+               </fieldset>
+
+               <input type="hidden" data-ng-model="etag" >
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">الشهادة</label>
+                     <div class="col-sm-9">
+                        <input type="text" data-ng-model="title" class="form-control"  required ng-minlength="3" ng-maxlength="200"/>
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">من</label>
+                     <div class="col-sm-4">
+                        <input type="date" data-ng-model="f"  class="form-control" required  />
+                     </div>
+
+                     <label class="col-sm-1 control-label">إلى</label>
+                     <div class="col-sm-4">
+                        <input type="date" data-ng-model="to"  class="form-control" required  />
+                     </div>
+                  </div>
+               </fieldset>
+
+               <fieldset>
+                  <div class="form-group">
+                     <label class="col-sm-2 control-label">معطيات أخرى</label>
+                     <div class="col-sm-9">
+                        <input type="text" data-ng-model="ref" class="form-control"  ng-minlength="3" ng-maxlength="200"/>
+                     </div>
+                  </div>
+               </fieldset>
+            </div>
+            <div class="panel-footer ">
+               <button type="submit" class="btn btn-primary">اظافة</button>
+            </div>
+         </div>
+         <!-- END panel-->
+      </form>
+   </div>
+</div>
+<!-- END row-->

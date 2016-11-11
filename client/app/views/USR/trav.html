@@ -1,0 +1,204 @@
+<style>
+	.header-font { 
+	   font-family: 'GranadaRegular'; 
+	   font-weight: normal; 
+	   font-style: normal; 
+	   font-size:28px;
+	   margin-bottom: 0px !important;
+	}
+
+	.modif-input {
+		border: 0;
+		background: #f7f9fb;
+		width: 300px;
+	}
+
+	.title-doc p {
+		font-size: 28px;
+		font-weight: bold;
+	}
+
+
+	.body-text {
+		font-size: 18px;
+
+	}
+
+	.body-text-bottom {
+		margin-bottom: 0px !important;
+		font-size: 18px;
+	}
+
+	.body-text-number {
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.body-text-bold {
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+
+	table td  {
+		border: 1px solid black !important;
+		padding : 4px !important;
+	}
+
+	.table-bordered th,
+	.table-bordered td {
+	  border: 1px solid #000 !important;
+	}
+
+	.bord {
+		border: 1px solid black !important;
+		padding : 4px !important;
+	}
+
+</style>
+
+
+
+<div class="row">
+	<div class="col-xs-5">
+		<p class="header-font ">الجمهورية التونسية </p> 
+		<p class="header-font"> رئاسة الحكومة</p>
+	</div>
+	
+</div>
+<div class="row title-doc">
+	<p class="text-center">قائمة في الخدمات</p>
+</div>
+
+<div class="row">
+	
+	<div class="col-xs-offset-1 col-xs-4">
+		<p class="body-text-bold" >الإسم واللقب : {{usr.nom}} {{usr.pren}}</p>
+	</div>
+	<div class="col-xs-2">
+		<p class="body-text" >المعرف الوحيد </p>
+	</div>
+	<div class="col-xs-4">
+		<table class="table table-bordered table-responsive" >
+			<tr class="body-text-number" dir="ltr">
+				<td class="text-center" data-ng-repeat="a in usr.uid track by $index">{{a}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="col-xs-offset-1 col-xs-3">
+		<p class="body-text" >تاريخ الولادة ومكانها :</p>
+	</div>
+	<div class="col-xs-8">
+		<p class="body-text-bold"> {{usr.born | date:'yyyy/MM/dd'}} {{usr.location.city}}</p>
+	</div>
+
+	<div class="col-xs-offset-1 col-xs-3">
+		<p class="body-text" >المستوى التعليمي :</p>
+	</div>
+	<div class="col-xs-8">
+		<p class="body-text-bold"> {{usr.edu.niv}}</p>
+	</div>
+
+	
+	
+	<div class="col-xs-offset-1 col-xs-3">
+		<p class="body-text" >الرتبة الحالية :</p>
+	</div>
+	<div class="col-xs-8">
+		<p class="body-text-bold"> {{usr.grade[0].grade}}</p>
+	</div>
+
+	<div class="col-xs-offset-1 col-xs-3">
+		<p class="body-text" >الوضعية الإدارية الحالية :</p>
+	</div>
+	<div class="col-xs-8">
+		<p class="body-text-bold" > {{ usr.state[0].st }}</p>
+	</div>
+
+	
+</div>
+
+
+
+
+
+<div class="row ">
+
+	
+	<div class="col-xs-1">
+		<img data-ng-src="app/img/kha.png"  />	
+	</div>
+
+	<div class="col-xs-10 bord" >
+		<table class="table table-bordered table-responsive text-center body-text-bottom" >
+			
+			<tr class="body-text-bold">
+			<td rowspan="2">المراكز المشغولة</td>
+			<td rowspan="2">الرتبة</td>
+			<td colspan="2">التاريخ</td>
+			<td rowspan="2">سبب الإنقطاع عن العمل</td>
+			<td colspan="3">مدة مباشرة العمل</td>
+			<td rowspan="2">الملاحظات</td>
+			</tr>
+
+			<tr class="body-text-bold">
+			<td>تاريخ مباشرة العمل</td>
+			<td>تاريخ الإنقطاع عن العمل</td>
+			<td>السنوات</td>
+			<td>الأشهر</td>
+			<td>الأيام</td>
+			</tr>
+			
+			<tr data-ng-repeat="trv in tab track by $index">
+			<td class="body-text">{{trv.struct}}</td>
+			<td class="body-text">{{trv.grade}}</td>
+			<td class="body-text-number">{{trv.f | date:'yyyy/MM/dd'}}</td>
+			<td class="body-text-number">{{trv.to | date:'yyyy/MM/dd'}}</td>
+			<td class="body-text">{{trv.cause}}</td>
+			<td class="body-text-number">{{trv.y}}</td>
+			<td class="body-text-number">{{trv.m}}</td>
+			<td class="body-text-number">{{trv.d}}</td>
+			<td class="body-text">{{trv.ref}}</td>
+			</tr>
+			
+
+			<tr >
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td class="body-text-bold">الجملة</td>
+				<td class="body-text-bold">{{res.y}}</td>
+				<td class="body-text-bold">{{res.m}}</td>
+				<td class="body-text-bold">{{res.d}}</td>
+				<td></td>
+			</tr>
+			<tr class="body-text-bold">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td colspan="4">إلى غاية {{today}} </td>
+			</tr>
+			
+			<tr class="body-text-bold">
+				<td colspan="9">حددت هذه القائمة في الخدمات ب : <input type="text" class="modif-input" /></td>
+			</tr>
+			
+		</table>
+	</div>
+</div>
+
+
+
+
+
+
+<div class="row">
+
+	<div class="pull-right col-xs-5">
+		<p class="body-text-bold text-center">رئيس الإدارة </p>
+		<p class="body-text-bold text-center">الإمضاء والختم</p>
+	</div>
+</div>

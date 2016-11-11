@@ -11,7 +11,8 @@ app = Eve()
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
-UPLOAD_FOLDER = 'd:/pm/client/'
+UPLOAD_FOLDER = 'C:/Bitnami/wampstack-5.6.27-0/apache2/htdocs/'
+
 
 
 

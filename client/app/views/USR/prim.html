@@ -1,0 +1,183 @@
+<style>
+	.header-font { 
+	   font-family: 'GranadaRegular'; 
+	   font-weight: normal; 
+	   font-style: normal; 
+	   font-size:28px;
+	   margin-bottom: 0px !important;
+	}
+
+	.modif-input {
+		border: 0;
+		width: 118px;
+		background: #f7f9fb;
+	}
+
+	.title-doc p {
+		font-size: 26px;
+		font-weight: bold;
+		margin-bottom: 0px !important;
+	}
+
+
+	.body-text {
+		font-size: 18px;
+
+	}
+
+	.body-text-bottom {
+		margin-bottom: 0px !important;
+		font-size: 18px;
+	}
+
+	.body-text-number {
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.body-text-bold {
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+
+	table td  {
+		border: 1px solid black !important;
+		padding : 4px !important;
+	}
+
+
+	.table-bordered th,
+	.table-bordered td {
+	  border: 1px solid #000 !important;
+	}
+
+</style>
+
+
+
+<div class="row" style="margin-bottom:20px;">
+	<div class="col-xs-5">
+		<p class="header-font ">الجمهورية التونسية </p> 
+		<p class="header-font"> رئاسة الحكومة</p>
+		<p class="body-text-bold"> {{ usr.aff[0].substruct}} </p>
+	</div>
+
+	<div class="col-xs-7 title-doc">
+		<p >بطاقات إسناد العدد التقيمي الخاص بمنحة الإنتاج بعنوان سنة {{app.year}}</p>
+		<p class="text-center" data-ng-if="nbr == 2">السداسي الثاني</p>
+		<p class="text-center" data-ng-if="nbr == 1">السداسي الأول</p>
+
+	</div>
+	
+</div>
+
+<div class="row">
+
+	<div class="col-xs-6">
+
+		<div class="row">
+			<div class="col-xs-offset-2 col-xs-3">
+				<p class="body-text-bold" >المعرف الوحيد </p>
+			</div>
+			<div class="col-xs-7">
+				<table class="table table-bordered table-responsive" >
+					<tr class="body-text-number" >
+						<td class="text-center" data-ng-repeat="a in usr.uid track by $index">{{a}}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="col-xs-2">
+				<img data-ng-src="app/img/note2.gif"  />	
+			</div>
+			<div class="col-xs-3">
+				<p class="body-text-bold" >الإسم : {{usr.nom}} </p>
+			</div>
+			<div class="col-xs-5">
+				<p class="body-text-bold" >اللقب : {{usr.pren}} </p>
+			</div>
+
+
+			<div class="col-xs-8">
+				<p class="body-text-bold" >تاريخ الولادة ومكانها : {{usr.born | date:'yyyy/MM/dd'}} {{usr.location.city}}</p>
+			</div>
+			
+			<div class="col-xs-8">
+				<p class="body-text-bold" >الرتبة أو الصنف : {{usr.grade[0].grade}}</p>
+			</div>
+
+			<div class="col-xs-3">
+				<p class="body-text-bold" >الخطة الوظيفية</p>
+			</div>
+			<div class="col-xs-5">
+				<p class="body-text-bold" data-ng-if="!usr.fct[0]">: {{"&#8212;"}}</p>
+				<p class="body-text-bold" data-ng-if="usr.fct[0]">: {{usr.fct[0].fct}}</p>
+			</div>
+
+			<div class="col-xs-8">
+				<p class="body-text-bold" >العدد السابق : ............../100</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-6">
+		
+
+		<table class="table table-bordered table-responsive text-center body-text-bottom" >
+			<tr class="body-text-bold">
+				<td>تلخيص السداسي</td>
+				<td>المقاييس</td>
+				<td>العدد المسند</td>
+			</tr>
+			<tr>
+				<td>التأخير <br>عدد الوحدات ..............</td>
+				<td>كمية العمل (خلال فترة الحضور الفعلي)</td>
+				<td> ........../40</td>
+			</tr>
+
+			<tr>
+				<td>عطل المرض <br>............يوما</td>
+				<td>كيفية العمل (خلال فترة الحضور الفعلي)</td>
+				<td> ........../40</td>
+			</tr>
+
+			<tr>
+				<td>عطل دون مرتب<br>............يوما</td>
+				<td>المثابرة والمواظبة</td>
+				<td> ........../20</td>
+			</tr>
+
+			<tr>
+				<td>غيابات غير شرعية <br>............يوما</td>
+				<td>المجموع ( كمية العمل وكيفيته خلال السداسي المعني)</td>
+				<td> ......../100</td>
+			</tr>
+		</table>
+
+		<br>
+		<table class="table table-bordered table-responsive body-text-bottom" >
+			<tr class="body-text-bold">
+				<td colspan="2">
+					التقييم العام : ..........................................................................<br>
+					..........................................................................................<br>
+					..........................................................................................<br>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p class="body-text-bold text-center">ب ...................في.................. </p>
+					<p class="body-text-bold text-center">الرئيس المباشر</p>
+				</td>
+				<td>
+					<p class="body-text-bold text-center">ب ...................في.................. </p>
+					<p class="body-text-bold text-center">رئيس الهيكل</p>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+</div>

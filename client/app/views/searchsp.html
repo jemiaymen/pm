@@ -29,7 +29,7 @@
       <div class="form-group mb-xl">
          <label class="col-sm-4 control-label" style="font-size:16px;">الهيكل الرئيسي</label>
          <div class="col-sm-8">
-            <select data-ng-model="struct" data-ng-options="s as s.struct for s in structs track by s._id" data-ng-init="initStructOptions()" class="form-control" required data-ng-change="initSubStructOptions(struct)"></select>
+            <select data-ng-model="struct" data-ng-options="s as s.struct for s in strs track by s._id" data-ng-init="initStructOptions()" class="form-control" required data-ng-change="initSubStructOptions(struct)"></select>
          </div>
       </div>
 

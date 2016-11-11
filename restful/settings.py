@@ -413,6 +413,91 @@ user_schema = {
         'type' : 'datetime',
     },
 
+    'delday': {
+        'type': 'list',
+        'schema' : {
+            'type': 'dict',
+            'schema' : {
+
+                'days': {
+                    'type': 'integer',
+                    'required' : True,
+                },
+                'f' : {
+                    'type' : 'datetime',
+                    'required' : True,
+                },
+                'to' : {
+                    'type' : 'datetime',
+                    'required' : True,
+                },
+                'ref' : {
+                    'type' : 'string'
+                },
+            }
+        }
+    },
+
+    'travlist': {
+        'type': 'list',
+        'schema' : {
+            'type': 'dict',
+            'schema' : {
+                'struct': {
+                    'type': 'string',
+                    'required' : True,
+                },
+                'grade' : {
+                    'type': 'string',
+                    'required' : True,
+                },
+                'f' : {
+                    'type' : 'string',
+                    'required' : True,
+                },
+                'to' : {
+                    'type' : 'string',
+                    'required' : True,
+                },
+                'cause' : {
+                    'type' : 'string'
+                },
+                'y' : {
+                    'type' : 'integer',
+                    'required' : True,
+                    'default': 0,
+                    'min' : 0,
+                    'max' : 200,
+                },
+                'm' : {
+                    'type' : 'integer',
+                    'required' : True,
+                    'default': 0,
+                    'min' : 0,
+                    'max' : 11,
+                },
+                'd' : {
+                    'type' : 'integer',
+                    'required' : True,
+                    'default': 0,
+                    'min' : 0,
+                    'max' : 29,
+                },
+                'ref' : {
+                    'type' : 'string',
+                    'default': ' ',
+                },
+                'del' : {
+                    'type' : 'integer',
+                    'default': 0,
+                }
+            }
+        }
+    },
+
+
+
+
 
 }
 

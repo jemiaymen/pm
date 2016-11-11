@@ -2,6 +2,9 @@
   <div class="pull-right">
     <button  data-ng-click="$state.go('doc.trav',{'id': userav._id});" class="btn btn-success">شهادة عمل <em class="fa fa-address-card-o"></em></button>
     <button  data-ng-click="$state.go('doc.note',{'id': userav._id});" class="btn btn-success"> العدد المهني <em class="fa fa-address-card-o"></em></button>
+    <button  data-ng-click="$state.go('doc.prim',{'id': userav._id , 'nb': 1});" class="btn btn-success"> منحة الإنتاج السداسي الأول <em class="fa fa-address-card-o"></em></button>
+    <button  data-ng-click="$state.go('doc.prim',{'id': userav._id , 'nb': 2});" class="btn btn-success"> منحة الإنتاج السداسي الثاني <em class="fa fa-address-card-o"></em></button>
+    <button  data-ng-click="$state.go('doc.khad',{'id': userav._id });" class="btn btn-success"> قائمة في الخدمات </button>
   </div>
   <small data-ng-bind="app.name + ' - ' + app.description"></small>
 </h3>
